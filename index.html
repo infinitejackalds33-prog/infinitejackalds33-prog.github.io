@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мурко - Все ссылки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Comfortaa', cursive;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Аватар с неоновым свечением */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            border: 3px solid #00f0ff;
+            box-shadow: 
+                0 0 10px #00f0ff,
+                0 0 20px #00f0ff,
+                0 0 30px #00f0ff;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #00f0ff;
+            text-shadow: 0 0 10px #00f0ff;
+        }
+
+        /* Стили для панелей */
+        .panel {
+            width: 100%;
+            height: 80px;
+            margin: 15px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .panel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Telegram панель */
+        .telegram {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            border-color: #00aaff;
+            box-shadow: 
+                0 0 10px #0088cc,
+                0 0 20px #0088cc,
+                inset 0 0 10px rgba(0,136,204,0.3);
+        }
+
+        /* YouTube панель */
+        .youtube {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border-color: #ff4444;
+            box-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                inset 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        /* Twitch панель */
+        .twitch {
+            background: linear-gradient(135deg, #9146ff, #6c2bd9);
+            border-color: #a970ff;
+            box-shadow: 
+                0 0 10px #9146ff,
+                0 0 20px #9146ff,
+                inset 0 0 10px rgba(145,70,255,0.3);
+        }
+
+        .panel-text {
+            font-size: 24px;
+            font-weight: 700;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .telegram .panel-text {
+            color: #a0e6ff;
+            text-shadow: 0 0 10px #0088cc;
+        }
+
+        .youtube .panel-text {
+            color: #ffb3b3;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .twitch .panel-text {
+            color: #d9b8ff;
+            text-shadow: 0 0 10px #9146ff;
+        }
+
+        .panel-icon {
+            width: 50px;
+            height: 50px;
+            opacity: 0.3;
+            filter: brightness(0.5);
+            z-index: 1;
+        }
+
+        .panel-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Сообщение внизу */
+        .personal-message {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #00f0ff;
+            text-shadow: 0 0 10px #00f0ff;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00f0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Аватар -->
+        <div class="avatar">
+            <!-- Замени src на твою картинку Мурко -->
+            <img src="ЗДЕСЬ_ССЫЛКА_НА_КАРТИНКУ_МУРКО" alt="Мурко">
+        </div>
+        
+        <h1 class="title">Все ссылки Мурко</h1>
+        
+        <!-- Панели ссылок -->
+        <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
+            <span class="panel-text">ТГК</span>
+            <div class="panel-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" alt="Telegram">
+            </div>
+        </a>
+        
+        <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
+            <span class="panel-text">Ютуб</span>
+            <div class="panel-icon">
+                <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-photo-0.png" alt="YouTube">
+            </div>
+        </a>
+        
+        <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
+            <span class="panel-text">Твич</span>
+            <div class="panel-icon">
+                <img src="https://assets.twitch.tv/assets/mobile_iphone-526a4005c7c0760cb83f.png" alt="Twitch">
+            </div>
+        </a>
+        
+        <!-- Личные сообщения -->
+        <div class="personal-message">
+            Личные сообщения Мурко: @LiveMurkoVT
+        </div>
+    </div>
+</body>
+</html>
