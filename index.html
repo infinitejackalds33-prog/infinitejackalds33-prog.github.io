@@ -21,10 +21,11 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 800px;
             width: 100%;
             text-align: center;
         }
@@ -34,7 +35,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 30px;
             position: relative;
             border: 3px solid #00f0ff;
             box-shadow: 
@@ -51,34 +52,77 @@
             border-radius: 50%;
         }
 
+        /* 3D текст */
         .title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 40px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 50px;
             color: #00f0ff;
-            text-shadow: 0 0 10px #00f0ff;
+            text-shadow: 
+                0 0 5px #00f0ff,
+                0 0 10px #00f0ff,
+                0 0 15px #00f0ff,
+                0 0 20px #00f0ff,
+                0 0 25px #00f0ff,
+                0 0 30px #00f0ff,
+                3px 3px 0 #0066cc,
+                6px 6px 0 #004499;
+            transform: perspective(500px) rotateX(10deg);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 5px #00f0ff,
+                    0 0 10px #00f0ff,
+                    0 0 15px #00f0ff,
+                    3px 3px 0 #0066cc,
+                    6px 6px 0 #004499;
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #00f0ff,
+                    0 0 20px #00f0ff,
+                    0 0 30px #00f0ff,
+                    0 0 40px #00f0ff,
+                    3px 3px 0 #0066cc,
+                    6px 6px 0 #004499;
+            }
+        }
+
+        /* Контейнер для панелей */
+        .panels-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Стили для панелей */
         .panel {
             width: 100%;
-            height: 80px;
-            margin: 15px 0;
-            border-radius: 15px;
+            height: 120px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 25px;
+            padding: 0 30px;
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: 2px solid transparent;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .panel:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
         /* Telegram панель */
@@ -86,9 +130,9 @@
             background: linear-gradient(135deg, #0088cc, #005580);
             border-color: #00aaff;
             box-shadow: 
-                0 0 10px #0088cc,
-                0 0 20px #0088cc,
-                inset 0 0 10px rgba(0,136,204,0.3);
+                0 0 15px #0088cc,
+                0 0 25px #0088cc,
+                inset 0 0 15px rgba(0,136,204,0.4);
         }
 
         /* YouTube панель */
@@ -96,9 +140,9 @@
             background: linear-gradient(135deg, #ff0000, #cc0000);
             border-color: #ff4444;
             box-shadow: 
-                0 0 10px #ff0000,
-                0 0 20px #ff0000,
-                inset 0 0 10px rgba(255,0,0,0.3);
+                0 0 15px #ff0000,
+                0 0 25px #ff0000,
+                inset 0 0 15px rgba(255,0,0,0.4);
         }
 
         /* Twitch панель */
@@ -106,39 +150,60 @@
             background: linear-gradient(135deg, #9146ff, #6c2bd9);
             border-color: #a970ff;
             box-shadow: 
-                0 0 10px #9146ff,
-                0 0 20px #9146ff,
-                inset 0 0 10px rgba(145,70,255,0.3);
+                0 0 15px #9146ff,
+                0 0 25px #9146ff,
+                inset 0 0 15px rgba(145,70,255,0.4);
+        }
+
+        /* TikTok панель */
+        .tiktok {
+            background: linear-gradient(135deg, #000000, #333333);
+            border-color: #ffffff;
+            box-shadow: 
+                0 0 15px #ffffff,
+                0 0 25px #ffffff,
+                inset 0 0 15px rgba(255,255,255,0.2);
         }
 
         .panel-text {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             z-index: 2;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            position: relative;
         }
 
         .telegram .panel-text {
             color: #a0e6ff;
-            text-shadow: 0 0 10px #0088cc;
+            text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc;
         }
 
         .youtube .panel-text {
             color: #ffb3b3;
-            text-shadow: 0 0 10px #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
         }
 
         .twitch .panel-text {
             color: #d9b8ff;
-            text-shadow: 0 0 10px #9146ff;
+            text-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
+        }
+
+        .tiktok .panel-text {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
         }
 
         .panel-icon {
             width: 50px;
             height: 50px;
-            opacity: 0.3;
-            filter: brightness(0.5);
+            opacity: 0.2;
+            filter: brightness(0.3);
             z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .panel:hover .panel-icon {
+            opacity: 0.4;
+            filter: brightness(0.6);
         }
 
         .panel-icon img {
@@ -147,17 +212,119 @@
             object-fit: contain;
         }
 
+        /* Эффекты частиц */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        /* Синие частицы для Telegram */
+        .telegram .particle {
+            background: #00aaff;
+            box-shadow: 0 0 8px #00aaff;
+        }
+
+        /* Красные частицы для YouTube */
+        .youtube .particle {
+            background: #ff4444;
+            box-shadow: 0 0 8px #ff4444;
+        }
+
+        /* Фиолетовые частицы для Twitch */
+        .twitch .particle {
+            background: #a970ff;
+            box-shadow: 0 0 8px #a970ff;
+        }
+
+        /* Черные частицы для TikTok */
+        .tiktok .particle {
+            background: #000000;
+            box-shadow: 0 0 8px #ffffff;
+        }
+
+        /* Анимация частиц при наведении */
+        .panel:hover .particle:nth-child(1) {
+            opacity: 1;
+            transform: translate(20px, -20px) scale(1.5);
+        }
+        .panel:hover .particle:nth-child(2) {
+            opacity: 1;
+            transform: translate(-20px, -25px) scale(1.3);
+        }
+        .panel:hover .particle:nth-child(3) {
+            opacity: 1;
+            transform: translate(25px, 15px) scale(1.7);
+        }
+        .panel:hover .particle:nth-child(4) {
+            opacity: 1;
+            transform: translate(-15px, 20px) scale(1.2);
+        }
+        .panel:hover .particle:nth-child(5) {
+            opacity: 1;
+            transform: translate(30px, -10px) scale(1.4);
+        }
+        .panel:hover .particle:nth-child(6) {
+            opacity: 1;
+            transform: translate(-30px, 10px) scale(1.6);
+        }
+
         /* Сообщение внизу */
         .personal-message {
-            margin-top: 30px;
-            font-size: 16px;
+            margin-top: 40px;
+            font-size: 20px;
             color: #00f0ff;
-            text-shadow: 0 0 10px #00f0ff;
-            font-weight: 600;
-            padding: 15px;
-            border-radius: 10px;
+            font-weight: 700;
+            padding: 20px;
+            border-radius: 15px;
             background: rgba(0, 240, 255, 0.1);
-            border: 1px solid #00f0ff;
+            border: 2px solid #00f0ff;
+            text-shadow: 
+                0 0 5px #00f0ff,
+                0 0 10px #00f0ff,
+                0 0 15px #00f0ff,
+                2px 2px 0 #0066cc,
+                4px 4px 0 #004499;
+            transform: perspective(500px) rotateX(10deg);
+            animation: messageGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes messageGlow {
+            from {
+                text-shadow: 
+                    0 0 5px #00f0ff,
+                    0 0 10px #00f0ff,
+                    2px 2px 0 #0066cc,
+                    4px 4px 0 #004499;
+                box-shadow: 
+                    0 0 10px #00f0ff,
+                    inset 0 0 10px rgba(0,240,255,0.1);
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #00f0ff,
+                    0 0 20px #00f0ff,
+                    0 0 30px #00f0ff,
+                    2px 2px 0 #0066cc,
+                    4px 4px 0 #004499;
+                box-shadow: 
+                    0 0 20px #00f0ff,
+                    0 0 30px #00f0ff,
+                    inset 0 0 20px rgba(0,240,255,0.2);
+            }
         }
     </style>
 </head>
@@ -165,38 +332,92 @@
     <div class="container">
         <!-- Аватар -->
         <div class="avatar">
-            <!-- Замени src на твою картинку Мурко -->
-            <img src= "5413534066332002557.jpg" alt="Мурко">
+            <!-- ЗАМЕНИ ЭТУ ССЫЛКУ НА КАРТИНКУ МУРКО -->
+            <img src="5413534066332002557.jpg" alt="Мурко">
         </div>
         
         <h1 class="title">Все ссылки Мурко</h1>
         
         <!-- Панели ссылок -->
-        <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
-            <span class="panel-text">ТГК</span>
-            <div class="panel-icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" alt="Telegram">
-            </div>
-        </a>
-        
-        <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
-            <span class="panel-text">Ютуб</span>
-            <div class="panel-icon">
-                <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-photo-0.png" alt="YouTube">
-            </div>
-        </a>
-        
-        <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
-            <span class="panel-text">Твич</span>
-            <div class="panel-icon">
-                <img src="https://assets.twitch.tv/assets/mobile_iphone-526a4005c7c0760cb83f.png" alt="Twitch">
-            </div>
-        </a>
+        <div class="panels-container">
+            <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
+                <span class="panel-text">ТГК</span>
+                <div class="panel-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" alt="Telegram">
+                </div>
+                <div class="particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </a>
+            
+            <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
+                <span class="panel-text">Ютуб</span>
+                <div class="panel-icon">
+                    <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-photo-0.png" alt="YouTube">
+                </div>
+                <div class="particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </a>
+            
+            <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
+                <span class="panel-text">Твич</span>
+                <div class="panel-icon">
+                    <img src="https://assets.twitch.tv/assets/mobile_iphone-526a4005c7c0760cb83f.png" alt="Twitch">
+                </div>
+                <div class="particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </a>
+            
+            <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank">
+                <span class="panel-text">ТТ</span>
+                <div class="panel-icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREOjDiOcrtfIOFp23DhwDIuhGsqFOpmArQkg&s" alt="TikTok">
+                </div>
+                <div class="particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </a>
+        </div>
         
         <!-- Личные сообщения -->
         <div class="personal-message">
             Личные сообщения Мурко: @LiveMurkoVT
         </div>
     </div>
+
+    <script>
+        // Добавляем случайность для частиц
+        document.querySelectorAll('.particle').forEach(particle => {
+            const randomX = (Math.random() - 0.5) * 60;
+            const randomY = (Math.random() - 0.5) * 60;
+            const randomScale = 0.8 + Math.random() * 1.2;
+            const randomDelay = Math.random() * 0.3;
+            
+            particle.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale})`;
+            particle.style.transitionDelay = `${randomDelay}s`;
+        });
+    </script>
 </body>
 </html>
