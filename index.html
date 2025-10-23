@@ -18,6 +18,7 @@
             --neon-red: #ff0000;
             --neon-white: #ffffff;
             --terminal-bg: #0a0a0a;
+            --main-bg: #050505;
         }
 
         body {
@@ -44,24 +45,60 @@
             cursor: pointer;
         }
 
+        .terminal-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .terminal {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             border: 2px solid var(--neon-blue);
             border-radius: 10px;
             padding: 30px;
-            max-width: 600px;
             width: 90%;
             box-shadow: 
                 0 0 20px var(--neon-blue),
                 inset 0 0 20px rgba(0, 240, 255, 0.1);
+            min-height: 200px;
+        }
+
+        .hint {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            font-size: 16px;
+            margin: 15px 0;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .hint.top {
+            margin-bottom: 20px;
+        }
+
+        .hint.bottom {
+            margin-top: 20px;
+        }
+
+        .hint.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .terminal-line {
-            margin: 20px 0;
+            margin: 15px 0;
             font-size: 18px;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue);
-            min-height: 25px;
+            min-height: 24px;
+        }
+
+        .typing-text {
+            display: inline;
         }
 
         .cursor {
@@ -69,14 +106,9 @@
             width: 8px;
             height: 20px;
             background: var(--neon-blue);
-            margin-left: 5px;
+            margin-left: 2px;
             animation: blink 1s infinite;
             vertical-align: middle;
-            opacity: 0;
-        }
-
-        .typing .cursor {
-            opacity: 1;
         }
 
         @keyframes blink {
@@ -87,21 +119,6 @@
         .password-stars {
             color: var(--neon-blue);
             letter-spacing: 3px;
-            font-weight: bold;
-        }
-
-        .hint {
-            color: #00aaff;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
-            opacity: 0.7;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
         }
 
         .progress-bar {
@@ -118,7 +135,7 @@
             background: var(--neon-blue);
             box-shadow: 0 0 10px var(--neon-blue);
             width: 0%;
-            transition: width 1.5s ease-in-out;
+            transition: width 2s ease-in-out;
         }
 
         .skip-btn {
@@ -149,6 +166,7 @@
             transition: opacity 1s ease;
             min-height: 100vh;
             position: relative;
+            background: var(--main-bg);
         }
 
         .container {
@@ -157,6 +175,16 @@
             text-align: center;
             padding: 20px;
             margin: 0 auto;
+        }
+
+        /* Подпись создателя */
+        .creator {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 10;
         }
 
         /* Easter Egg Header */
@@ -497,6 +525,10 @@
                 font-size: 16px;
             }
             
+            .hint {
+                font-size: 14px;
+            }
+            
             .skip-btn {
                 bottom: 20px;
                 right: 20px;
@@ -514,6 +546,12 @@
                 font-size: 12px;
                 right: 15px;
                 top: 15px;
+            }
+            
+            .creator {
+                font-size: 12px;
+                left: 15px;
+                bottom: 15px;
             }
         }
 
@@ -543,21 +581,53 @@
                 padding: 12px;
                 font-size: 16px;
             }
+            
+            .terminal {
+                min-height: 180px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .panel {
+                height: 70px;
+                padding: 0 15px;
+            }
+            
+            .panel-text {
+                font-size: 18px;
+            }
+            
+            .personal-message {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .hint {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="terminal">
-            <div class="terminal-line" id="line1"></div>
-            <div class="hint" id="hint1">Нажми любую кнопку или кликни для продолжения...</div>
-            <div class="terminal-line" id="line2"></div>
-            <div class="hint" id="hint2" style="display: none;">Нажми любую кнопку или кликни для ввода пароля...</div>
-            <div class="terminal-line" id="line3"></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+        <div class="terminal-container">
+            <div class="hint top" id="hint1">Нажмите любую кнопку чтобы войти</div>
+            
+            <div class="terminal">
+                <div class="terminal-line" id="line1"></div>
+                <div class="terminal-line" id="line2"></div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
             </div>
+            
+            <div class="hint bottom hidden" id="hint2">Нажмите любую кнопку чтобы ввести пароль</div>
         </div>
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
@@ -570,15 +640,21 @@
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
+        <!-- Подпись создателя -->
+        <div class="creator">Создано с любовью от SallyTV</div>
+        
+        <!-- Пасхалка -->
         <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
         
         <div class="container">
+            <!-- Аватар -->
             <div class="avatar">
                 <img src="5413534066332002557.jpg" alt="Мурко" onerror="this.src='https://via.placeholder.com/150/00f0ff/000000?text=Murko'">
             </div>
             
             <h1 class="title">Все ссылки Мурко</h1>
             
+            <!-- Панели ссылок -->
             <div class="panels-container">
                 <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
                     <span class="panel-text">ТГК</span>
@@ -641,6 +717,7 @@
                 </a>
             </div>
             
+            <!-- Личные сообщения -->
             <div class="personal-message">
                 Личные сообщения Мурко: @LiveMurkoVT
             </div>
@@ -652,36 +729,33 @@
         const loadingScreen = document.getElementById('loadingScreen');
         const mainContent = document.getElementById('mainContent');
         const skipBtn = document.getElementById('skipBtn');
+        const progressBar = document.getElementById('progressBar');
         const progressFill = document.getElementById('progressFill');
         const rickroll = document.getElementById('rickroll');
         const hint1 = document.getElementById('hint1');
         const hint2 = document.getElementById('hint2');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
 
         // Состояния анимации
         let currentStep = 0;
-        let animationActive = true;
 
-        // Тексты для анимации
-        const texts = [
-            "Sudo Login MurkoLiveVT",
-            "Нажми любую кнопку чтобы ввести пароль",
-            "Password: "
-        ];
-
-        // Функция анимации печати текста
-        async function typeWriter(element, text, speed = 50) {
+        // Функция печати текста с курсором
+        function typeText(element, text, speed = 60) {
             return new Promise((resolve) => {
-                element.classList.add('typing');
                 let i = 0;
-                element.innerHTML = '';
+                element.innerHTML = '<span class="typing-text"></span><span class="cursor"></span>';
+                const typingElement = element.querySelector('.typing-text');
                 
                 function type() {
                     if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
+                        typingElement.innerHTML += text.charAt(i);
                         i++;
                         setTimeout(type, speed);
                     } else {
-                        element.classList.remove('typing');
+                        // Убираем курсор после завершения печати
+                        element.querySelector('.cursor').style.animation = 'none';
+                        element.querySelector('.cursor').style.opacity = '0';
                         resolve();
                     }
                 }
@@ -689,22 +763,22 @@
             });
         }
 
-        // Функция анимации пароля (звёздочки)
-        async function typePassword(element, speed = 100) {
+        // Функция печати пароля со звездочками
+        function typePassword(element, text, speed = 100) {
             return new Promise((resolve) => {
-                element.classList.add('typing');
                 let i = 0;
-                const starsCount = 6;
-                element.innerHTML = '<span class="password-stars"></span>';
+                element.innerHTML = 'Password: <span class="password-stars"></span><span class="cursor"></span>';
                 const starsElement = element.querySelector('.password-stars');
                 
                 function type() {
-                    if (i < starsCount) {
-                        starsElement.innerHTML += '•';
+                    if (i < text.length) {
+                        starsElement.innerHTML += '*';
                         i++;
                         setTimeout(type, speed);
                     } else {
-                        element.classList.remove('typing');
+                        // Убираем курсор после завершения печати
+                        element.querySelector('.cursor').style.animation = 'none';
+                        element.querySelector('.cursor').style.opacity = '0';
                         resolve();
                     }
                 }
@@ -712,75 +786,56 @@
             });
         }
 
+        // Показ/скрытие подсказок
+        function showHint(hint) {
+            hint.classList.remove('hidden');
+        }
+
+        function hideHint(hint) {
+            hint.classList.add('hidden');
+        }
+
         // Основная функция анимации
-        async function startLoadingAnimation() {
-            if (!animationActive) return;
-
-            // Шаг 1: Печатаем первую строку
-            await typeWriter(document.getElementById('line1'), texts[0]);
-            
-            // Ждем клика для продолжения
-            await waitForUserAction();
-            if (!animationActive) return;
-            
-            hint1.style.display = 'none';
-            hint2.style.display = 'block';
-
-            // Шаг 2: Печатаем вторую строку
-            await typeWriter(document.getElementById('line2'), texts[1]);
-            
-            // Ждем клика для продолжения
-            await waitForUserAction();
-            if (!animationActive) return;
-            
-            hint2.style.display = 'none';
-
-            // Шаг 3: Печатаем пароль
-            await typeWriter(document.getElementById('line3'), texts[2]);
-            await typePassword(document.getElementById('line3'));
-
-            // Запускаем прогресс-бар
-            progressFill.style.width = '100%';
-            
-            // Ждем завершения анимации прогресс-бара
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Переход к основному контенту
-            if (animationActive) {
-                showMainContent();
+        async function startNextStep() {
+            switch(currentStep) {
+                case 0:
+                    // Первый шаг: скрываем первую подсказку и печатаем логин
+                    hideHint(hint1);
+                    await typeText(line1, "Sudo Login MurkoLiveVT", 70);
+                    showHint(hint2);
+                    currentStep = 1;
+                    break;
+                    
+                case 1:
+                    // Второй шаг: скрываем вторую подсказку и печатаем пароль
+                    hideHint(hint2);
+                    await typePassword(line2, "password", 150);
+                    
+                    // Запускаем прогресс-бар
+                    progressFill.style.width = '100%';
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Переход к основному контенту
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        mainContent.style.display = 'block';
+                        setTimeout(() => {
+                            mainContent.style.opacity = '1';
+                        }, 100);
+                    }, 1000);
+                    break;
             }
-        }
-
-        // Функция ожидания действия пользователя
-        function waitForUserAction() {
-            return new Promise((resolve) => {
-                const handleAction = () => {
-                    loadingScreen.removeEventListener('click', handleAction);
-                    document.removeEventListener('keydown', handleAction);
-                    resolve();
-                };
-                
-                loadingScreen.addEventListener('click', handleAction);
-                document.addEventListener('keydown', handleAction);
-            });
-        }
-
-        // Показать основной контент
-        function showMainContent() {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                mainContent.style.display = 'block';
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                }, 100);
-            }, 500);
         }
 
         // Пропуск анимации
         function skipAnimation() {
-            animationActive = false;
-            showMainContent();
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '1';
+            }, 500);
         }
 
         // Рикролл
@@ -792,13 +847,19 @@
             rickroll.classList.remove('show');
         }
 
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', () => {
-            // Начинаем анимацию сразу
-            startLoadingAnimation();
+        // Обработчики событий
+        document.addEventListener('keydown', (e) => {
+            if (currentStep <= 1) {
+                startNextStep();
+            }
         });
 
-        // Обработчики событий
+        loadingScreen.addEventListener('click', () => {
+            if (currentStep <= 1) {
+                startNextStep();
+            }
+        });
+
         skipBtn.addEventListener('click', skipAnimation);
 
         // Случайное движение частиц
