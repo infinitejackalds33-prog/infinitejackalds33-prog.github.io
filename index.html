@@ -22,11 +22,12 @@
         }
 
         body {
-            background: var(--terminal-bg);
+            background: var(--main-bg);
             color: white;
             font-family: 'Comfortaa', cursive;
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -45,60 +46,46 @@
             cursor: pointer;
         }
 
-        .terminal-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
         .terminal {
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid var(--neon-blue);
             border-radius: 10px;
-            padding: 30px;
+            padding: 40px 30px;
+            max-width: 600px;
             width: 90%;
             box-shadow: 
-                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-blue),
                 inset 0 0 20px rgba(0, 240, 255, 0.1);
-            min-height: 200px;
+            position: relative;
         }
 
         .hint {
+            position: absolute;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue);
             font-size: 16px;
-            margin: 15px 0;
             text-align: center;
+            width: 100%;
             opacity: 1;
             transition: opacity 0.5s ease;
         }
 
-        .hint.top {
-            margin-bottom: 20px;
+        .hint-top {
+            top: -50px;
+            left: 0;
         }
 
-        .hint.bottom {
-            margin-top: 20px;
-        }
-
-        .hint.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .hint-bottom {
+            bottom: -50px;
+            left: 0;
         }
 
         .terminal-line {
-            margin: 15px 0;
+            margin: 20px 0;
             font-size: 18px;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-blue);
-            min-height: 24px;
-        }
-
-        .typing-text {
-            display: inline;
+            min-height: 25px;
         }
 
         .cursor {
@@ -106,9 +93,14 @@
             width: 8px;
             height: 20px;
             background: var(--neon-blue);
-            margin-left: 2px;
+            margin-left: 5px;
             animation: blink 1s infinite;
             vertical-align: middle;
+            opacity: 0;
+        }
+
+        .typing .cursor {
+            opacity: 1;
         }
 
         @keyframes blink {
@@ -117,17 +109,27 @@
         }
 
         .password-stars {
+            display: inline-block;
             color: var(--neon-blue);
-            letter-spacing: 3px;
+        }
+
+        .password-star {
+            opacity: 0;
+            animation: starAppear 0.3s ease forwards;
+        }
+
+        @keyframes starAppear {
+            to { opacity: 1; }
         }
 
         .progress-bar {
             width: 100%;
-            height: 4px;
+            height: 6px;
             background: rgba(0, 240, 255, 0.2);
-            border-radius: 2px;
-            margin-top: 20px;
+            border-radius: 3px;
+            margin-top: 30px;
             overflow: hidden;
+            opacity: 0;
         }
 
         .progress-fill {
@@ -135,28 +137,30 @@
             background: var(--neon-blue);
             box-shadow: 0 0 10px var(--neon-blue);
             width: 0%;
-            transition: width 2s ease-in-out;
+            transition: width 1.5s ease-in-out;
+            border-radius: 3px;
         }
 
         .skip-btn {
             position: absolute;
             bottom: 30px;
             right: 30px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: transparent;
             border: 1px solid var(--neon-blue);
             color: var(--neon-blue);
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: 'Comfortaa', cursive;
             text-shadow: 0 0 5px var(--neon-blue);
             transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .skip-btn:hover {
             background: var(--neon-blue);
             color: black;
-            box-shadow: 0 0 15px var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -175,16 +179,10 @@
             text-align: center;
             padding: 20px;
             margin: 0 auto;
-        }
-
-        /* Подпись создателя */
-        .creator {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* Easter Egg Header */
@@ -196,15 +194,27 @@
             color: var(--neon-blue);
             cursor: pointer;
             text-shadow: 0 0 5px var(--neon-blue);
-            padding: 10px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 8px;
             transition: all 0.3s ease;
             z-index: 10;
+            background: rgba(0, 240, 255, 0.1);
         }
 
         .easter-egg:hover {
-            background: rgba(0, 240, 255, 0.1);
-            box-shadow: 0 0 10px var(--neon-blue);
+            background: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Creator Signature */
+        .creator-signature {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: white;
+            opacity: 0.8;
+            z-index: 10;
         }
 
         /* Аватар */
@@ -212,7 +222,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin: 80px auto 30px;
+            margin: 0 auto 30px;
             position: relative;
             border: 3px solid var(--neon-blue);
             box-shadow: 
@@ -419,7 +429,7 @@
         /* Сообщение внизу */
         .personal-message {
             margin-top: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             font-size: clamp(16px, 4vw, 18px);
             color: var(--neon-blue);
             font-weight: 700;
@@ -518,7 +528,7 @@
             }
             
             .terminal {
-                padding: 20px;
+                padding: 30px 20px;
             }
             
             .terminal-line {
@@ -529,15 +539,22 @@
                 font-size: 14px;
             }
             
+            .hint-top {
+                top: -40px;
+            }
+            
+            .hint-bottom {
+                bottom: -40px;
+            }
+            
             .skip-btn {
                 bottom: 20px;
                 right: 20px;
-                padding: 8px 16px;
-                font-size: 14px;
+                padding: 10px 20px;
+                font-size: 13px;
             }
             
             .avatar {
-                margin-top: 60px;
                 width: 130px;
                 height: 130px;
             }
@@ -548,10 +565,10 @@
                 top: 15px;
             }
             
-            .creator {
+            .creator-signature {
                 font-size: 12px;
-                left: 15px;
                 bottom: 15px;
+                left: 15px;
             }
         }
 
@@ -559,7 +576,6 @@
             .avatar {
                 width: 120px;
                 height: 120px;
-                margin-top: 50px;
             }
             
             .panel {
@@ -577,13 +593,13 @@
             
             .personal-message {
                 margin-top: 15px;
-                margin-bottom: 30px;
+                margin-bottom: 15px;
                 padding: 12px;
                 font-size: 16px;
             }
             
             .terminal {
-                min-height: 180px;
+                padding: 25px 15px;
             }
         }
 
@@ -608,7 +624,7 @@
             }
             
             .hint {
-                font-size: 13px;
+                font-size: 12px;
             }
         }
     </style>
@@ -616,18 +632,18 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="terminal-container">
-            <div class="hint top" id="hint1">Нажмите любую кнопку чтобы войти</div>
+        <div class="terminal">
+            <div class="hint hint-top" id="hint1">Нажмите любую кнопку чтобы войти</div>
             
-            <div class="terminal">
-                <div class="terminal-line" id="line1"></div>
-                <div class="terminal-line" id="line2"></div>
-                <div class="progress-bar" id="progressBar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
+            <div class="terminal-line" id="line1"></div>
+            <div class="terminal-line" id="line2"></div>
+            <div class="terminal-line" id="line3"></div>
+            
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
             
-            <div class="hint bottom hidden" id="hint2">Нажмите любую кнопку чтобы ввести пароль</div>
+            <div class="hint hint-bottom" id="hint2" style="display: none;">Нажмите любую кнопку чтобы ввести пароль</div>
         </div>
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
@@ -640,11 +656,8 @@
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
-        <!-- Подпись создателя -->
-        <div class="creator">Создано с любовью от SallyTV</div>
-        
-        <!-- Пасхалка -->
         <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
+        <div class="creator-signature">Создано с любовью от SallyTV</div>
         
         <div class="container">
             <!-- Аватар -->
@@ -736,26 +749,25 @@
         const hint2 = document.getElementById('hint2');
         const line1 = document.getElementById('line1');
         const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
 
         // Состояния анимации
         let currentStep = 0;
 
-        // Функция печати текста с курсором
-        function typeText(element, text, speed = 60) {
+        // Функция показа текста с анимацией печати
+        function typeWriter(element, text, speed = 50) {
             return new Promise((resolve) => {
-                let i = 0;
-                element.innerHTML = '<span class="typing-text"></span><span class="cursor"></span>';
-                const typingElement = element.querySelector('.typing-text');
+                element.innerHTML = '';
+                element.classList.add('typing');
                 
+                let i = 0;
                 function type() {
                     if (i < text.length) {
-                        typingElement.innerHTML += text.charAt(i);
+                        element.innerHTML += text.charAt(i);
                         i++;
                         setTimeout(type, speed);
                     } else {
-                        // Убираем курсор после завершения печати
-                        element.querySelector('.cursor').style.animation = 'none';
-                        element.querySelector('.cursor').style.opacity = '0';
+                        element.classList.remove('typing');
                         resolve();
                     }
                 }
@@ -763,68 +775,80 @@
             });
         }
 
-        // Функция печати пароля со звездочками
-        function typePassword(element, text, speed = 100) {
+        // Функция анимации звездочек пароля
+        function animatePassword(element, count = 6, speed = 200) {
             return new Promise((resolve) => {
-                let i = 0;
-                element.innerHTML = 'Password: <span class="password-stars"></span><span class="cursor"></span>';
-                const starsElement = element.querySelector('.password-stars');
+                element.innerHTML = 'Password: <span class="password-stars"></span>';
+                const starsContainer = element.querySelector('.password-stars');
+                starsContainer.innerHTML = '';
                 
-                function type() {
-                    if (i < text.length) {
-                        starsElement.innerHTML += '*';
+                let i = 0;
+                function addStar() {
+                    if (i < count) {
+                        const star = document.createElement('span');
+                        star.className = 'password-star';
+                        star.textContent = '*';
+                        star.style.animationDelay = `${i * 100}ms`;
+                        starsContainer.appendChild(star);
                         i++;
-                        setTimeout(type, speed);
+                        setTimeout(addStar, speed);
                     } else {
-                        // Убираем курсор после завершения печати
-                        element.querySelector('.cursor').style.animation = 'none';
-                        element.querySelector('.cursor').style.opacity = '0';
                         resolve();
                     }
                 }
-                type();
+                addStar();
             });
         }
 
-        // Показ/скрытие подсказок
-        function showHint(hint) {
-            hint.classList.remove('hidden');
+        // Шаг 1: Первая анимация (логин)
+        async function step1() {
+            await typeWriter(line1, "Sudo Login MurkoLiveVT", 70);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Показываем вторую подсказку
+            hint2.style.display = 'block';
+            currentStep = 1;
         }
 
-        function hideHint(hint) {
-            hint.classList.add('hidden');
+        // Шаг 2: Вторая анимация (пароль)
+        async function step2() {
+            await animatePassword(line2, 6, 150);
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Показываем прогресс-бар
+            progressBar.style.opacity = '1';
+            progressFill.style.width = '100%';
+            
+            // Ждем завершения анимации прогресс-бара
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Переход к основному контенту
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                }, 100);
+            }, 1000);
         }
 
-        // Основная функция анимации
-        async function startNextStep() {
-            switch(currentStep) {
-                case 0:
-                    // Первый шаг: скрываем первую подсказку и печатаем логин
-                    hideHint(hint1);
-                    await typeText(line1, "Sudo Login MurkoLiveVT", 70);
-                    showHint(hint2);
-                    currentStep = 1;
-                    break;
-                    
-                case 1:
-                    // Второй шаг: скрываем вторую подсказку и печатаем пароль
-                    hideHint(hint2);
-                    await typePassword(line2, "password", 150);
-                    
-                    // Запускаем прогресс-бар
-                    progressFill.style.width = '100%';
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                    
-                    // Переход к основному контенту
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        mainContent.style.display = 'block';
-                        setTimeout(() => {
-                            mainContent.style.opacity = '1';
-                        }, 100);
-                    }, 1000);
-                    break;
+        // Обработчик кликов/нажатий
+        function handleInteraction() {
+            if (currentStep === 0) {
+                // Первый клик - убираем первую подсказку и начинаем первую анимацию
+                hint1.style.opacity = '0';
+                setTimeout(() => {
+                    hint1.style.display = 'none';
+                    step1();
+                }, 500);
+            } else if (currentStep === 1) {
+                // Второй клик - убираем вторую подсказку и начинаем вторую анимацию
+                hint2.style.opacity = '0';
+                setTimeout(() => {
+                    hint2.style.display = 'none';
+                    step2();
+                }, 500);
             }
         }
 
@@ -847,19 +871,9 @@
             rickroll.classList.remove('show');
         }
 
-        // Обработчики событий
-        document.addEventListener('keydown', (e) => {
-            if (currentStep <= 1) {
-                startNextStep();
-            }
-        });
-
-        loadingScreen.addEventListener('click', () => {
-            if (currentStep <= 1) {
-                startNextStep();
-            }
-        });
-
+        // Инициализация
+        document.addEventListener('keydown', handleInteraction);
+        loadingScreen.addEventListener('click', handleInteraction);
         skipBtn.addEventListener('click', skipAnimation);
 
         // Случайное движение частиц
