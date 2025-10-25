@@ -46,6 +46,10 @@
             cursor: pointer;
         }
 
+        .loading-screen.disabled {
+            cursor: not-allowed;
+        }
+
         .terminal {
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid var(--neon-blue);
@@ -161,6 +165,17 @@
             background: var(--neon-blue);
             color: black;
             box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .skip-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .skip-btn:disabled:hover {
+            background: transparent;
+            color: var(--neon-blue);
+            box-shadow: none;
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -662,7 +677,7 @@
         <div class="container">
             <!-- Аватар -->
             <div class="avatar">
-                <img src="5413534066332002557.jpg" alt="Мурко" onerror="this.src='https://via.placeholder.com/150/00f0ff/000000?text=Murko'">
+                <img src="5413534066332002557.jpg" alt="Мурко" onerror="handleImageError(this)">
             </div>
             
             <h1 class="title">Все ссылки Мурко</h1>
@@ -672,7 +687,7 @@
                 <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
                     <span class="panel-text">ТГК</span>
                     <div class="panel-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" alt="Telegram">
+                        <img src="Telegram.jpg" alt="Telegram" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -687,7 +702,7 @@
                 <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
                     <span class="panel-text">Ютуб</span>
                     <div class="panel-icon">
-                        <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-photo-0.png" alt="YouTube">
+                        <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -702,7 +717,7 @@
                 <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
                     <span class="panel-text">Твич</span>
                     <div class="panel-icon">
-                        <img src="https://assets.twitch.tv/assets/mobile_iphone-526a4005c7c0760cb83f.png" alt="Twitch">
+                        <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -717,7 +732,7 @@
                 <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank">
                     <span class="panel-text">ТТ</span>
                     <div class="panel-icon">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREOjDiOcrtfIOFp23DhwDIuhGsqFOpmArQkg&s" alt="TikTok">
+                        <img src="TikTok.png" alt="TikTok" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -753,6 +768,28 @@
 
         // Состояния анимации
         let currentStep = 0;
+        let isAnimating = false;
+
+        // Функция обработки ошибок загрузки изображений
+        function handleImageError(img) {
+            console.error('Ошибка загрузки изображения:', img.src);
+            img.style.display = 'none';
+            
+            // Создаем fallback элемент
+            const fallback = document.createElement('div');
+            fallback.style.width = '100%';
+            fallback.style.height = '100%';
+            fallback.style.background = 'rgba(255,255,255,0.1)';
+            fallback.style.borderRadius = '50%';
+            fallback.style.display = 'flex';
+            fallback.style.alignItems = 'center';
+            fallback.style.justifyContent = 'center';
+            fallback.style.color = 'white';
+            fallback.style.fontSize = '12px';
+            fallback.textContent = 'IMG';
+            
+            img.parentNode.appendChild(fallback);
+        }
 
         // Функция показа текста с анимацией печати
         function typeWriter(element, text, speed = 50) {
@@ -802,16 +839,23 @@
 
         // Шаг 1: Первая анимация (логин)
         async function step1() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
             await typeWriter(line1, "Sudo Login MurkoLiveVT", 70);
             await new Promise(resolve => setTimeout(resolve, 1000));
             
             // Показываем вторую подсказку
             hint2.style.display = 'block';
             currentStep = 1;
+            isAnimating = false;
         }
 
         // Шаг 2: Вторая анимация (пароль)
         async function step2() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
             await animatePassword(line2, 6, 150);
             await new Promise(resolve => setTimeout(resolve, 800));
             
@@ -835,6 +879,8 @@
 
         // Обработчик кликов/нажатий
         function handleInteraction() {
+            if (isAnimating) return;
+            
             if (currentStep === 0) {
                 // Первый клик - убираем первую подсказку и начинаем первую анимацию
                 hint1.style.opacity = '0';
@@ -854,6 +900,8 @@
 
         // Пропуск анимации
         function skipAnimation() {
+            if (isAnimating) return;
+            
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
@@ -889,9 +937,11 @@
 
         // Защита от ошибок загрузки изображений
         document.querySelectorAll('img').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
+            if (!img.complete || img.naturalHeight === 0) {
+                img.onerror = function() {
+                    handleImageError(this);
+                };
+            }
         });
 
         // Закрытие рикролла по клику вне области
@@ -900,6 +950,25 @@
                 closeRickroll();
             }
         });
+
+        // Предзагрузка изображений для лучшей производительности
+        function preloadImages() {
+            const imageUrls = [
+                '5413534066332002557.jpg',
+                'Telegram.jpg',
+                'YouTube.png',
+                'Twitch.png',
+                'TikTok.png'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+
+        // Запускаем предзагрузку после загрузки страницы
+        window.addEventListener('load', preloadImages);
     </script>
 </body>
 </html>
