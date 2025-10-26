@@ -490,7 +490,7 @@
             }
         }
 
-        /* Rickroll Video */
+        /* Rickroll Video - СКРЫТ ПО УМОЛЧАНИЮ */
         #rickroll {
             position: fixed;
             top: 50%;
@@ -502,10 +502,14 @@
             border-radius: 10px;
             box-shadow: 0 0 50px var(--neon-blue);
             background: black;
+            opacity: 0;
+            visibility: hidden;
         }
 
         #rickroll.show {
             transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            visibility: visible;
         }
 
         .close-rickroll {
@@ -663,10 +667,11 @@
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
 
-    <!-- Rickroll Video (скрыт) -->
+    <!-- Rickroll Video (полностью скрыт по умолчанию) -->
     <div id="rickroll">
         <button class="close-rickroll" onclick="closeRickroll()">×</button>
-        <iframe width="400" height="225" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <!-- Без autoplay в src -->
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <!-- Main Content -->
@@ -677,7 +682,7 @@
         <div class="container">
             <!-- Аватар -->
             <div class="avatar">
-                <img src="5413534066332002557.jpg" alt="Мурко" onerror="handleImageError(this)">
+                <img src="murko-avatar.jpg" alt="Мурко" onerror="handleImageError(this)">
             </div>
             
             <h1 class="title">Все ссылки Мурко</h1>
@@ -687,7 +692,7 @@
                 <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
                     <span class="panel-text">ТГК</span>
                     <div class="panel-icon">
-                        <img src="Telegram.png" alt="Telegram" onerror="handleImageError(this)">
+                        <img src="telegram-icon.jpg" alt="Telegram" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -702,7 +707,7 @@
                 <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
                     <span class="panel-text">Ютуб</span>
                     <div class="panel-icon">
-                        <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
+                        <img src="youtube-icon.png" alt="YouTube" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -717,7 +722,7 @@
                 <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
                     <span class="panel-text">Твич</span>
                     <div class="panel-icon">
-                        <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
+                        <img src="twitch-icon.png" alt="Twitch" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -732,7 +737,7 @@
                 <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank">
                     <span class="panel-text">ТТ</span>
                     <div class="panel-icon">
-                        <img src="TikTok.png" alt="TikTok" onerror="handleImageError(this)">
+                        <img src="tiktok-icon.png" alt="TikTok" onerror="handleImageError(this)">
                     </div>
                     <div class="particles">
                         <div class="particle"></div>
@@ -910,12 +915,19 @@
             }, 500);
         }
 
-        // Рикролл
+        // Рикролл - ТЕПЕРЬ ПОЛНОСТЬЮ СКРЫТ ДО НАЖАТИЯ!
         function showRickroll() {
+            // Получаем iframe
+            const iframe = rickroll.querySelector('iframe');
+            // Меняем src на версию с autoplay ТОЛЬКО при клике
+            iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
             rickroll.classList.add('show');
         }
 
         function closeRickroll() {
+            const iframe = rickroll.querySelector('iframe');
+            // Убираем autoplay при закрытии
+            iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
             rickroll.classList.remove('show');
         }
 
@@ -954,11 +966,11 @@
         // Предзагрузка изображений для лучшей производительности
         function preloadImages() {
             const imageUrls = [
-                '5413534066332002557.jpg',
-                'Telegram.png',
-                'YouTube.png',
-                'Twitch.png',
-                'TikTok.png'
+                'murko-avatar.jpg',
+                'telegram-icon.jpg', 
+                'youtube-icon.png',
+                'twitch-icon.png',
+                'tiktok-icon.png'
             ];
             
             imageUrls.forEach(url => {
