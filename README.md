@@ -66,13 +66,12 @@
 ## 📁 Структура проекта
 
 ```
-murko-links/
 ├── index.html              # Главный файл
-├──5413534066332002557.jpg        # Аватар стримера
-├── telegram.jpg       # Иконка Telegram
-├── youtube.png        # Иконка YouTube
-├── twitch.png         # Иконка Twitch
-├── tiktok.png         # Иконка TikTok
+├──MurkoLive.jpg        # Аватар стримера
+├── Telegram.png       # Иконка Telegram
+├── YouTube.png        # Иконка YouTube
+├── Twitch.png         # Иконка Twitch
+├── TikTok.png         # Иконка TikTok
 └── README.md              # Документация
 ```
 
