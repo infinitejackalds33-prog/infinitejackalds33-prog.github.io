@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мурко - Все ссылки</title>
+    <title>Murko - Все ссылки</title>
+    <meta name="description" content="Официальные ссылки Мурко - Telegram, YouTube, Twitch, TikTok">
+    <meta name="theme-color" content="#00f0ff">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Murko Links">
+    
     <style>
         * {
             margin: 0;
@@ -14,6 +25,7 @@
 
         :root {
             --neon-blue: #00f0ff;
+            --neon-green: #39ff14;
             --neon-purple: #9146ff;
             --neon-red: #ff0000;
             --neon-white: #ffffff;
@@ -26,8 +38,12 @@
             color: white;
             font-family: 'Comfortaa', cursive;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -189,7 +205,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
             padding: 20px;
@@ -293,21 +309,132 @@
             }
         }
 
-        /* Панели */
-        .panels-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        /* Основной контейнер для панелей и кнопки установки */
+        .main-panels-container {
+            display: flex;
+            gap: 25px;
             margin-bottom: 30px;
-            max-width: 600px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            justify-items: center;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        /* Контейнер для кнопки установки */
+        .install-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Кнопка установки - ВЕРТИКАЛЬНАЯ */
+        .install-panel {
+            width: 100px;
+            flex: 1;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            min-height: 220px;
+            
+            background: linear-gradient(135deg, #39ff14, #00cc00);
+            border-color: #39ff14;
+            box-shadow: 
+                0 0 15px #39ff14,
+                0 0 25px #39ff14,
+                inset 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+
+        .install-panel:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 
+                0 0 20px #39ff14,
+                0 0 40px #39ff14,
+                0 12px 25px rgba(0,0,0,0.4);
+        }
+
+        .install-panel.installed {
+            background: linear-gradient(135deg, #666666, #333333);
+            border-color: #888888;
+            box-shadow: 
+                0 0 15px #888888,
+                0 0 25px #888888,
+                inset 0 0 15px rgba(136, 136, 136, 0.4);
+            cursor: default;
+        }
+
+        .install-panel.installed:hover {
+            transform: none;
+            box-shadow: 
+                0 0 15px #888888,
+                0 0 25px #888888,
+                inset 0 0 15px rgba(136, 136, 136, 0.4);
+        }
+
+        .install-text {
+            font-size: 20px;
+            font-weight: 700;
+            z-index: 2;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+            transform: rotate(180deg);
+        }
+
+        .install-panel.installed .install-text {
+            color: #cccccc;
+            text-shadow: 0 0 10px #888888, 0 0 20px #888888;
+        }
+
+        /* Эффекты частиц для кнопки установки */
+        .install-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .install-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.6s ease;
+            background: #39ff14;
+            box-shadow: 0 0 8px #39ff14;
+        }
+
+        .install-panel:hover .install-particle:nth-child(1) { opacity: 1; transform: translate(10px, -20px) scale(1.5); }
+        .install-panel:hover .install-particle:nth-child(2) { opacity: 1; transform: translate(-10px, -25px) scale(1.3); }
+        .install-panel:hover .install-particle:nth-child(3) { opacity: 1; transform: translate(15px, 15px) scale(1.7); }
+        .install-panel:hover .install-particle:nth-child(4) { opacity: 1; transform: translate(-15px, 20px) scale(1.2); }
+        .install-panel:hover .install-particle:nth-child(5) { opacity: 1; transform: translate(20px, -10px) scale(1.4); }
+        .install-panel:hover .install-particle:nth-child(6) { opacity: 1; transform: translate(-20px, 10px) scale(1.6); }
+
+        /* Панели ссылок */
+        .panels-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            flex: 1;
+            max-width: 600px;
         }
 
         .panel {
             width: 100%;
-            max-width: 280px;
             height: 100px;
             border-radius: 15px;
             display: flex;
@@ -319,6 +446,7 @@
             overflow: hidden;
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .panel:hover {
@@ -530,60 +658,82 @@
 
         /* Адаптивность */
         @media (max-width: 768px) {
-            .panels-container {
-                grid-template-columns: 1fr;
+            .main-panels-container {
+                flex-direction: column;
+                align-items: center;
                 gap: 15px;
+            }
+
+            .install-container {
+                width: 100%;
                 max-width: 400px;
             }
-            
+
+            .install-panel {
+                width: 100%;
+                height: 80px;
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                min-height: auto;
+            }
+
+            .install-text {
+                transform: none;
+            }
+
+            .panels-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                width: 100%;
+            }
+
             .panel {
                 height: 90px;
                 padding: 0 20px;
-                max-width: 100%;
             }
-            
+
             .panel-text {
                 font-size: 22px;
             }
-            
+
             .terminal {
                 padding: 30px 20px;
             }
-            
+
             .terminal-line {
                 font-size: 16px;
             }
-            
+
             .hint {
                 font-size: 14px;
             }
-            
+
             .hint-top {
                 top: -40px;
             }
-            
+
             .hint-bottom {
                 bottom: -40px;
             }
-            
+
             .skip-btn {
                 bottom: 20px;
                 right: 20px;
                 padding: 10px 20px;
                 font-size: 13px;
             }
-            
+
             .avatar {
                 width: 130px;
                 height: 130px;
             }
-            
+
             .easter-egg {
                 font-size: 12px;
                 right: 15px;
                 top: 15px;
             }
-            
+
             .creator-signature {
                 font-size: 12px;
                 bottom: 15px;
@@ -596,29 +746,33 @@
                 width: 120px;
                 height: 120px;
             }
-            
+
             .panel {
                 height: 80px;
             }
-            
+
             .panel-text {
                 font-size: 20px;
             }
-            
+
             .panel-icon {
                 width: 40px;
                 height: 40px;
             }
-            
+
             .personal-message {
                 margin-top: 15px;
                 margin-bottom: 15px;
                 padding: 12px;
                 font-size: 16px;
             }
-            
+
             .terminal {
                 padding: 25px 15px;
+            }
+
+            .install-panel {
+                height: 70px;
             }
         }
 
@@ -627,23 +781,37 @@
                 width: 100px;
                 height: 100px;
             }
-            
+
             .panel {
                 height: 70px;
                 padding: 0 15px;
             }
-            
+
             .panel-text {
                 font-size: 18px;
             }
-            
+
             .personal-message {
                 font-size: 14px;
                 padding: 10px;
             }
-            
+
             .hint {
                 font-size: 12px;
+            }
+
+            .install-panel {
+                height: 60px;
+            }
+        }
+
+        /* PWA специфичные стили */
+        @media (display-mode: standalone) {
+            .easter-egg {
+                top: 40px; /* Учитываем статус бар */
+            }
+            .creator-signature {
+                bottom: 30px;
             }
         }
     </style>
@@ -687,67 +855,85 @@
             
             <h1 class="title">Все ссылки Мурко</h1>
             
-            <!-- Панели ссылок -->
-            <div class="panels-container">
-                <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
-                    <span class="panel-text">ТГК</span>
-                    <div class="panel-icon">
-                        <img src="Telegram.png" alt="Telegram" onerror="handleImageError(this)">
+            <!-- Основной контейнер с кнопкой установки и панелями -->
+            <div class="main-panels-container">
+                <!-- Контейнер для кнопки установки -->
+                <div class="install-container">
+                    <div class="install-panel" id="installPanel">
+                        <span class="install-text" id="installText">Установить</span>
+                        <div class="install-particles">
+                            <div class="install-particle"></div>
+                            <div class="install-particle"></div>
+                            <div class="install-particle"></div>
+                            <div class="install-particle"></div>
+                            <div class="install-particle"></div>
+                            <div class="install-particle"></div>
+                        </div>
                     </div>
-                    <div class="particles">
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                    </div>
-                </a>
+                </div>
                 
-                <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
-                    <span class="panel-text">Ютуб</span>
-                    <div class="panel-icon">
-                        <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
-                    </div>
-                    <div class="particles">
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                    </div>
-                </a>
-                
-                <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
-                    <span class="panel-text">Твич</span>
-                    <div class="panel-icon">
-                        <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
-                    </div>
-                    <div class="particles">
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                    </div>
-                </a>
-                
-                <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank">
-                    <span class="panel-text">ТТ</span>
-                    <div class="panel-icon">
-                        <img src="TikTok.png" alt="TikTok" onerror="handleImageError(this)">
-                    </div>
-                    <div class="particles">
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                    </div>
-                </a>
+                <!-- Панели ссылок -->
+                <div class="panels-container">
+                    <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank" rel="noopener">
+                        <span class="panel-text">ТГК</span>
+                        <div class="panel-icon">
+                            <img src="Telegram.png" alt="Telegram" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank" rel="noopener">
+                        <span class="panel-text">Ютуб</span>
+                        <div class="panel-icon">
+                            <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank" rel="noopener">
+                        <span class="panel-text">Твич</span>
+                        <div class="panel-icon">
+                            <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank" rel="noopener">
+                        <span class="panel-text">ТТ</span>
+                        <div class="panel-icon">
+                            <img src="TikTok.png" alt="TikTok" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
             
             <!-- Личные сообщения -->
@@ -770,6 +956,12 @@
         const line1 = document.getElementById('line1');
         const line2 = document.getElementById('line2');
         const line3 = document.getElementById('line3');
+        const installPanel = document.getElementById('installPanel');
+        const installText = document.getElementById('installText');
+
+        // PWA переменные
+        let deferredPrompt;
+        let isInstalled = false;
 
         // Состояния анимации
         let currentStep = 0;
@@ -931,15 +1123,54 @@
             rickroll.classList.remove('show');
         }
 
+        // PWA Функции
+        function showInstallPrompt() {
+            // Кнопка всегда видна, ничего не делаем
+        }
+
+        async function installPWA() {
+            if (deferredPrompt && !isInstalled) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('Пользователь установил PWA');
+                    isInstalled = true;
+                    installPanel.classList.add('installed');
+                    installText.textContent = 'Установлено';
+                }
+                deferredPrompt = null;
+            } else if (isInstalled) {
+                // Уже установлено
+                console.log('Приложение уже установлено');
+            } else {
+                console.log('Установка недоступна');
+            }
+        }
+
         // Инициализация
         document.addEventListener('keydown', handleInteraction);
         loadingScreen.addEventListener('click', handleInteraction);
         skipBtn.addEventListener('click', skipAnimation);
 
+        // Обработчик для кнопки установки
+        installPanel.addEventListener('click', installPWA);
+
         // Случайное движение частиц
         document.querySelectorAll('.particle').forEach(particle => {
             const randomX = (Math.random() - 0.5) * 60;
             const randomY = (Math.random() - 0.5) * 60;
+            const randomScale = 0.8 + Math.random() * 1.2;
+            const randomDelay = Math.random() * 0.3;
+            
+            particle.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale})`;
+            particle.style.transitionDelay = `${randomDelay}s`;
+        });
+
+        // Случайное движение частиц для кнопки установки
+        document.querySelectorAll('.install-particle').forEach(particle => {
+            const randomX = (Math.random() - 0.5) * 40;
+            const randomY = (Math.random() - 0.5) * 40;
             const randomScale = 0.8 + Math.random() * 1.2;
             const randomDelay = Math.random() * 0.3;
             
@@ -963,14 +1194,50 @@
             }
         });
 
+        // PWA Event Listeners
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Предотвращаем автоматическое отображение prompt
+            e.preventDefault();
+            // Сохраняем event для использования позже
+            deferredPrompt = e;
+        });
+
+        // Проверяем, установлено ли приложение
+        window.addEventListener('appinstalled', () => {
+            isInstalled = true;
+            installPanel.classList.add('installed');
+            installText.textContent = 'Установлено';
+            deferredPrompt = null;
+        });
+
+        // Регистрация Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Проверяем, запущено ли приложение в standalone режиме (уже установлено)
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            isInstalled = true;
+            installPanel.classList.add('installed');
+            installText.textContent = 'Установлено';
+        }
+
         // Предзагрузка изображений для лучшей производительности
         function preloadImages() {
             const imageUrls = [
                 'MurkoLive.jpg',
                 'Telegram.png', 
-                'Youtube.png',
+                'YouTube.png',
                 'Twitch.png',
-                'Tiktok.png'
+                'TikTok.png'
             ];
             
             imageUrls.forEach(url => {
