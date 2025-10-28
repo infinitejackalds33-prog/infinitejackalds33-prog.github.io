@@ -6,15 +6,16 @@
     <title>Murko - Все ссылки</title>
     <meta name="description" content="Официальные ссылки Мурко - Telegram, YouTube, Twitch, TikTok">
     <meta name="theme-color" content="#00f0ff">
+    
+    <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="icon-192.png">
     <link rel="apple-touch-icon" href="icon-192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- PWA meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Murko Links">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -41,9 +42,6 @@
             overflow-x: hidden;
             position: relative;
             -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -62,10 +60,6 @@
             cursor: pointer;
         }
 
-        .loading-screen.disabled {
-            cursor: not-allowed;
-        }
-
         .terminal {
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid var(--neon-blue);
@@ -73,9 +67,7 @@
             padding: 40px 30px;
             max-width: 600px;
             width: 90%;
-            box-shadow: 
-                0 0 30px var(--neon-blue),
-                inset 0 0 20px rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 30px var(--neon-blue);
             position: relative;
         }
 
@@ -172,7 +164,6 @@
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Comfortaa', cursive;
-            text-shadow: 0 0 5px var(--neon-blue);
             transition: all 0.3s ease;
             font-size: 14px;
         }
@@ -180,18 +171,6 @@
         .skip-btn:hover {
             background: var(--neon-blue);
             color: black;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        .skip-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .skip-btn:disabled:hover {
-            background: transparent;
-            color: var(--neon-blue);
-            box-shadow: none;
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -202,13 +181,13 @@
             min-height: 100vh;
             position: relative;
             background: var(--main-bg);
+            padding: 20px;
         }
 
         .container {
             max-width: 900px;
             width: 100%;
             text-align: center;
-            padding: 20px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
@@ -234,7 +213,6 @@
 
         .easter-egg:hover {
             background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 15px var(--neon-blue);
         }
 
         /* Creator Signature */
@@ -256,10 +234,7 @@
             margin: 0 auto 30px;
             position: relative;
             border: 3px solid var(--neon-blue);
-            box-shadow: 
-                0 0 20px var(--neon-blue),
-                0 0 40px var(--neon-blue),
-                0 0 60px var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
             overflow: hidden;
         }
 
@@ -279,13 +254,8 @@
             text-shadow: 
                 0 0 5px var(--neon-blue),
                 0 0 10px var(--neon-blue),
-                0 0 15px var(--neon-blue),
-                0 0 20px var(--neon-blue),
-                0 0 25px var(--neon-blue),
-                0 0 30px var(--neon-blue),
                 3px 3px 0 #0066cc,
                 6px 6px 0 #004499;
-            transform: perspective(500px) rotateX(10deg);
             animation: glow 2s ease-in-out infinite alternate;
         }
 
@@ -294,7 +264,6 @@
                 text-shadow: 
                     0 0 5px var(--neon-blue),
                     0 0 10px var(--neon-blue),
-                    0 0 15px var(--neon-blue),
                     3px 3px 0 #0066cc,
                     6px 6px 0 #004499;
             }
@@ -302,14 +271,12 @@
                 text-shadow: 
                     0 0 10px var(--neon-blue),
                     0 0 20px var(--neon-blue),
-                    0 0 30px var(--neon-blue),
-                    0 0 40px var(--neon-blue),
                     3px 3px 0 #0066cc,
                     6px 6px 0 #004499;
             }
         }
 
-        /* Основной контейнер для панелей и кнопки установки */
+        /* Основной контейнер */
         .main-panels-container {
             display: flex;
             gap: 25px;
@@ -321,13 +288,12 @@
             justify-content: center;
         }
 
-        /* Контейнер для кнопки установки */
+        /* Кнопка установки */
         .install-container {
             display: flex;
             flex-direction: column;
         }
 
-        /* Кнопка установки - ВЕРТИКАЛЬНАЯ */
         .install-panel {
             width: 100px;
             flex: 1;
@@ -341,43 +307,29 @@
             transition: all 0.4s ease;
             border: 2px solid transparent;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
             writing-mode: vertical-rl;
             text-orientation: mixed;
             min-height: 220px;
             
             background: linear-gradient(135deg, #39ff14, #00cc00);
             border-color: #39ff14;
-            box-shadow: 
-                0 0 15px #39ff14,
-                0 0 25px #39ff14,
-                inset 0 0 15px rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 15px #39ff14;
         }
 
         .install-panel:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 
-                0 0 20px #39ff14,
-                0 0 40px #39ff14,
-                0 12px 25px rgba(0,0,0,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px #39ff14;
         }
 
         .install-panel.installed {
             background: linear-gradient(135deg, #666666, #333333);
             border-color: #888888;
-            box-shadow: 
-                0 0 15px #888888,
-                0 0 25px #888888,
-                inset 0 0 15px rgba(136, 136, 136, 0.4);
+            box-shadow: 0 0 15px #888888;
             cursor: default;
         }
 
         .install-panel.installed:hover {
             transform: none;
-            box-shadow: 
-                0 0 15px #888888,
-                0 0 25px #888888,
-                inset 0 0 15px rgba(136, 136, 136, 0.4);
         }
 
         .install-text {
@@ -386,43 +338,14 @@
             z-index: 2;
             position: relative;
             color: #ffffff;
-            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+            text-shadow: 0 0 10px #39ff14;
             transform: rotate(180deg);
         }
 
         .install-panel.installed .install-text {
             color: #cccccc;
-            text-shadow: 0 0 10px #888888, 0 0 20px #888888;
+            text-shadow: 0 0 10px #888888;
         }
-
-        /* Эффекты частиц для кнопки установки */
-        .install-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .install-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.6s ease;
-            background: #39ff14;
-            box-shadow: 0 0 8px #39ff14;
-        }
-
-        .install-panel:hover .install-particle:nth-child(1) { opacity: 1; transform: translate(10px, -20px) scale(1.5); }
-        .install-panel:hover .install-particle:nth-child(2) { opacity: 1; transform: translate(-10px, -25px) scale(1.3); }
-        .install-panel:hover .install-particle:nth-child(3) { opacity: 1; transform: translate(15px, 15px) scale(1.7); }
-        .install-panel:hover .install-particle:nth-child(4) { opacity: 1; transform: translate(-15px, 20px) scale(1.2); }
-        .install-panel:hover .install-particle:nth-child(5) { opacity: 1; transform: translate(20px, -10px) scale(1.4); }
-        .install-panel:hover .install-particle:nth-child(6) { opacity: 1; transform: translate(-20px, 10px) scale(1.6); }
 
         /* Панели ссылок */
         .panels-container {
@@ -446,48 +369,34 @@
             overflow: hidden;
             transition: all 0.4s ease;
             border: 2px solid transparent;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .panel:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
         }
 
         .telegram {
             background: linear-gradient(135deg, #0088cc, #005580);
             border-color: #00aaff;
-            box-shadow: 
-                0 0 15px #0088cc,
-                0 0 25px #0088cc,
-                inset 0 0 15px rgba(0,136,204,0.4);
+            box-shadow: 0 0 15px #0088cc;
         }
 
         .youtube {
             background: linear-gradient(135deg, #ff0000, #cc0000);
             border-color: #ff4444;
-            box-shadow: 
-                0 0 15px #ff0000,
-                0 0 25px #ff0000,
-                inset 0 0 15px rgba(255,0,0,0.4);
+            box-shadow: 0 0 15px #ff0000;
         }
 
         .twitch {
             background: linear-gradient(135deg, #9146ff, #6c2bd9);
             border-color: #a970ff;
-            box-shadow: 
-                0 0 15px #9146ff,
-                0 0 25px #9146ff,
-                inset 0 0 15px rgba(145,70,255,0.4);
+            box-shadow: 0 0 15px #9146ff;
         }
 
         .tiktok {
             background: linear-gradient(135deg, #000000, #333333);
             border-color: #ffffff;
-            box-shadow: 
-                0 0 15px #ffffff,
-                0 0 25px #ffffff,
-                inset 0 0 15px rgba(255,255,255,0.2);
+            box-shadow: 0 0 15px #ffffff;
         }
 
         .panel-text {
@@ -499,22 +408,22 @@
 
         .telegram .panel-text {
             color: #a0e6ff;
-            text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc;
+            text-shadow: 0 0 10px #0088cc;
         }
 
         .youtube .panel-text {
             color: #ffb3b3;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            text-shadow: 0 0 10px #ff0000;
         }
 
         .twitch .panel-text {
             color: #d9b8ff;
-            text-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
+            text-shadow: 0 0 10px #9146ff;
         }
 
         .tiktok .panel-text {
             color: #ffffff;
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
+            text-shadow: 0 0 10px #ffffff;
         }
 
         .panel-icon {
@@ -528,7 +437,6 @@
 
         .panel:hover .panel-icon {
             opacity: 0.4;
-            filter: brightness(0.6);
         }
 
         .panel-icon img {
@@ -536,38 +444,6 @@
             height: 100%;
             object-fit: contain;
         }
-
-        /* Эффекты частиц */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
-
-        .telegram .particle { background: #00aaff; box-shadow: 0 0 8px #00aaff; }
-        .youtube .particle { background: #ff4444; box-shadow: 0 0 8px #ff4444; }
-        .twitch .particle { background: #a970ff; box-shadow: 0 0 8px #a970ff; }
-        .tiktok .particle { background: #000000; box-shadow: 0 0 8px #ffffff; }
-
-        .panel:hover .particle:nth-child(1) { opacity: 1; transform: translate(20px, -20px) scale(1.5); }
-        .panel:hover .particle:nth-child(2) { opacity: 1; transform: translate(-20px, -25px) scale(1.3); }
-        .panel:hover .particle:nth-child(3) { opacity: 1; transform: translate(25px, 15px) scale(1.7); }
-        .panel:hover .particle:nth-child(4) { opacity: 1; transform: translate(-15px, 20px) scale(1.2); }
-        .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
-        .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
         /* Сообщение внизу */
         .personal-message {
@@ -580,13 +456,7 @@
             border-radius: 12px;
             background: rgba(0, 240, 255, 0.1);
             border: 2px solid var(--neon-blue);
-            text-shadow: 
-                0 0 5px var(--neon-blue),
-                0 0 10px var(--neon-blue),
-                0 0 15px var(--neon-blue),
-                2px 2px 0 #0066cc,
-                4px 4px 0 #004499;
-            transform: perspective(500px) rotateX(10deg);
+            text-shadow: 0 0 5px var(--neon-blue);
             animation: messageGlow 3s ease-in-out infinite alternate;
             max-width: 500px;
             margin-left: auto;
@@ -595,30 +465,16 @@
 
         @keyframes messageGlow {
             from {
-                text-shadow: 
-                    0 0 5px var(--neon-blue),
-                    0 0 10px var(--neon-blue),
-                    2px 2px 0 #0066cc,
-                    4px 4px 0 #004499;
-                box-shadow: 
-                    0 0 10px var(--neon-blue),
-                    inset 0 0 10px rgba(0,240,255,0.1);
+                text-shadow: 0 0 5px var(--neon-blue);
+                box-shadow: 0 0 10px var(--neon-blue);
             }
             to {
-                text-shadow: 
-                    0 0 10px var(--neon-blue),
-                    0 0 20px var(--neon-blue),
-                    0 0 30px var(--neon-blue),
-                    2px 2px 0 #0066cc,
-                    4px 4px 0 #004499;
-                box-shadow: 
-                    0 0 20px var(--neon-blue),
-                    0 0 30px var(--neon-blue),
-                    inset 0 0 20px rgba(0,240,255,0.2);
+                text-shadow: 0 0 10px var(--neon-blue);
+                box-shadow: 0 0 20px var(--neon-blue);
             }
         }
 
-        /* Rickroll Video - СКРЫТ ПО УМОЛЧАНИЮ */
+        /* Rickroll Video */
         #rickroll {
             position: fixed;
             top: 50%;
@@ -727,18 +583,6 @@
                 width: 130px;
                 height: 130px;
             }
-
-            .easter-egg {
-                font-size: 12px;
-                right: 15px;
-                top: 15px;
-            }
-
-            .creator-signature {
-                font-size: 12px;
-                bottom: 15px;
-                left: 15px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -775,45 +619,6 @@
                 height: 70px;
             }
         }
-
-        @media (max-width: 360px) {
-            .avatar {
-                width: 100px;
-                height: 100px;
-            }
-
-            .panel {
-                height: 70px;
-                padding: 0 15px;
-            }
-
-            .panel-text {
-                font-size: 18px;
-            }
-
-            .personal-message {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .hint {
-                font-size: 12px;
-            }
-
-            .install-panel {
-                height: 60px;
-            }
-        }
-
-        /* PWA специфичные стили */
-        @media (display-mode: standalone) {
-            .easter-egg {
-                top: 40px; /* Учитываем статус бар */
-            }
-            .creator-signature {
-                bottom: 30px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -835,10 +640,9 @@
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
 
-    <!-- Rickroll Video (полностью скрыт по умолчанию) -->
+    <!-- Rickroll Video -->
     <div id="rickroll">
         <button class="close-rickroll" onclick="closeRickroll()">×</button>
-        <!-- Без autoplay в src -->
         <iframe width="400" height="225" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; encrypted-media" allowfullscreen></iframe>
     </div>
 
@@ -855,20 +659,12 @@
             
             <h1 class="title">Все ссылки Мурко</h1>
             
-            <!-- Основной контейнер с кнопкой установки и панелями -->
+            <!-- Основной контейнер -->
             <div class="main-panels-container">
-                <!-- Контейнер для кнопки установки -->
+                <!-- Кнопка установки -->
                 <div class="install-container">
                     <div class="install-panel" id="installPanel">
                         <span class="install-text" id="installText">Установить</span>
-                        <div class="install-particles">
-                            <div class="install-particle"></div>
-                            <div class="install-particle"></div>
-                            <div class="install-particle"></div>
-                            <div class="install-particle"></div>
-                            <div class="install-particle"></div>
-                            <div class="install-particle"></div>
-                        </div>
                     </div>
                 </div>
                 
@@ -879,28 +675,12 @@
                         <div class="panel-icon">
                             <img src="Telegram.png" alt="Telegram" onerror="handleImageError(this)">
                         </div>
-                        <div class="particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
                     </a>
                     
                     <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank" rel="noopener">
                         <span class="panel-text">Ютуб</span>
                         <div class="panel-icon">
                             <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
-                        </div>
-                        <div class="particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
                         </div>
                     </a>
                     
@@ -909,28 +689,12 @@
                         <div class="panel-icon">
                             <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
                         </div>
-                        <div class="particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
                     </a>
                     
                     <a href="https://www.tiktok.com/@murkolivevt" class="panel tiktok" target="_blank" rel="noopener">
                         <span class="panel-text">ТТ</span>
                         <div class="panel-icon">
                             <img src="TikTok.png" alt="TikTok" onerror="handleImageError(this)">
-                        </div>
-                        <div class="particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
                         </div>
                     </a>
                 </div>
@@ -971,21 +735,6 @@
         function handleImageError(img) {
             console.error('Ошибка загрузки изображения:', img.src);
             img.style.display = 'none';
-            
-            // Создаем fallback элемент
-            const fallback = document.createElement('div');
-            fallback.style.width = '100%';
-            fallback.style.height = '100%';
-            fallback.style.background = 'rgba(255,255,255,0.1)';
-            fallback.style.borderRadius = '50%';
-            fallback.style.display = 'flex';
-            fallback.style.alignItems = 'center';
-            fallback.style.justifyContent = 'center';
-            fallback.style.color = 'white';
-            fallback.style.fontSize = '12px';
-            fallback.textContent = 'IMG';
-            
-            img.parentNode.appendChild(fallback);
         }
 
         // Функция показа текста с анимацией печати
@@ -1042,7 +791,6 @@
             await typeWriter(line1, "Sudo Login MurkoLiveVT", 70);
             await new Promise(resolve => setTimeout(resolve, 1000));
             
-            // Показываем вторую подсказку
             hint2.style.display = 'block';
             currentStep = 1;
             isAnimating = false;
@@ -1056,14 +804,11 @@
             await animatePassword(line2, 6, 150);
             await new Promise(resolve => setTimeout(resolve, 800));
             
-            // Показываем прогресс-бар
             progressBar.style.opacity = '1';
             progressFill.style.width = '100%';
             
-            // Ждем завершения анимации прогресс-бара
             await new Promise(resolve => setTimeout(resolve, 1500));
             
-            // Переход к основному контенту
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
@@ -1079,14 +824,12 @@
             if (isAnimating) return;
             
             if (currentStep === 0) {
-                // Первый клик - убираем первую подсказку и начинаем первую анимацию
                 hint1.style.opacity = '0';
                 setTimeout(() => {
                     hint1.style.display = 'none';
                     step1();
                 }, 500);
             } else if (currentStep === 1) {
-                // Второй клик - убираем вторую подсказку и начинаем вторую анимацию
                 hint2.style.opacity = '0';
                 setTimeout(() => {
                     hint2.style.display = 'none';
@@ -1107,44 +850,37 @@
             }, 500);
         }
 
-        // Рикролл - ТЕПЕРЬ ПОЛНОСТЬЮ СКРЫТ ДО НАЖАТИЯ!
+        // Рикролл
         function showRickroll() {
-            // Получаем iframe
             const iframe = rickroll.querySelector('iframe');
-            // Меняем src на версию с autoplay ТОЛЬКО при клике
             iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
             rickroll.classList.add('show');
         }
 
         function closeRickroll() {
             const iframe = rickroll.querySelector('iframe');
-            // Убираем autoplay при закрытии
             iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
             rickroll.classList.remove('show');
         }
 
         // PWA Функции
-        function showInstallPrompt() {
-            // Кнопка всегда видна, ничего не делаем
-        }
-
         async function installPWA() {
             if (deferredPrompt && !isInstalled) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('Пользователь установил PWA');
+                    console.log('PWA установлено');
                     isInstalled = true;
                     installPanel.classList.add('installed');
                     installText.textContent = 'Установлено';
                 }
                 deferredPrompt = null;
             } else if (isInstalled) {
-                // Уже установлено
                 console.log('Приложение уже установлено');
             } else {
                 console.log('Установка недоступна');
+                alert('Установка недоступна. Проверьте:\n1. HTTPS соединение\n2. Наличие manifest.json\n3. Наличие service-worker.js');
             }
         }
 
@@ -1156,36 +892,40 @@
         // Обработчик для кнопки установки
         installPanel.addEventListener('click', installPWA);
 
-        // Случайное движение частиц
-        document.querySelectorAll('.particle').forEach(particle => {
-            const randomX = (Math.random() - 0.5) * 60;
-            const randomY = (Math.random() - 0.5) * 60;
-            const randomScale = 0.8 + Math.random() * 1.2;
-            const randomDelay = Math.random() * 0.3;
-            
-            particle.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale})`;
-            particle.style.transitionDelay = `${randomDelay}s`;
+        // PWA Event Listeners
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('PWA может быть установлено');
         });
 
-        // Случайное движение частиц для кнопки установки
-        document.querySelectorAll('.install-particle').forEach(particle => {
-            const randomX = (Math.random() - 0.5) * 40;
-            const randomY = (Math.random() - 0.5) * 40;
-            const randomScale = 0.8 + Math.random() * 1.2;
-            const randomDelay = Math.random() * 0.3;
-            
-            particle.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale})`;
-            particle.style.transitionDelay = `${randomDelay}s`;
+        window.addEventListener('appinstalled', () => {
+            isInstalled = true;
+            installPanel.classList.add('installed');
+            installText.textContent = 'Установлено';
+            deferredPrompt = null;
+            console.log('PWA установлено');
         });
 
-        // Защита от ошибок загрузки изображений
-        document.querySelectorAll('img').forEach(img => {
-            if (!img.complete || img.naturalHeight === 0) {
-                img.onerror = function() {
-                    handleImageError(this);
-                };
-            }
-        });
+        // Проверяем, запущено ли приложение в standalone режиме
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            isInstalled = true;
+            installPanel.classList.add('installed');
+            installText.textContent = 'Установлено';
+        }
+
+        // Регистрация Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker зарегистрирован:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Ошибка регистрации Service Worker:', error);
+                    });
+            });
+        }
 
         // Закрытие рикролла по клику вне области
         document.addEventListener('click', (e) => {
@@ -1193,61 +933,6 @@
                 closeRickroll();
             }
         });
-
-        // PWA Event Listeners
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Предотвращаем автоматическое отображение prompt
-            e.preventDefault();
-            // Сохраняем event для использования позже
-            deferredPrompt = e;
-        });
-
-        // Проверяем, установлено ли приложение
-        window.addEventListener('appinstalled', () => {
-            isInstalled = true;
-            installPanel.classList.add('installed');
-            installText.textContent = 'Установлено';
-            deferredPrompt = null;
-        });
-
-        // Регистрация Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
-
-        // Проверяем, запущено ли приложение в standalone режиме (уже установлено)
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            isInstalled = true;
-            installPanel.classList.add('installed');
-            installText.textContent = 'Установлено';
-        }
-
-        // Предзагрузка изображений для лучшей производительности
-        function preloadImages() {
-            const imageUrls = [
-                'MurkoLive.jpg',
-                'Telegram.png', 
-                'YouTube.png',
-                'Twitch.png',
-                'TikTok.png'
-            ];
-            
-            imageUrls.forEach(url => {
-                const img = new Image();
-                img.src = url;
-            });
-        }
-
-        // Запускаем предзагрузку после загрузки страницы
-        window.addEventListener('load', preloadImages);
     </script>
 </body>
 </html>
