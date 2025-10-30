@@ -188,13 +188,14 @@
             min-height: 100vh;
             position: relative;
             background: var(--main-bg);
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             width: 100%;
             text-align: center;
-            padding: 20px;
+            padding: 20px 15px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
@@ -244,7 +245,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
             position: relative;
             border: 3px solid var(--neon-blue);
             box-shadow: 
@@ -263,9 +264,9 @@
 
         /* 3D текст */
         .title {
-            font-size: clamp(24px, 5vw, 32px);
+            font-size: clamp(22px, 5vw, 32px);
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: var(--neon-blue);
             text-shadow: 
                 0 0 5px var(--neon-blue),
@@ -278,6 +279,7 @@
                 6px 6px 0 #004499;
             transform: perspective(500px) rotateX(10deg);
             animation: glow 2s ease-in-out infinite alternate;
+            padding: 0 10px;
         }
 
         @keyframes glow {
@@ -307,7 +309,7 @@
             align-items: center;
             gap: 40px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 25px;
         }
 
         /* ===== SCHEDULE TABLE ===== */
@@ -315,12 +317,12 @@
             background: var(--schedule-blue);
             border: 2px solid #0044cc;
             border-radius: 12px;
-            padding: 25px 20px;
+            padding: 20px 15px;
             box-shadow: 
                 0 0 25px #0044cc,
                 inset 0 0 20px rgba(0, 68, 204, 0.3),
                 -8px 0 20px rgba(0, 0, 0, 0.6);
-            min-width: 240px;
+            min-width: 220px;
             transition: all 0.4s ease;
             transform: perspective(500px) rotateY(15deg);
             position: relative;
@@ -338,12 +340,12 @@
         .schedule-title {
             color: #66aaff;
             text-shadow: 0 0 10px #66aaff;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             border-bottom: 1px solid #0044cc;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .schedule-table {
@@ -352,9 +354,9 @@
         }
 
         .schedule-table td {
-            padding: 12px 10px;
+            padding: 10px 8px;
             border-bottom: 1px solid rgba(0, 68, 204, 0.3);
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .schedule-table tr:last-child td {
@@ -366,7 +368,7 @@
             text-shadow: 0 0 6px #88ccff;
             font-weight: 600;
             text-align: left;
-            padding-right: 20px !important;
+            padding-right: 15px !important;
         }
 
         .time-cell {
@@ -380,7 +382,7 @@
         .panels-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 15px;
             max-width: 500px;
             position: relative;
             z-index: 1;
@@ -388,13 +390,13 @@
 
         .panel {
             width: 100%;
-            max-width: 240px;
-            height: 100px;
-            border-radius: 15px;
+            max-width: 230px;
+            height: 95px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 25px;
+            padding: 0 20px;
             text-decoration: none;
             position: relative;
             overflow: hidden;
@@ -403,8 +405,8 @@
         }
 
         .panel:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
         .telegram {
@@ -444,7 +446,7 @@
         }
 
         .panel-text {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             z-index: 2;
             position: relative;
@@ -471,8 +473,8 @@
         }
 
         .panel-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             opacity: 0.2;
             filter: brightness(0.3);
             z-index: 1;
@@ -522,15 +524,14 @@
         .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
         .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-        /* Сообщение внизу */
+        /* Сообщение внизу - ИСПРАВЛЕНА ПРОБЛЕМА С ОБРЕЗКОЙ */
         .personal-message {
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: clamp(16px, 4vw, 18px);
+            margin: 20px auto;
+            font-size: clamp(14px, 3.5vw, 18px);
             color: var(--neon-blue);
             font-weight: 700;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
             background: rgba(0, 240, 255, 0.1);
             border: 2px solid var(--neon-blue);
             text-shadow: 
@@ -541,9 +542,10 @@
                 4px 4px 0 #004499;
             transform: perspective(500px) rotateX(10deg);
             animation: messageGlow 3s ease-in-out infinite alternate;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 90%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.4;
         }
 
         @keyframes messageGlow {
@@ -616,8 +618,8 @@
             }
             
             .schedule-container {
-                min-width: 220px;
-                padding: 20px 15px;
+                min-width: 200px;
+                padding: 18px 12px;
             }
             
             .panels-container {
@@ -625,7 +627,7 @@
             }
             
             .panel {
-                max-width: 220px;
+                max-width: 210px;
                 height: 90px;
             }
         }
@@ -633,7 +635,7 @@
         @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
-                gap: 30px;
+                gap: 25px;
             }
             
             .schedule-container {
@@ -650,36 +652,39 @@
                 grid-template-columns: repeat(2, 1fr);
                 max-width: 500px;
                 width: 100%;
+                gap: 12px;
             }
             
             .panel {
                 max-width: 100%;
+                height: 85px;
             }
         }
 
         @media (max-width: 768px) {
             .container {
-                padding-top: 80px;
+                padding: 15px 10px;
+                padding-top: 70px;
             }
             
             .panels-container {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 12px;
                 max-width: 400px;
             }
             
             .panel {
-                height: 85px;
-                padding: 0 20px;
+                height: 80px;
+                padding: 0 18px;
                 max-width: 100%;
             }
             
             .panel-text {
-                font-size: 22px;
+                font-size: 20px;
             }
             
             .terminal {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
             
             .terminal-line {
@@ -699,15 +704,16 @@
             }
             
             .skip-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 18px;
                 font-size: 13px;
             }
             
             .avatar {
-                width: 130px;
-                height: 130px;
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
             }
             
             /* Скрываем обычную пасхалку и показываем мобильную версию */
@@ -720,12 +726,14 @@
                 color: var(--neon-blue);
                 cursor: pointer;
                 text-shadow: 0 0 5px var(--neon-blue);
-                padding: 10px 15px;
+                padding: 8px 12px;
                 border-radius: 8px;
                 transition: all 0.3s ease;
                 background: rgba(0, 240, 255, 0.1);
-                margin: -10px auto 30px;
-                font-size: 14px;
+                margin: -5px auto 20px;
+                font-size: 13px;
+                max-width: 90%;
+                word-wrap: break-word;
             }
             
             .mobile-easter-egg:active {
@@ -734,63 +742,18 @@
             
             .creator-signature {
                 font-size: 12px;
-                bottom: 15px;
-                left: 15px;
+                bottom: 10px;
+                left: 10px;
             }
             
             .schedule-container {
-                padding: 15px 12px;
+                padding: 15px 10px;
                 max-width: 380px;
             }
             
             .schedule-title {
-                font-size: 18px;
-            }
-            
-            .schedule-table td {
-                font-size: 14px;
-                padding: 10px 8px;
-            }
-            
-            /* Скрываем рикролл на мобильных */
-            #rickroll {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .avatar {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .panel {
-                height: 80px;
-            }
-            
-            .panel-text {
-                font-size: 20px;
-            }
-            
-            .panel-icon {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .personal-message {
-                margin-top: 20px;
-                margin-bottom: 15px;
-                padding: 12px;
                 font-size: 16px;
-            }
-            
-            .terminal {
-                padding: 25px 15px;
-            }
-            
-            .schedule-container {
-                max-width: 340px;
-                padding: 12px 10px;
+                margin-bottom: 12px;
             }
             
             .schedule-table td {
@@ -798,9 +761,67 @@
                 padding: 8px 6px;
             }
             
+            /* Скрываем рикролл на мобильных */
+            #rickroll {
+                display: none;
+            }
+            
+            .personal-message {
+                margin: 15px auto;
+                padding: 10px 12px;
+                max-width: 95%;
+                font-size: clamp(13px, 3.2vw, 16px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .avatar {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .panel {
+                height: 75px;
+            }
+            
+            .panel-text {
+                font-size: 18px;
+            }
+            
+            .panel-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .personal-message {
+                margin: 12px auto;
+                padding: 8px 10px;
+                font-size: clamp(12px, 3vw, 15px);
+            }
+            
+            .terminal {
+                padding: 20px 15px;
+            }
+            
+            .schedule-container {
+                max-width: 340px;
+                padding: 12px 8px;
+            }
+            
+            .schedule-table td {
+                font-size: 12px;
+                padding: 6px 4px;
+            }
+            
             .mobile-easter-egg {
-                font-size: 13px;
-                padding: 8px 12px;
+                font-size: 12px;
+                padding: 6px 10px;
+                margin-bottom: 15px;
+            }
+            
+            .title {
+                margin-bottom: 20px;
+                font-size: clamp(20px, 4.5vw, 24px);
             }
         }
 
@@ -811,17 +832,18 @@
             }
             
             .panel {
-                height: 75px;
+                height: 70px;
                 padding: 0 15px;
             }
             
             .panel-text {
-                font-size: 18px;
+                font-size: 17px;
             }
             
             .personal-message {
-                font-size: 14px;
-                padding: 10px;
+                font-size: clamp(11px, 2.8vw, 14px);
+                padding: 6px 8px;
+                margin: 10px auto;
             }
             
             .hint {
@@ -833,13 +855,54 @@
             }
             
             .schedule-table td {
-                font-size: 12px;
-                padding: 6px 4px;
+                font-size: 11px;
+                padding: 5px 3px;
             }
             
             .mobile-easter-egg {
-                font-size: 12px;
-                padding: 6px 10px;
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+            
+            .content-wrapper {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                padding: 10px 5px;
+                padding-top: 60px;
+            }
+            
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .panel {
+                height: 65px;
+                padding: 0 12px;
+            }
+            
+            .panel-text {
+                font-size: 16px;
+            }
+            
+            .personal-message {
+                font-size: clamp(10px, 2.5vw, 13px);
+                padding: 5px 6px;
+                margin: 8px auto;
+            }
+            
+            .schedule-container {
+                max-width: 280px;
+                padding: 10px 6px;
+            }
+            
+            .mobile-easter-egg {
+                font-size: 10px;
+                padding: 4px 6px;
             }
         }
     </style>
@@ -978,7 +1041,7 @@
                 </div>
             </div>
             
-            <!-- Личные сообщения -->
+            <!-- Личные сообщения - ТЕПЕРЬ ПОЛНОСТЬЮ ВИДНЫ НА ВСЕХ УСТРОЙСТВАХ -->
             <div class="personal-message">
                 Личные сообщения Мурко: @LiveMurkoVT
             </div>
