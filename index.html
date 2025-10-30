@@ -28,7 +28,7 @@
             color: white;
             font-family: 'Comfortaa', cursive;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -203,7 +203,7 @@
             position: relative;
         }
 
-        /* Easter Egg Header */
+        /* Easter Egg Header - ПЕРЕМЕЩЕНА ПОД АВАТАР НА МОБИЛЬНЫХ */
         .easter-egg {
             position: absolute;
             top: 20px;
@@ -302,8 +302,8 @@
             justify-content: center;
             align-items: center;
             gap: 40px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         /* ===== SCHEDULE TABLE ===== */
@@ -311,35 +311,35 @@
             background: var(--schedule-blue);
             border: 2px solid #0044cc;
             border-radius: 12px;
-            padding: 20px 15px;
+            padding: 25px 20px;
             box-shadow: 
-                0 0 20px #0044cc,
-                inset 0 0 15px rgba(0, 68, 204, 0.3),
-                8px 0 15px rgba(0, 0, 0, 0.5);
-            min-width: 220px;
+                0 0 25px #0044cc,
+                inset 0 0 20px rgba(0, 68, 204, 0.3),
+                -8px 0 20px rgba(0, 0, 0, 0.6);
+            min-width: 240px;
             transition: all 0.4s ease;
-            transform: perspective(500px) rotateY(-10deg);
+            transform: perspective(500px) rotateY(15deg);
             position: relative;
             z-index: 2;
         }
 
         .schedule-container:hover {
-            transform: perspective(500px) rotateY(-5deg) translateX(5px);
+            transform: perspective(500px) rotateY(10deg) translateX(-5px);
             box-shadow: 
-                0 0 25px #0044cc,
-                inset 0 0 20px rgba(0, 68, 204, 0.4),
-                10px 0 20px rgba(0, 0, 0, 0.6);
+                0 0 30px #0044cc,
+                inset 0 0 25px rgba(0, 68, 204, 0.4),
+                -10px 0 25px rgba(0, 0, 0, 0.7);
         }
 
         .schedule-title {
             color: #66aaff;
-            text-shadow: 0 0 8px #66aaff;
-            font-size: 18px;
+            text-shadow: 0 0 10px #66aaff;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
             border-bottom: 1px solid #0044cc;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .schedule-table {
@@ -348,9 +348,9 @@
         }
 
         .schedule-table td {
-            padding: 10px 8px;
+            padding: 12px 10px;
             border-bottom: 1px solid rgba(0, 68, 204, 0.3);
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .schedule-table tr:last-child td {
@@ -359,15 +359,15 @@
 
         .day-cell {
             color: #88ccff;
-            text-shadow: 0 0 5px #88ccff;
+            text-shadow: 0 0 6px #88ccff;
             font-weight: 600;
             text-align: left;
-            padding-right: 15px !important;
+            padding-right: 20px !important;
         }
 
         .time-cell {
             color: #aaddff;
-            text-shadow: 0 0 5px #aaddff;
+            text-shadow: 0 0 6px #aaddff;
             font-weight: 500;
             text-align: right;
         }
@@ -375,15 +375,16 @@
         /* Панели */
         .panels-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            max-width: 600px;
-            justify-items: center;
+            max-width: 500px;
+            position: relative;
+            z-index: 1;
         }
 
         .panel {
             width: 100%;
-            max-width: 280px;
+            max-width: 240px;
             height: 100px;
             border-radius: 15px;
             display: flex;
@@ -519,7 +520,7 @@
 
         /* Сообщение внизу */
         .personal-message {
-            margin-top: 20px;
+            margin-top: 30px;
             margin-bottom: 20px;
             font-size: clamp(16px, 4vw, 18px);
             color: var(--neon-blue);
@@ -605,7 +606,27 @@
         }
 
         /* Адаптивность */
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                gap: 30px;
+            }
+            
+            .schedule-container {
+                min-width: 220px;
+                padding: 20px 15px;
+            }
+            
+            .panels-container {
+                max-width: 450px;
+            }
+            
+            .panel {
+                max-width: 220px;
+                height: 90px;
+            }
+        }
+
+        @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
                 gap: 30px;
@@ -613,15 +634,30 @@
             
             .schedule-container {
                 transform: none;
-                max-width: 280px;
+                max-width: 500px;
+                width: 100%;
             }
             
             .schedule-container:hover {
                 transform: translateY(-5px);
             }
+            
+            .panels-container {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 500px;
+                width: 100%;
+            }
+            
+            .panel {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding-top: 80px;
+            }
+            
             .panels-container {
                 grid-template-columns: 1fr;
                 gap: 15px;
@@ -629,7 +665,7 @@
             }
             
             .panel {
-                height: 90px;
+                height: 85px;
                 padding: 0 20px;
                 max-width: 100%;
             }
@@ -670,10 +706,13 @@
                 height: 130px;
             }
             
+            /* Пасхалка под аватаркой на мобильных */
             .easter-egg {
-                font-size: 12px;
-                right: 15px;
-                top: 15px;
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: -10px auto 30px;
+                display: inline-block;
             }
             
             .creator-signature {
@@ -684,16 +723,16 @@
             
             .schedule-container {
                 padding: 15px 12px;
-                min-width: 200px;
+                max-width: 380px;
             }
             
             .schedule-title {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .schedule-table td {
-                font-size: 13px;
-                padding: 8px 6px;
+                font-size: 14px;
+                padding: 10px 8px;
             }
         }
 
@@ -717,7 +756,7 @@
             }
             
             .personal-message {
-                margin-top: 15px;
+                margin-top: 20px;
                 margin-bottom: 15px;
                 padding: 12px;
                 font-size: 16px;
@@ -728,13 +767,13 @@
             }
             
             .schedule-container {
-                min-width: 180px;
+                max-width: 340px;
                 padding: 12px 10px;
             }
             
             .schedule-table td {
-                font-size: 12px;
-                padding: 6px 4px;
+                font-size: 13px;
+                padding: 8px 6px;
             }
         }
 
@@ -745,7 +784,7 @@
             }
             
             .panel {
-                height: 70px;
+                height: 75px;
                 padding: 0 15px;
             }
             
@@ -760,6 +799,15 @@
             
             .hint {
                 font-size: 12px;
+            }
+            
+            .schedule-container {
+                max-width: 300px;
+            }
+            
+            .schedule-table td {
+                font-size: 12px;
+                padding: 6px 4px;
             }
         }
     </style>
