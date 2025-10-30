@@ -20,6 +20,7 @@
             --neon-white: #ffffff;
             --terminal-bg: #0a0a0a;
             --main-bg: #050505;
+            --schedule-blue: #001a33;
         }
 
         body {
@@ -199,6 +200,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
 
         /* Easter Egg Header */
@@ -292,6 +294,74 @@
                     3px 3px 0 #0066cc,
                     6px 6px 0 #004499;
             }
+        }
+
+        /* ===== SCHEDULE TABLE ===== */
+        .schedule-container {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%) perspective(500px) rotateY(-15deg);
+            z-index: 5;
+            background: var(--schedule-blue);
+            border: 2px solid #0044cc;
+            border-radius: 12px;
+            padding: 20px 15px;
+            box-shadow: 
+                0 0 20px #0044cc,
+                inset 0 0 15px rgba(0, 68, 204, 0.3),
+                5px 0 15px rgba(0, 0, 0, 0.5);
+            min-width: 220px;
+            transition: all 0.4s ease;
+        }
+
+        .schedule-container:hover {
+            transform: translateY(-50%) perspective(500px) rotateY(-10deg) translateX(5px);
+            box-shadow: 
+                0 0 25px #0044cc,
+                inset 0 0 20px rgba(0, 68, 204, 0.4),
+                8px 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .schedule-title {
+            color: #66aaff;
+            text-shadow: 0 0 8px #66aaff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid #0044cc;
+            padding-bottom: 8px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(0, 68, 204, 0.3);
+            font-size: 14px;
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .day-cell {
+            color: #88ccff;
+            text-shadow: 0 0 5px #88ccff;
+            font-weight: 600;
+            text-align: left;
+            padding-right: 15px !important;
+        }
+
+        .time-cell {
+            color: #aaddff;
+            text-shadow: 0 0 5px #aaddff;
+            font-weight: 500;
+            text-align: right;
         }
 
         /* Панели */
@@ -530,6 +600,25 @@
         }
 
         /* Адаптивность */
+        @media (max-width: 1100px) {
+            .schedule-container {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                margin: 0 auto 30px;
+                max-width: 280px;
+            }
+            
+            .schedule-container:hover {
+                transform: translateY(-5px);
+            }
+            
+            .container {
+                padding-top: 80px;
+            }
+        }
+
         @media (max-width: 768px) {
             .panels-container {
                 grid-template-columns: 1fr;
@@ -590,6 +679,20 @@
                 bottom: 15px;
                 left: 15px;
             }
+            
+            .schedule-container {
+                padding: 15px 12px;
+                min-width: 200px;
+            }
+            
+            .schedule-title {
+                font-size: 16px;
+            }
+            
+            .schedule-table td {
+                font-size: 13px;
+                padding: 8px 6px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -620,6 +723,16 @@
             
             .terminal {
                 padding: 25px 15px;
+            }
+            
+            .schedule-container {
+                min-width: 180px;
+                padding: 12px 10px;
+            }
+            
+            .schedule-table td {
+                font-size: 12px;
+                padding: 6px 4px;
             }
         }
 
@@ -679,6 +792,33 @@
     <div class="main-content" id="mainContent">
         <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
         <div class="creator-signature">Создано с любовью от SallyTV</div>
+        
+        <!-- Schedule Table -->
+        <div class="schedule-container">
+            <div class="schedule-title">Расписание стримов</div>
+            <table class="schedule-table">
+                <tr>
+                    <td class="day-cell">Понедельник</td>
+                    <td class="time-cell">20-21 → 1-2</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Вторник</td>
+                    <td class="time-cell">20-21 → 1-2</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Среда</td>
+                    <td class="time-cell">20-21 → 1-2</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Четверг</td>
+                    <td class="time-cell">20-21 → 1-2</td>
+                </tr>
+                <tr>
+                    <td class="day-cell">Пятница</td>
+                    <td class="time-cell">20-21 → 1-2</td>
+                </tr>
+            </table>
+        </div>
         
         <div class="container">
             <!-- Аватар -->
