@@ -188,7 +188,7 @@
             min-height: 100vh;
             position: relative;
             background: var(--main-bg);
-            overflow-x: hidden;
+            padding: 20px 0;
         }
 
         .container {
@@ -197,11 +197,11 @@
             text-align: center;
             padding: 20px 15px;
             margin: 0 auto;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             position: relative;
+            min-height: auto;
         }
 
         /* Easter Egg Header - ПЕРЕМЕЩЕНА ПОД АВАТАР */
@@ -242,10 +242,10 @@
 
         /* Аватар */
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 0 auto 25px;
+            margin: 0 auto 20px;
             position: relative;
             border: 3px solid var(--neon-blue);
             box-shadow: 
@@ -264,9 +264,9 @@
 
         /* 3D текст */
         .title {
-            font-size: clamp(22px, 5vw, 32px);
+            font-size: clamp(20px, 6vw, 32px);
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: var(--neon-blue);
             text-shadow: 
                 0 0 5px var(--neon-blue),
@@ -275,11 +275,11 @@
                 0 0 20px var(--neon-blue),
                 0 0 25px var(--neon-blue),
                 0 0 30px var(--neon-blue),
-                3px 3px 0 #0066cc,
-                6px 6px 0 #004499;
+                2px 2px 0 #0066cc,
+                4px 4px 0 #004499;
             transform: perspective(500px) rotateX(10deg);
             animation: glow 2s ease-in-out infinite alternate;
-            padding: 0 10px;
+            line-height: 1.2;
         }
 
         @keyframes glow {
@@ -288,8 +288,8 @@
                     0 0 5px var(--neon-blue),
                     0 0 10px var(--neon-blue),
                     0 0 15px var(--neon-blue),
-                    3px 3px 0 #0066cc,
-                    6px 6px 0 #004499;
+                    2px 2px 0 #0066cc,
+                    4px 4px 0 #004499;
             }
             to {
                 text-shadow: 
@@ -297,8 +297,8 @@
                     0 0 20px var(--neon-blue),
                     0 0 30px var(--neon-blue),
                     0 0 40px var(--neon-blue),
-                    3px 3px 0 #0066cc,
-                    6px 6px 0 #004499;
+                    2px 2px 0 #0066cc,
+                    4px 4px 0 #004499;
             }
         }
 
@@ -306,10 +306,11 @@
         .content-wrapper {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 40px;
+            align-items: flex-start;
+            gap: 30px;
             max-width: 1000px;
             margin: 0 auto 25px;
+            width: 100%;
         }
 
         /* ===== SCHEDULE TABLE ===== */
@@ -390,8 +391,8 @@
 
         .panel {
             width: 100%;
-            max-width: 230px;
-            height: 95px;
+            max-width: 220px;
+            height: 85px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -405,8 +406,8 @@
         }
 
         .panel:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
         }
 
         .telegram {
@@ -446,7 +447,7 @@
         }
 
         .panel-text {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             z-index: 2;
             position: relative;
@@ -524,10 +525,10 @@
         .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
         .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-        /* Сообщение внизу - ИСПРАВЛЕНА ПРОБЛЕМА С ОБРЕЗКОЙ */
+        /* Сообщение внизу */
         .personal-message {
-            margin: 20px auto;
-            font-size: clamp(14px, 3.5vw, 18px);
+            margin: 15px auto;
+            font-size: clamp(14px, 4vw, 16px);
             color: var(--neon-blue);
             font-weight: 700;
             padding: 12px 15px;
@@ -538,14 +539,15 @@
                 0 0 5px var(--neon-blue),
                 0 0 10px var(--neon-blue),
                 0 0 15px var(--neon-blue),
-                2px 2px 0 #0066cc,
-                4px 4px 0 #004499;
+                1px 1px 0 #0066cc,
+                2px 2px 0 #004499;
             transform: perspective(500px) rotateX(10deg);
             animation: messageGlow 3s ease-in-out infinite alternate;
-            max-width: 90%;
+            max-width: 450px;
+            width: 90%;
+            line-height: 1.3;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            line-height: 1.4;
         }
 
         @keyframes messageGlow {
@@ -553,8 +555,8 @@
                 text-shadow: 
                     0 0 5px var(--neon-blue),
                     0 0 10px var(--neon-blue),
-                    2px 2px 0 #0066cc,
-                    4px 4px 0 #004499;
+                    1px 1px 0 #0066cc,
+                    2px 2px 0 #004499;
                 box-shadow: 
                     0 0 10px var(--neon-blue),
                     inset 0 0 10px rgba(0,240,255,0.1);
@@ -564,8 +566,8 @@
                     0 0 10px var(--neon-blue),
                     0 0 20px var(--neon-blue),
                     0 0 30px var(--neon-blue),
-                    2px 2px 0 #0066cc,
-                    4px 4px 0 #004499;
+                    1px 1px 0 #0066cc,
+                    2px 2px 0 #004499;
                 box-shadow: 
                     0 0 20px var(--neon-blue),
                     0 0 30px var(--neon-blue),
@@ -614,7 +616,7 @@
         /* Адаптивность */
         @media (max-width: 1024px) {
             .content-wrapper {
-                gap: 30px;
+                gap: 25px;
             }
             
             .schedule-container {
@@ -627,8 +629,8 @@
             }
             
             .panel {
-                max-width: 210px;
-                height: 90px;
+                max-width: 200px;
+                height: 80px;
             }
         }
 
@@ -636,12 +638,14 @@
             .content-wrapper {
                 flex-direction: column;
                 gap: 25px;
+                align-items: center;
             }
             
             .schedule-container {
                 transform: none;
-                max-width: 500px;
+                max-width: 450px;
                 width: 100%;
+                order: 2;
             }
             
             .schedule-container:hover {
@@ -650,37 +654,51 @@
             
             .panels-container {
                 grid-template-columns: repeat(2, 1fr);
-                max-width: 500px;
+                max-width: 450px;
                 width: 100%;
+                order: 1;
                 gap: 12px;
             }
             
             .panel {
                 max-width: 100%;
-                height: 85px;
+                height: 75px;
+            }
+            
+            .panel-text {
+                font-size: 18px;
             }
         }
 
         @media (max-width: 768px) {
+            .main-content {
+                padding: 15px 0;
+                min-height: 100vh;
+                height: auto;
+                overflow-y: visible;
+            }
+            
             .container {
                 padding: 15px 10px;
-                padding-top: 70px;
+                justify-content: flex-start;
+                min-height: auto;
             }
             
             .panels-container {
                 grid-template-columns: 1fr;
-                gap: 12px;
-                max-width: 400px;
+                gap: 10px;
+                max-width: 320px;
+                margin: 0 auto 20px;
             }
             
             .panel {
-                height: 80px;
-                padding: 0 18px;
+                height: 70px;
+                padding: 0 15px;
                 max-width: 100%;
             }
             
             .panel-text {
-                font-size: 20px;
+                font-size: 18px;
             }
             
             .terminal {
@@ -704,16 +722,16 @@
             }
             
             .skip-btn {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 18px;
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
                 font-size: 13px;
             }
             
             .avatar {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 20px;
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
             }
             
             /* Скрываем обычную пасхалку и показываем мобильную версию */
@@ -730,10 +748,10 @@
                 border-radius: 8px;
                 transition: all 0.3s ease;
                 background: rgba(0, 240, 255, 0.1);
-                margin: -5px auto 20px;
+                margin: -5px auto 15px;
                 font-size: 13px;
-                max-width: 90%;
-                word-wrap: break-word;
+                width: 90%;
+                max-width: 280px;
             }
             
             .mobile-easter-egg:active {
@@ -741,14 +759,16 @@
             }
             
             .creator-signature {
-                font-size: 12px;
+                font-size: 11px;
                 bottom: 10px;
                 left: 10px;
+                position: fixed;
             }
             
             .schedule-container {
-                padding: 15px 10px;
-                max-width: 380px;
+                padding: 15px 12px;
+                max-width: 320px;
+                margin: 0 auto;
             }
             
             .schedule-title {
@@ -761,31 +781,36 @@
                 padding: 8px 6px;
             }
             
-            /* Скрываем рикролл на мобильных */
-            #rickroll {
-                display: none;
+            .title {
+                margin-bottom: 20px;
+                font-size: clamp(18px, 7vw, 24px);
             }
             
             .personal-message {
-                margin: 15px auto;
+                margin: 10px auto;
                 padding: 10px 12px;
-                max-width: 95%;
-                font-size: clamp(13px, 3.2vw, 16px);
+                font-size: 14px;
+                max-width: 320px;
+            }
+            
+            /* Скрываем рикролл на мобильных */
+            #rickroll {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
             .avatar {
-                width: 110px;
-                height: 110px;
+                width: 90px;
+                height: 90px;
             }
             
             .panel {
-                height: 75px;
+                height: 65px;
             }
             
             .panel-text {
-                font-size: 18px;
+                font-size: 17px;
             }
             
             .panel-icon {
@@ -794,9 +819,10 @@
             }
             
             .personal-message {
-                margin: 12px auto;
+                margin: 8px auto;
                 padding: 8px 10px;
-                font-size: clamp(12px, 3vw, 15px);
+                font-size: 13px;
+                max-width: 300px;
             }
             
             .terminal {
@@ -804,8 +830,8 @@
             }
             
             .schedule-container {
-                max-width: 340px;
-                padding: 12px 8px;
+                max-width: 300px;
+                padding: 12px 10px;
             }
             
             .schedule-table td {
@@ -815,53 +841,8 @@
             
             .mobile-easter-egg {
                 font-size: 12px;
-                padding: 6px 10px;
-                margin-bottom: 15px;
-            }
-            
-            .title {
-                margin-bottom: 20px;
-                font-size: clamp(20px, 4.5vw, 24px);
-            }
-        }
-
-        @media (max-width: 360px) {
-            .avatar {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .panel {
-                height: 70px;
-                padding: 0 15px;
-            }
-            
-            .panel-text {
-                font-size: 17px;
-            }
-            
-            .personal-message {
-                font-size: clamp(11px, 2.8vw, 14px);
-                padding: 6px 8px;
-                margin: 10px auto;
-            }
-            
-            .hint {
-                font-size: 12px;
-            }
-            
-            .schedule-container {
-                max-width: 300px;
-            }
-            
-            .schedule-table td {
-                font-size: 11px;
-                padding: 5px 3px;
-            }
-            
-            .mobile-easter-egg {
-                font-size: 11px;
-                padding: 5px 8px;
+                padding: 7px 10px;
+                margin-bottom: 10px;
             }
             
             .content-wrapper {
@@ -869,19 +850,14 @@
             }
         }
 
-        @media (max-width: 320px) {
-            .container {
-                padding: 10px 5px;
-                padding-top: 60px;
-            }
-            
+        @media (max-width: 360px) {
             .avatar {
-                width: 90px;
-                height: 90px;
+                width: 80px;
+                height: 80px;
             }
             
             .panel {
-                height: 65px;
+                height: 60px;
                 padding: 0 12px;
             }
             
@@ -890,19 +866,44 @@
             }
             
             .personal-message {
-                font-size: clamp(10px, 2.5vw, 13px);
-                padding: 5px 6px;
-                margin: 8px auto;
+                font-size: 12px;
+                padding: 7px 9px;
+                max-width: 280px;
+            }
+            
+            .hint {
+                font-size: 11px;
             }
             
             .schedule-container {
                 max-width: 280px;
-                padding: 10px 6px;
+            }
+            
+            .schedule-table td {
+                font-size: 11px;
             }
             
             .mobile-easter-egg {
-                font-size: 10px;
-                padding: 4px 6px;
+                font-size: 11px;
+                padding: 6px 9px;
+            }
+            
+            .title {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Обеспечиваем прокрутку на очень маленьких экранах */
+        @media (max-height: 700px) and (max-width: 768px) {
+            .main-content {
+                min-height: auto;
+                height: auto;
+                padding-bottom: 60px;
+            }
+            
+            .container {
+                padding-bottom: 50px;
             }
         }
     </style>
@@ -1041,7 +1042,7 @@
                 </div>
             </div>
             
-            <!-- Личные сообщения - ТЕПЕРЬ ПОЛНОСТЬЮ ВИДНЫ НА ВСЕХ УСТРОЙСТВАХ -->
+            <!-- Личные сообщения -->
             <div class="personal-message">
                 Личные сообщения Мурко: @LiveMurkoVT
             </div>
@@ -1287,6 +1288,20 @@
 
         // Запускаем предзагрузку после загрузки страницы
         window.addEventListener('load', preloadImages);
+
+        // Обеспечиваем прокрутку на мобильных устройствах
+        function ensureMobileScroll() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.body.style.overflowY = 'auto';
+                document.body.style.height = 'auto';
+                document.documentElement.style.overflowY = 'auto';
+                document.documentElement.style.height = 'auto';
+            }
+        }
+
+        // Вызываем при загрузке
+        window.addEventListener('load', ensureMobileScroll);
+        window.addEventListener('resize', ensureMobileScroll);
     </script>
 </body>
 </html>
