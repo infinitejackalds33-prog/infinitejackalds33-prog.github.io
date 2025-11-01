@@ -313,7 +313,7 @@
             width: 100%;
         }
 
-        /* ===== SCHEDULE TABLE ===== */
+        /* ===== SCHEDULE TABLE - БЕЗ 3D ЭФФЕКТА ===== */
         .schedule-container {
             background: var(--schedule-blue);
             border: 2px solid #0044cc;
@@ -321,21 +321,19 @@
             padding: 20px 15px;
             box-shadow: 
                 0 0 25px #0044cc,
-                inset 0 0 20px rgba(0, 68, 204, 0.3),
-                -8px 0 20px rgba(0, 0, 0, 0.6);
+                inset 0 0 20px rgba(0, 68, 204, 0.3);
             min-width: 220px;
             transition: all 0.4s ease;
-            transform: perspective(500px) rotateY(15deg);
             position: relative;
             z-index: 2;
+            margin-top: -10px; /* Поднимаем немного вверх */
         }
 
         .schedule-container:hover {
-            transform: perspective(500px) rotateY(10deg) translateX(-5px);
+            transform: translateY(-2px);
             box-shadow: 
                 0 0 30px #0044cc,
-                inset 0 0 25px rgba(0, 68, 204, 0.4),
-                -10px 0 25px rgba(0, 0, 0, 0.7);
+                inset 0 0 25px rgba(0, 68, 204, 0.4);
         }
 
         .schedule-title {
@@ -641,6 +639,16 @@
             .panels-container {
                 margin-bottom: 0;
             }
+
+            /* Расписание на ПК - убрана 3D трансформация */
+            .schedule-container {
+                transform: none !important;
+                margin-top: -15px;
+            }
+            
+            .schedule-container:hover {
+                transform: translateY(-2px) !important;
+            }
         }
 
         /* Адаптивность */
@@ -676,10 +684,11 @@
                 max-width: 450px;
                 width: 100%;
                 order: 2;
+                margin-top: 0; /* Сбрасываем отступ на мобильных */
             }
             
             .schedule-container:hover {
-                transform: translateY(-5px);
+                transform: translateY(-2px);
             }
             
             .panels-container {
