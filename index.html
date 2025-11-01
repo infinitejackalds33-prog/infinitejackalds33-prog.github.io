@@ -517,7 +517,7 @@
         .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
         .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-        /* Сообщение внизу */
+        /* Сообщение внизу - ОБНОВЛЕНО ДЛЯ ПК */
         .personal-message {
             margin: 15px auto;
             font-size: clamp(14px, 4vw, 16px);
@@ -603,6 +603,44 @@
             font-weight: bold;
             z-index: 2001;
             font-size: 18px;
+        }
+
+        /* ===== ОБНОВЛЕНИЯ ДЛЯ ПК ===== */
+        @media (min-width: 901px) {
+            .personal-message {
+                width: 640px !important;
+                max-width: 640px !important;
+                margin: 50px auto 0 auto !important;
+                font-size: 18px !important;
+                padding: 15px 20px !important;
+                text-align: center;
+                order: 3;
+                background: rgba(0, 240, 255, 0.15) !important;
+                border: 2px solid var(--neon-blue) !important;
+                box-shadow: 
+                    0 0 25px var(--neon-blue),
+                    inset 0 0 20px rgba(0, 240, 255, 0.1) !important;
+                font-weight: 700;
+                line-height: 1.4;
+                color: #00f0ff !important;
+                text-shadow: 
+                    0 0 10px var(--neon-blue),
+                    0 0 20px var(--neon-blue),
+                    0 0 30px var(--neon-blue),
+                    2px 2px 0 #0066cc,
+                    3px 3px 0 #004499 !important;
+            }
+            
+            .content-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+            
+            .panels-container {
+                margin-bottom: 0;
+            }
         }
 
         /* Адаптивность */
@@ -944,7 +982,7 @@
             </div>
             
             <!-- Мобильная пасхалка -->
-            <div class="mobile-easter-egg" onclick="handleMobileEasterEgg()">Мурко мы тебя так долко ждали!</div>
+            <div class="mobile-easter-egg" onclick="handleMobileEasterEgg()">Мурко мы тебя так долго ждали!</div>
             
             <h1 class="title">Все ссылки Мурко</h1>
             
@@ -1026,7 +1064,7 @@
                 </div>
             </div>
             
-            <!-- Личные сообщения -->
+            <!-- Личные сообщения - ТЕПЕРЬ ПОД ПАНЕЛЯМИ НА ПК -->
             <div class="personal-message">
                 Личные сообщения Мурко: @LiveMurkoVT
             </div>
