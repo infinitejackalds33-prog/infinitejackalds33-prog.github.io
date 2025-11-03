@@ -43,7 +43,12 @@
     }
     </script>
     
+    <!-- Favicon и иконки для поисковых систем -->
     <link rel="icon" type="image/jpg" href="MurkoLive.jpg">
+    <link rel="apple-touch-icon" href="MurkoLive.jpg">
+    <link rel="shortcut icon" href="MurkoLive.jpg">
+    <meta name="msapplication-TileImage" content="MurkoLive.jpg">
+    
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -560,22 +565,23 @@
         .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
         .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-        /* Disclaimer */
+        /* Disclaimer - СДЕЛАЕМ МЯГЧЕ */
         .disclaimer {
-            background: rgba(255, 193, 7, 0.1);
-            border: 1px solid #ffc107;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--neon-blue);
             border-radius: 8px;
             padding: 12px 15px;
             margin: 15px auto;
             max-width: 600px;
             width: 90%;
-            color: #ffc107;
+            color: #88ccff;
             font-size: 13px;
             text-align: center;
+            line-height: 1.4;
         }
 
         .disclaimer strong {
-            color: #ffc107;
+            color: var(--neon-blue);
         }
 
         /* Сообщение внизу */
@@ -747,9 +753,10 @@
             <h1 class="title" itemprop="headline">Все ссылки MurkoLiveVT</h1>
             <p class="subtitle" itemprop="description">Фанатский сайт стримера Мурко - расписание стримов, социальные сети и контакты</p>
             
-            <!-- Disclaimer -->
+            <!-- Disclaimer - СДЕЛАН МЯГЧЕ -->
             <div class="disclaimer">
-                <strong>⚠️ ВНИМАНИЕ:</strong> Это НЕОФИЦИАЛЬНЫЙ фанатский сайт. Не связан с MurkoLiveVT. Создан фанатом для фанатов.
+                <strong>💙 Информация:</strong> Это фанатский сайт, созданный для поддержки стримера MurkoLiveVT. 
+                Не является официальным ресурсом, но создан с большой любовью и уважением к творчеству Мурко.
             </div>
             
             <!-- Основной контент с расписанием и панелями -->
