@@ -79,15 +79,23 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+        }
+
+        /* Фоновая картинка */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('Stars.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             background-repeat: no-repeat;
+            z-index: -2;
         }
 
-        body::before {
-            content: '';
+        .background-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -272,6 +280,7 @@
             z-index: 100;
             transition: all 0.3s ease;
             box-shadow: 0 0 10px var(--neon-blue);
+            font-size: 20px;
         }
 
         .music-control:hover {
@@ -765,7 +774,7 @@
             .music-control {
                 width: 40px;
                 height: 40px;
-                font-size: 14px;
+                font-size: 16px;
             }
         }
 
@@ -824,6 +833,10 @@
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
+    <!-- Фоновые элементы -->
+    <div class="background-image" id="backgroundImage"></div>
+    <div class="background-overlay"></div>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="terminal">
@@ -1003,6 +1016,7 @@
         const line3 = document.getElementById('line3');
         const musicControl = document.getElementById('musicControl');
         const bgMusic = document.getElementById('bgMusic');
+        const backgroundImage = document.getElementById('backgroundImage');
 
         // Состояния анимации
         let currentStep = 0;
@@ -1072,7 +1086,7 @@
             fallback.style.width = '100%';
             fallback.style.height = '100%';
             fallback.style.background = 'rgba(255,255,255,0.1)';
-            fallback.style.borderRadius = '50%';
+            fallback.style.borderRadius = img.classList.contains('avatar') ? '50%' : '0';
             fallback.style.display = 'flex';
             fallback.style.alignItems = 'center';
             fallback.style.justifyContent = 'center';
@@ -1081,6 +1095,39 @@
             fallback.textContent = 'IMG';
             
             img.parentNode.appendChild(fallback);
+        }
+
+        // Функция обработки ошибки фона
+        function handleBackgroundError() {
+            console.error('Ошибка загрузки фонового изображения Stars.jpg');
+            // Создаем звездный фон через CSS как запасной вариант
+            backgroundImage.style.background = 'radial-gradient(circle at center, #001122 0%, #000011 50%, #000000 100%)';
+            backgroundImage.innerHTML = '';
+            
+            // Создаем звезды через JavaScript
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 2 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = 'white';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite alternate`;
+                backgroundImage.appendChild(star);
+            }
+            
+            // Добавляем анимацию мерцания
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0% { opacity: 0.2; }
+                    100% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
         }
 
         // Функция показа текста с анимацией печати
@@ -1224,6 +1271,14 @@
         window.addEventListener('load', function() {
             initMusic();
             preloadImages();
+            
+            // Проверяем загрузку фонового изображения
+            const bgImg = new Image();
+            bgImg.src = 'Stars.jpg';
+            bgImg.onload = function() {
+                console.log('Фоновое изображение успешно загружено');
+            };
+            bgImg.onerror = handleBackgroundError;
         });
 
         // Случайное движение частиц
@@ -1260,6 +1315,7 @@
             imageUrls.forEach(url => {
                 const img = new Image();
                 img.src = url;
+                img.onerror = () => console.error(`Ошибка загрузки изображения: ${url}`);
             });
         }
     </script>
