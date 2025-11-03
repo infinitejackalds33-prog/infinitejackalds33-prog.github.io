@@ -43,11 +43,15 @@
     }
     </script>
     
-    <!-- Favicon и иконки для поисковых систем -->
-    <link rel="icon" type="image/jpg" href="MurkoLive.jpg">
-    <link rel="apple-touch-icon" href="MurkoLive.jpg">
-    <link rel="shortcut icon" href="MurkoLive.jpg">
-    <meta name="msapplication-TileImage" content="MurkoLive.jpg">
+    <!-- Иконки для всех платформ -->
+    <link rel="icon" type="image/x-icon" href="MurkoLive.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="MurkoLive-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="MurkoLive-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="MurkoLive-180x180.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="MurkoLive-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="MurkoLive-76x76.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="MurkoLive-60x60.png">
+    <meta name="msapplication-TileImage" content="MurkoLive-144x144.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -75,6 +79,22 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+            background-image: url('Stars.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.85);
+            z-index: -1;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -217,7 +237,7 @@
             transition: opacity 1s ease;
             min-height: 100vh;
             position: relative;
-            background: var(--main-bg);
+            background: transparent;
             padding: 20px 0;
         }
 
@@ -232,6 +252,44 @@
             justify-content: flex-start;
             position: relative;
             min-height: auto;
+        }
+
+        /* Кнопка управления музыкой */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .music-control:hover {
+            background: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: scale(1.1);
+        }
+
+        .music-control.muted {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff4444;
+            box-shadow: 0 0 10px #ff4444;
+            color: #ff4444;
+        }
+
+        .music-control.muted:hover {
+            background: rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 20px #ff4444;
         }
 
         /* Easter Egg Header */
@@ -283,6 +341,7 @@
                 0 0 40px var(--neon-blue),
                 0 0 60px var(--neon-blue);
             overflow: hidden;
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .avatar img {
@@ -368,6 +427,7 @@
             transform: perspective(500px) rotateY(15deg);
             position: relative;
             z-index: 2;
+            background: rgba(0, 26, 51, 0.9);
         }
 
         .schedule-container:hover {
@@ -443,6 +503,7 @@
             overflow: hidden;
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .panel:hover {
@@ -451,7 +512,7 @@
         }
 
         .telegram {
-            background: linear-gradient(135deg, #0088cc, #005580);
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.9), rgba(0, 85, 128, 0.9));
             border-color: #00aaff;
             box-shadow: 
                 0 0 15px #0088cc,
@@ -460,7 +521,7 @@
         }
 
         .youtube {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.9), rgba(204, 0, 0, 0.9));
             border-color: #ff4444;
             box-shadow: 
                 0 0 15px #ff0000,
@@ -469,7 +530,7 @@
         }
 
         .twitch {
-            background: linear-gradient(135deg, #9146ff, #6c2bd9);
+            background: linear-gradient(135deg, rgba(145, 70, 255, 0.9), rgba(108, 43, 217, 0.9));
             border-color: #a970ff;
             box-shadow: 
                 0 0 15px #9146ff,
@@ -478,7 +539,7 @@
         }
 
         .tiktok {
-            background: linear-gradient(135deg, #000000, #333333);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(51, 51, 51, 0.9));
             border-color: #ffffff;
             box-shadow: 
                 0 0 15px #ffffff,
@@ -665,6 +726,13 @@
                 max-width: 100%;
                 height: 75px;
             }
+
+            .music-control {
+                top: 10px;
+                left: 10px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -685,6 +753,44 @@
             
             .easter-egg {
                 display: none;
+            }
+
+            .creator-signature {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 20px;
+            }
+
+            .music-control {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .panels-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .panel {
+                height: 70px;
+                max-width: 100%;
+            }
+            
+            .panel-text {
+                font-size: 18px;
+            }
+            
+            .schedule-container {
+                padding: 15px 10px;
+            }
+            
+            .schedule-table td {
+                padding: 8px 5px;
+                font-size: 13px;
             }
         }
 
@@ -738,6 +844,11 @@
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
+        <!-- Кнопка управления музыкой -->
+        <div class="music-control" id="musicControl" title="Включить/выключить музыку">
+            ♫
+        </div>
+        
         <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
         <div class="creator-signature">Создано с любовью от SallyTV</div>
         
@@ -872,6 +983,12 @@
         </div>
     </div>
 
+    <!-- Аудио элемент -->
+    <audio id="bgMusic" loop>
+        <source src="Music.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
     <script>
         // Элементы
         const loadingScreen = document.getElementById('loadingScreen');
@@ -879,16 +996,72 @@
         const skipBtn = document.getElementById('skipBtn');
         const progressBar = document.getElementById('progressBar');
         const progressFill = document.getElementById('progressFill');
-        const rickroll = document.getElementById('rickroll');
         const hint1 = document.getElementById('hint1');
         const hint2 = document.getElementById('hint2');
         const line1 = document.getElementById('line1');
         const line2 = document.getElementById('line2');
         const line3 = document.getElementById('line3');
+        const musicControl = document.getElementById('musicControl');
+        const bgMusic = document.getElementById('bgMusic');
 
         // Состояния анимации
         let currentStep = 0;
         let isAnimating = false;
+        let isMusicPlaying = false;
+
+        // Функция управления музыкой
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicControl.classList.add('muted');
+                musicControl.innerHTML = '🔇';
+            } else {
+                // Попытка воспроизведения музыки
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Музыка успешно запущена
+                        isMusicPlaying = true;
+                        musicControl.classList.remove('muted');
+                        musicControl.innerHTML = '♫';
+                    }).catch(error => {
+                        // Автовоспроизведение заблокировано
+                        console.log('Автовоспроизведение заблокировано:', error);
+                        musicControl.classList.add('muted');
+                        musicControl.innerHTML = '🔇';
+                        isMusicPlaying = false;
+                    });
+                }
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        // Инициализация музыки после загрузки страницы
+        function initMusic() {
+            // Устанавливаем громкость
+            bgMusic.volume = 0.5;
+            
+            // Пытаемся запустить музыку после взаимодействия пользователя
+            document.addEventListener('click', function initMusicOnInteraction() {
+                if (!isMusicPlaying) {
+                    const playPromise = bgMusic.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            isMusicPlaying = true;
+                            musicControl.classList.remove('muted');
+                            musicControl.innerHTML = '♫';
+                        }).catch(error => {
+                            console.log('Автовоспроизведение заблокировано:', error);
+                            musicControl.classList.add('muted');
+                            musicControl.innerHTML = '🔇';
+                            isMusicPlaying = false;
+                        });
+                    }
+                }
+                // Удаляем обработчик после первого клика
+                document.removeEventListener('click', initMusicOnInteraction);
+            });
+        }
 
         // Функция обработки ошибок загрузки изображений
         function handleImageError(img) {
@@ -1045,6 +1218,13 @@
         document.addEventListener('keydown', handleInteraction);
         loadingScreen.addEventListener('click', handleInteraction);
         skipBtn.addEventListener('click', skipAnimation);
+        musicControl.addEventListener('click', toggleMusic);
+
+        // Инициализация музыки после загрузки страницы
+        window.addEventListener('load', function() {
+            initMusic();
+            preloadImages();
+        });
 
         // Случайное движение частиц
         document.querySelectorAll('.particle').forEach(particle => {
@@ -1070,6 +1250,7 @@
         function preloadImages() {
             const imageUrls = [
                 'MurkoLive.jpg',
+                'Stars.jpg',
                 'Telegram.png', 
                 'YouTube.png',
                 'Twitch.png',
@@ -1081,9 +1262,6 @@
                 img.src = url;
             });
         }
-
-        // Запускаем предзагрузку после загрузки страницы
-        window.addEventListener('load', preloadImages);
     </script>
 </body>
 </html>
