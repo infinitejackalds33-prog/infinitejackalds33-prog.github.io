@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" itemscope itemtype="https://schema.org/WebSite">
 <head>
-    <meta name="description" content="Фанатский сайт стримера MurkoLiveVT - ссылки, расписание">
- <meta name="keywords" content="MurkoLiveVT, фанатский сайт, стример, Twitch">
- <meta name="author" content="SallyTV">
- <meta property="og:type" content="website">
- <meta property="og:title" content="Murko Links - Фанатский сайт">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Murko Links | Неофициальный сайт. </title>
+    
+    <!-- Основные мета-теги -->
+    <title>MurkoLiveVT - Стримы, Расписание, Ссылки | Фанатский сайт</title>
+    <meta name="description" content="MurkoLiveVT - все ссылки на стримы, расписание трансляций, Telegram, Twitch, YouTube. Фанатский сайт стримера Мурко.">
+    <meta name="keywords" content="MurkoLiveVT, Мурко, стример, Twitch, стримы, расписание, Telegram, YouTube, фанатский сайт">
+    <meta name="author" content="SallyTV">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MurkoLiveVT - Все ссылки и расписание стримов">
+    <meta property="og:description" content="Фанатский сайт стримера MurkoLiveVT - ссылки, расписание, соцсети">
+    <meta property="og:url" content="https://murkolive.info">
+    <meta property="og:image" content="https://murkolive.info/MurkoLive.jpg">
+    <meta property="og:site_name" content="MurkoLiveVT Links">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MurkoLiveVT - Все ссылки и расписание">
+    <meta name="twitter:description" content="Фанатский сайт стримера MurkoLiveVT">
+    <meta name="twitter:image" content="https://murkolive.info/MurkoLive.jpg">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MurkoLiveVT Links",
+        "url": "https://murkolive.info",
+        "description": "Фанатский сайт стримера MurkoLiveVT - все ссылки и расписание стримов",
+        "author": {
+            "@type": "Person",
+            "name": "SallyTV"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "MurkoLiveVT Fan Community"
+        }
+    }
+    </script>
+    
     <link rel="icon" type="image/jpg" href="MurkoLive.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -35,6 +69,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -51,10 +86,6 @@
             align-items: center;
             z-index: 1000;
             cursor: pointer;
-        }
-
-        .loading-screen.disabled {
-            cursor: not-allowed;
         }
 
         .terminal {
@@ -174,17 +205,6 @@
             box-shadow: 0 0 20px var(--neon-blue);
         }
 
-        .skip-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .skip-btn:disabled:hover {
-            background: transparent;
-            color: var(--neon-blue);
-            box-shadow: none;
-        }
-
         /* ===== MAIN CONTENT ===== */
         .main-content {
             display: none;
@@ -209,7 +229,7 @@
             min-height: auto;
         }
 
-        /* Easter Egg Header - ПЕРЕМЕЩЕНА ПОД АВАТАР */
+        /* Easter Egg Header */
         .easter-egg {
             position: absolute;
             top: 20px;
@@ -271,7 +291,7 @@
         .title {
             font-size: clamp(20px, 6vw, 32px);
             font-weight: 700;
-            margin-bottom: 50px;
+            margin-bottom: 15px;
             color: var(--neon-blue);
             text-shadow: 
                 0 0 5px var(--neon-blue),
@@ -285,6 +305,16 @@
             transform: perspective(500px) rotateX(10deg);
             animation: glow 2s ease-in-out infinite alternate;
             line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(14px, 4vw, 18px);
+            color: #88ccff;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px #88ccff;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes glow {
@@ -318,27 +348,29 @@
             width: 100%;
         }
 
-        /* ===== SCHEDULE TABLE - БОЛЬШОЙ КВАДРАТИК ===== */
+        /* ===== SCHEDULE TABLE ===== */
         .schedule-container {
             background: var(--schedule-blue);
             border: 2px solid #0044cc;
             border-radius: 12px;
-            padding: 25px 22px;
+            padding: 20px 15px;
             box-shadow: 
                 0 0 25px #0044cc,
-                inset 0 0 20px rgba(0, 68, 204, 0.3);
-            min-width: 240px;
+                inset 0 0 20px rgba(0, 68, 204, 0.3),
+                -8px 0 20px rgba(0, 0, 0, 0.6);
+            min-width: 220px;
             transition: all 0.4s ease;
+            transform: perspective(500px) rotateY(15deg);
             position: relative;
             z-index: 2;
-            margin: 20px 0;
         }
 
         .schedule-container:hover {
-            transform: translateY(-2px);
+            transform: perspective(500px) rotateY(10deg) translateX(-5px);
             box-shadow: 
                 0 0 30px #0044cc,
-                inset 0 0 25px rgba(0, 68, 204, 0.4);
+                inset 0 0 25px rgba(0, 68, 204, 0.4),
+                -10px 0 25px rgba(0, 0, 0, 0.7);
         }
 
         .schedule-title {
@@ -358,9 +390,9 @@
         }
 
         .schedule-table td {
-            padding: 8px 6px;
+            padding: 10px 8px;
             border-bottom: 1px solid rgba(0, 68, 204, 0.3);
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .schedule-table tr:last-child td {
@@ -372,7 +404,7 @@
             text-shadow: 0 0 6px #88ccff;
             font-weight: 600;
             text-align: left;
-            padding-right: 12px !important;
+            padding-right: 15px !important;
         }
 
         .time-cell {
@@ -382,20 +414,20 @@
             text-align: right;
         }
 
-        /* Панели - ТЕПЕРЬ TWITCH В ЦЕНТРЕ */
+        /* Панели */
         .panels-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            max-width: 700px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 500px;
             position: relative;
             z-index: 1;
         }
 
         .panel {
-            width: 200px;
-            height: 90px;
+            width: 100%;
+            max-width: 220px;
+            height: 85px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -406,7 +438,6 @@
             overflow: hidden;
             transition: all 0.4s ease;
             border: 2px solid transparent;
-            flex-shrink: 0;
         }
 
         .panel:hover {
@@ -423,21 +454,6 @@
                 inset 0 0 15px rgba(0,136,204,0.4);
         }
 
-        .twitch {
-            background: linear-gradient(135deg, #9146ff, #6c2bd9);
-            border-color: #a970ff;
-            box-shadow: 
-                0 0 15px #9146ff,
-                0 0 25px #9146ff,
-                inset 0 0 15px rgba(145,70,255,0.4);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        .twitch:hover {
-            transform: scale(1.08) translateY(-8px);
-        }
-
         .youtube {
             background: linear-gradient(135deg, #ff0000, #cc0000);
             border-color: #ff4444;
@@ -445,6 +461,24 @@
                 0 0 15px #ff0000,
                 0 0 25px #ff0000,
                 inset 0 0 15px rgba(255,0,0,0.4);
+        }
+
+        .twitch {
+            background: linear-gradient(135deg, #9146ff, #6c2bd9);
+            border-color: #a970ff;
+            box-shadow: 
+                0 0 15px #9146ff,
+                0 0 25px #9146ff,
+                inset 0 0 15px rgba(145,70,255,0.4);
+        }
+
+        .tiktok {
+            background: linear-gradient(135deg, #000000, #333333);
+            border-color: #ffffff;
+            box-shadow: 
+                0 0 15px #ffffff,
+                0 0 25px #ffffff,
+                inset 0 0 15px rgba(255,255,255,0.2);
         }
 
         .panel-text {
@@ -459,14 +493,19 @@
             text-shadow: 0 0 10px #0088cc, 0 0 20px #0088cc;
         }
 
+        .youtube .panel-text {
+            color: #ffb3b3;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+        }
+
         .twitch .panel-text {
             color: #d9b8ff;
             text-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
         }
 
-        .youtube .panel-text {
-            color: #ffb3b3;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+        .tiktok .panel-text {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
         }
 
         .panel-icon {
@@ -510,8 +549,9 @@
         }
 
         .telegram .particle { background: #00aaff; box-shadow: 0 0 8px #00aaff; }
-        .twitch .particle { background: #a970ff; box-shadow: 0 0 8px #a970ff; }
         .youtube .particle { background: #ff4444; box-shadow: 0 0 8px #ff4444; }
+        .twitch .particle { background: #a970ff; box-shadow: 0 0 8px #a970ff; }
+        .tiktok .particle { background: #000000; box-shadow: 0 0 8px #ffffff; }
 
         .panel:hover .particle:nth-child(1) { opacity: 1; transform: translate(20px, -20px) scale(1.5); }
         .panel:hover .particle:nth-child(2) { opacity: 1; transform: translate(-20px, -25px) scale(1.3); }
@@ -520,7 +560,25 @@
         .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
         .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-        /* Сообщение внизу - ОБНОВЛЕНО ДЛЯ ПК */
+        /* Disclaimer */
+        .disclaimer {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px auto;
+            max-width: 600px;
+            width: 90%;
+            color: #ffc107;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .disclaimer strong {
+            color: #ffc107;
+        }
+
+        /* Сообщение внизу */
         .personal-message {
             margin: 15px auto;
             font-size: clamp(14px, 4vw, 16px);
@@ -570,244 +628,40 @@
             }
         }
 
-        /* Rickroll Video - ТОЛЬКО ДЛЯ ПК */
-        #rickroll {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            z-index: 2000;
-            transition: transform 0.5s ease;
-            border: 3px solid var(--neon-blue);
-            border-radius: 10px;
-            box-shadow: 0 0 50px var(--neon-blue);
-            background: black;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        #rickroll.show {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .close-rickroll {
-            position: absolute;
-            top: -35px;
-            right: -35px;
-            background: var(--neon-blue);
-            color: black;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 2001;
-            font-size: 18px;
-        }
-
-        /* ===== ОБНОВЛЕНИЯ ДЛЯ ПК ===== */
-        @media (min-width: 901px) {
-            .personal-message {
-                width: 640px !important;
-                max-width: 640px !important;
-                margin: 50px auto 0 auto !important;
-                font-size: 18px !important;
-                padding: 15px 20px !important;
-                text-align: center;
-                order: 3;
-                background: rgba(0, 240, 255, 0.15) !important;
-                border: 2px solid var(--neon-blue) !important;
-                box-shadow: 
-                    0 0 25px var(--neon-blue),
-                    inset 0 0 20px rgba(0, 240, 255, 0.1) !important;
-                font-weight: 700;
-                line-height: 1.4;
-                color: #00f0ff !important;
-                text-shadow: 
-                    0 0 10px var(--neon-blue),
-                    0 0 20px var(--neon-blue),
-                    0 0 30px var(--neon-blue),
-                    2px 2px 0 #0066cc,
-                    3px 3px 0 #004499 !important;
-            }
-            
-            .content-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0;
-            }
-            
-            .panels-container {
-                margin-bottom: 0;
-            }
-
-            /* Расписание на ПК - большой квадратик с отступами */
-            .schedule-container {
-                margin: 25px 0;
-                padding: 22px 20px;
-            }
-            
-            .schedule-title {
-                font-size: 17px;
-                margin-bottom: 12px;
-            }
-            
-            .schedule-table td {
-                font-size: 12px;
-                padding: 7px 5px;
-            }
-
-            /* Twitch остается увеличенным на ПК */
-            .twitch {
-                transform: scale(1.05);
-            }
-            
-            .twitch:hover {
-                transform: scale(1.08) translateY(-8px);
-            }
-            
-            .youtube {
-                transform: scale(1);
-            }
-        }
-
         /* Адаптивность */
-        @media (max-width: 1024px) {
-            .content-wrapper {
-                gap: 25px;
-            }
-            
-            .schedule-container {
-                min-width: 220px;
-                padding: 20px 18px;
-            }
-            
-            .panels-container {
-                max-width: 650px;
-            }
-            
-            .panel {
-                width: 180px;
-                height: 85px;
-            }
-        }
-
         @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
-                gap: 20px;
+                gap: 25px;
                 align-items: center;
             }
             
             .schedule-container {
-                max-width: 340px;
+                transform: none;
+                max-width: 450px;
                 width: 100%;
                 order: 2;
-                margin: 15px 0;
             }
             
             .schedule-container:hover {
-                transform: translateY(-2px);
+                transform: translateY(-5px);
             }
             
             .panels-container {
-                flex-direction: column;
-                max-width: 320px;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 450px;
                 width: 100%;
                 order: 1;
                 gap: 12px;
             }
             
             .panel {
-                width: 100%;
                 max-width: 100%;
                 height: 75px;
-            }
-            
-            .twitch {
-                transform: scale(1);
-            }
-            
-            .twitch:hover {
-                transform: translateY(-8px) scale(1.03);
-            }
-            
-            .panel-text {
-                font-size: 18px;
             }
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                padding: 15px 0;
-                min-height: 100vh;
-                height: auto;
-                overflow-y: visible;
-            }
-            
-            .container {
-                padding: 15px 10px;
-                justify-content: flex-start;
-                min-height: auto;
-            }
-            
-            .panels-container {
-                max-width: 300px;
-                margin: 0 auto 15px;
-            }
-            
-            .panel {
-                height: 70px;
-                padding: 0 15px;
-                max-width: 100%;
-            }
-            
-            .panel-text {
-                font-size: 18px;
-            }
-            
-            .terminal {
-                padding: 25px 20px;
-            }
-            
-            .terminal-line {
-                font-size: 16px;
-            }
-            
-            .hint {
-                font-size: 14px;
-            }
-            
-            .hint-top {
-                top: -40px;
-            }
-            
-            .hint-bottom {
-                bottom: -40px;
-            }
-            
-            .skip-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-            
-            .avatar {
-                width: 100px;
-                height: 100px;
-                margin-bottom: 15px;
-            }
-            
-            /* Скрываем обычную пасхалку и показываем мобильную версию */
-            .easter-egg {
-                display: none;
-            }
-            
             .mobile-easter-egg {
                 display: inline-block;
                 color: var(--neon-blue);
@@ -823,161 +677,41 @@
                 max-width: 280px;
             }
             
-            .mobile-easter-egg:active {
-                background: rgba(0, 240, 255, 0.2);
-            }
-            
-            .creator-signature {
-                font-size: 11px;
-                bottom: 10px;
-                left: 10px;
-                position: fixed;
-            }
-            
-            .schedule-container {
-                padding: 18px 15px;
-                max-width: 320px;
-                margin: 15px auto;
-            }
-            
-            .schedule-title {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-            
-            .schedule-table td {
-                font-size: 12px;
-                padding: 6px 5px;
-            }
-            
-            .title {
-                margin-bottom: 35px;
-                font-size: clamp(18px, 7vw, 24px);
-            }
-            
-            .personal-message {
-                margin: 10px auto;
-                padding: 10px 12px;
-                font-size: 14px;
-                max-width: 320px;
-            }
-            
-            /* Скрываем рикролл на мобильных */
-            #rickroll {
+            .easter-egg {
                 display: none;
             }
         }
 
-        @media (max-width: 480px) {
-            .avatar {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .panel {
-                height: 65px;
-            }
-            
-            .panel-text {
-                font-size: 17px;
-            }
-            
-            .panel-icon {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .personal-message {
-                margin: 8px auto;
-                padding: 8px 10px;
-                font-size: 13px;
-                max-width: 300px;
-            }
-            
-            .terminal {
-                padding: 20px 15px;
-            }
-            
-            .schedule-container {
-                max-width: 300px;
-                padding: 16px 12px;
-            }
-            
-            .schedule-table td {
-                font-size: 11px;
-                padding: 5px 4px;
-            }
-            
-            .mobile-easter-egg {
-                font-size: 12px;
-                padding: 7px 10px;
-                margin-bottom: 10px;
-            }
-            
-            .content-wrapper {
-                margin-bottom: 15px;
-            }
+        /* Дополнительные улучшения для SEO */
+        .seo-content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+            text-align: left;
         }
 
-        @media (max-width: 360px) {
-            .avatar {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .panel {
-                height: 60px;
-                padding: 0 12px;
-            }
-            
-            .panel-text {
-                font-size: 16px;
-            }
-            
-            .personal-message {
-                font-size: 12px;
-                padding: 7px 9px;
-                max-width: 280px;
-            }
-            
-            .hint {
-                font-size: 11px;
-            }
-            
-            .schedule-container {
-                max-width: 280px;
-            }
-            
-            .schedule-table td {
-                font-size: 10px;
-            }
-            
-            .mobile-easter-egg {
-                font-size: 11px;
-                padding: 6px 9px;
-            }
-            
-            .title {
-                font-size: 16px;
-                margin-bottom: 25px;
-            }
+        .seo-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(0, 240, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--neon-blue);
         }
 
-        /* Обеспечиваем прокрутку на очень маленьких экранах */
-        @media (max-height: 700px) and (max-width: 768px) {
-            .main-content {
-                min-height: auto;
-                height: auto;
-                padding-bottom: 60px;
-            }
-            
-            .container {
-                padding-bottom: 50px;
-            }
+        .seo-section h2 {
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .seo-section p {
+            color: #cccccc;
+            line-height: 1.6;
+            font-size: 14px;
         }
     </style>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="terminal">
@@ -996,12 +730,6 @@
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
 
-    <!-- Rickroll Video - ТОЛЬКО ДЛЯ ПК -->
-    <div id="rickroll">
-        <button class="close-rickroll" onclick="closeRickroll()">×</button>
-        <iframe width="400" height="225" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; encrypted-media" allowfullscreen></iframe>
-    </div>
-
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
@@ -1010,19 +738,25 @@
         <div class="container">
             <!-- Аватар -->
             <div class="avatar">
-                <img src="MurkoLive.jpg" alt="Мурко" onerror="handleImageError(this)">
+                <img src="MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" onerror="handleImageError(this)">
             </div>
             
             <!-- Мобильная пасхалка -->
             <div class="mobile-easter-egg" onclick="handleMobileEasterEgg()">Мурко мы тебя так долго ждали!</div>
             
-            <h1 class="title">Все ссылки Мурко</h1>
+            <h1 class="title" itemprop="headline">Все ссылки MurkoLiveVT</h1>
+            <p class="subtitle" itemprop="description">Фанатский сайт стримера Мурко - расписание стримов, социальные сети и контакты</p>
+            
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>⚠️ ВНИМАНИЕ:</strong> Это НЕОФИЦИАЛЬНЫЙ фанатский сайт. Не связан с MurkoLiveVT. Создан фанатом для фанатов.
+            </div>
             
             <!-- Основной контент с расписанием и панелями -->
             <div class="content-wrapper">
                 <!-- Schedule Table -->
                 <div class="schedule-container">
-                    <div class="schedule-title">Расписание стримов</div>
+                    <div class="schedule-title">Расписание стримов MurkoLiveVT</div>
                     <table class="schedule-table">
                         <tr>
                             <td class="day-cell">Понедельник</td>
@@ -1047,12 +781,12 @@
                     </table>
                 </div>
                 
-                <!-- Панели ссылок - TWITCH В ЦЕНТРЕ -->
+                <!-- Панели ссылок -->
                 <div class="panels-container">
-                    <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank">
+                    <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram канал MurkoLiveVT">
                         <span class="panel-text">ТГК</span>
                         <div class="panel-icon">
-                            <img src="Telegram.png" alt="Telegram" onerror="handleImageError(this)">
+                            <img src="Telegram.png" alt="Telegram иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -1064,25 +798,40 @@
                         </div>
                     </a>
                     
-                    <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank">
-                        <span class="panel-text">Твич</span>
-                        <div class="panel-icon">
-                            <img src="Twitch.png" alt="Twitch" onerror="handleImageError(this)">
-                        </div>
-                        <div class="particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank">
+                    <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube канал MurkoLiveVT">
                         <span class="panel-text">Ютуб</span>
                         <div class="panel-icon">
-                            <img src="YouTube.png" alt="YouTube" onerror="handleImageError(this)">
+                            <img src="YouTube.png" alt="YouTube иконка" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank" rel="noopener noreferrer" aria-label="Twitch канал MurkoLiveVT">
+                        <span class="panel-text">Твич</span>
+                        <div class="panel-icon">
+                            <img src="Twitch.png" alt="Twitch иконка" onerror="handleImageError(this)">
+                        </div>
+                        <div class="particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@murkovideos" class="panel tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok аккаунт MurkoLiveVT">
+                        <span class="panel-text">ТТ</span>
+                        <div class="panel-icon">
+                            <img src="TikTok.png" alt="TikTok иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -1096,7 +845,20 @@
                 </div>
             </div>
             
-            <!-- Личные сообщения - ТЕПЕРЬ ПОД ПАНЕЛЯМИ НА ПК -->
+            <!-- SEO контент -->
+            <div class="seo-content">
+                <div class="seo-section">
+                    <h2>MurkoLiveVT - Стример на Twitch</h2>
+                    <p>MurkoLiveVT - популярный российский стример, известный своими интересными трансляциями на платформе Twitch. На этом фанатском сайте собраны все актуальные ссылки на социальные сети Мурко, расписание стримов и контактная информация.</p>
+                </div>
+                
+                <div class="seo-section">
+                    <h2>Расписание стримов Мурко</h2>
+                    <p>Стримы MurkoLiveVT обычно проходят в вечернее время с понедельника по пятницу. Точное расписание может меняться, поэтому следите за обновлениями в Telegram канале стримера.</p>
+                </div>
+            </div>
+            
+            <!-- Личные сообщения -->
             <div class="personal-message">
                 Личные сообщения Мурко: @LiveMurkoVT
             </div>
@@ -1126,7 +888,6 @@
             console.error('Ошибка загрузки изображения:', img.src);
             img.style.display = 'none';
             
-            // Создаем fallback элемент
             const fallback = document.createElement('div');
             fallback.style.width = '100%';
             fallback.style.height = '100%';
@@ -1263,28 +1024,13 @@
 
         // Рикролл - ТОЛЬКО ДЛЯ ПК
         function showRickroll() {
-            // Проверяем, не мобильное ли устройство
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                return; // На мобильных ничего не делаем
+                return;
             }
-            
-            // Получаем iframe
-            const iframe = rickroll.querySelector('iframe');
-            // Меняем src на версию с autoplay ТОЛЬКО при клике
-            iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
-            rickroll.classList.add('show');
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
         }
 
-        function closeRickroll() {
-            const iframe = rickroll.querySelector('iframe');
-            // Убираем autoplay при закрытии
-            iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
-            rickroll.classList.remove('show');
-        }
-
-        // Обработчик пасхалки для мобильных
         function handleMobileEasterEgg() {
-            // На мобильных просто открываем ссылку в новом окне
             window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
         }
 
@@ -1313,24 +1059,14 @@
             }
         });
 
-        // Закрытие рикролла по клику вне области (только для ПК)
-        document.addEventListener('click', (e) => {
-            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                if (rickroll.classList.contains('show') && !rickroll.contains(e.target) && 
-                    !e.target.classList.contains('easter-egg') && 
-                    !e.target.classList.contains('mobile-easter-egg')) {
-                    closeRickroll();
-                }
-            }
-        });
-
         // Предзагрузка изображений для лучшей производительности
         function preloadImages() {
             const imageUrls = [
                 'MurkoLive.jpg',
                 'Telegram.png', 
+                'YouTube.png',
                 'Twitch.png',
-                'YouTube.png'
+                'TikTok.png'
             ];
             
             imageUrls.forEach(url => {
@@ -1341,20 +1077,6 @@
 
         // Запускаем предзагрузку после загрузки страницы
         window.addEventListener('load', preloadImages);
-
-        // Обеспечиваем прокрутку на мобильных устройствах
-        function ensureMobileScroll() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                document.body.style.overflowY = 'auto';
-                document.body.style.height = 'auto';
-                document.documentElement.style.overflowY = 'auto';
-                document.documentElement.style.height = 'auto';
-            }
-        }
-
-        // Вызываем при загрузке
-        window.addEventListener('load', ensureMobileScroll);
-        window.addEventListener('resize', ensureMobileScroll);
     </script>
 </body>
 </html>
