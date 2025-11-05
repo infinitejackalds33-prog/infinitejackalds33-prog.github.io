@@ -15,13 +15,13 @@
     <meta property="og:title" content="MurkoLiveVT - Биография">
     <meta property="og:description" content="Биография стримера MurkoLiveVT - VTuber и создатель контента">
     <meta property="og:url" content="https://murkolive.info/bio">
-    <meta property="og:image" content="https://murkolive.info/MurkoLive.jpg">
+    <meta property="og:image" content="https://murkolive.info/Media/MurkoLive.jpg">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -56,7 +56,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Stars.jpg');
+            background-image: url('Media/Stars.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -280,7 +280,7 @@
     <div class="container">
         <!-- Аватар -->
         <div class="avatar">
-            <img src="MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" onerror="handleImageError(this)">
+            <img src="Media/MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" onerror="handleImageError(this)">
         </div>
         
         <h1 class="title" itemprop="headline">Биография MurkoLiveVT</h1>
@@ -334,9 +334,9 @@
         // Проверка загрузки фонового изображения
         window.addEventListener('load', function() {
             const bgImg = new Image();
-            bgImg.src = 'Stars.jpg';
+            bgImg.src = 'Media/Stars.jpg';
             bgImg.onerror = function() {
-                console.error('Ошибка загрузки фонового изображения Stars.jpg');
+                console.error('Ошибка загрузки фонового изображения Media/Stars.jpg');
                 const backgroundImage = document.getElementById('backgroundImage');
                 backgroundImage.style.background = 'radial-gradient(circle at center, #001122 0%, #000011 50%, #000000 100%)';
                 
@@ -370,8 +370,8 @@
         // Предзагрузка изображений
         function preloadImages() {
             const imageUrls = [
-                'MurkoLive.jpg',
-                'Stars.jpg'
+                'Media/MurkoLive.jpg',
+                'Media/Stars.jpg'
             ];
             
             imageUrls.forEach(url => {

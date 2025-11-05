@@ -15,14 +15,14 @@
     <meta property="og:title" content="MurkoLiveVT - Все ссылки и расписание стримов">
     <meta property="og:description" content="Фанатский сайт стримера MurkoLiveVT - ссылки, расписание, соцсети">
     <meta property="og:url" content="https://murkolive.info">
-    <meta property="og:image" content="https://murkolive.info/MurkoLive.jpg">
+    <meta property="og:image" content="https://murkolive.info/Media/MurkoLive.jpg">
     <meta property="og:site_name" content="MurkoLiveVT Links">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MurkoLiveVT - Все ссылки и расписание">
     <meta name="twitter:description" content="Фанатский сайт стримера MurkoLiveVT">
-    <meta name="twitter:image" content="https://murkolive.info/MurkoLive.jpg">
+    <meta name="twitter:image" content="https://murkolive.info/Media/MurkoLive.jpg">
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -44,10 +44,10 @@
     </script>
     
     <!-- Favicon -->
- <link rel="icon" type="image/x-icon" href="/favicon.ico">
- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+ <link rel="icon" type="image/x-icon" href="favicons/favicon.ico">
+ <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -75,7 +75,6 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
-            /* УБИРАЕМ ФОН ТЕЛА - вот где была проблема! */
             background: transparent;
         }
 
@@ -86,7 +85,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Stars.jpg');
+            background-image: url('Media/Stars.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -902,13 +901,13 @@
             ♫
         </div>
         
-        <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
+        <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долко ждали!</div>
         <div class="creator-signature">Создано с любовью от SallyTV</div>
         
         <div class="container">
             <!-- Аватар -->
             <div class="avatar">
-                <img src="MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" onerror="handleImageError(this)">
+                <img src="Media/MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" onerror="handleImageError(this)">
             </div>
             
             <!-- Мобильная пасхалка -->
@@ -957,7 +956,7 @@
                     <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram канал MurkoLiveVT">
                         <span class="panel-text">ТГК</span>
                         <div class="panel-icon">
-                            <img src="Telegram.png" alt="Telegram иконка" onerror="handleImageError(this)">
+                            <img src="Media/Telegram.png" alt="Telegram иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -972,7 +971,7 @@
                     <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube канал MurkoLiveVT">
                         <span class="panel-text">Ютуб</span>
                         <div class="panel-icon">
-                            <img src="YouTube.png" alt="YouTube иконка" onerror="handleImageError(this)">
+                            <img src="Media/YouTube.png" alt="YouTube иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -987,7 +986,7 @@
                     <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank" rel="noopener noreferrer" aria-label="Twitch канал MurkoLiveVT">
                         <span class="panel-text">Твич</span>
                         <div class="panel-icon">
-                            <img src="Twitch.png" alt="Twitch иконка" onerror="handleImageError(this)">
+                            <img src="Media/Twitch.png" alt="Twitch иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -1002,7 +1001,7 @@
                     <a href="https://www.tiktok.com/@murkovideos" class="panel tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok аккаунт MurkoLiveVT">
                         <span class="panel-text">ТТ</span>
                         <div class="panel-icon">
-                            <img src="TikTok.png" alt="TikTok иконка" onerror="handleImageError(this)">
+                            <img src="Media/TikTok.png" alt="TikTok иконка" onerror="handleImageError(this)">
                         </div>
                         <div class="particles">
                             <div class="particle"></div>
@@ -1043,7 +1042,7 @@
 
     <!-- Аудио элемент -->
     <audio id="bgMusic" loop>
-        <source src="Music.mp3" type="audio/mpeg">
+        <source src="Media/Music.mp3" type="audio/mpeg">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
 
@@ -1144,7 +1143,7 @@
 
         // Функция обработки ошибки фона
         function handleBackgroundError() {
-            console.error('Ошибка загрузки фонового изображения Stars.jpg');
+            console.error('Ошибка загрузки фонового изображения Media/Stars.jpg');
             // Создаем звездный фон через CSS как запасной вариант
             backgroundImage.style.background = 'radial-gradient(circle at center, #001122 0%, #000011 50%, #000000 100%)';
             backgroundImage.innerHTML = '';
@@ -1319,7 +1318,7 @@
             
             // Проверяем загрузку фонового изображения
             const bgImg = new Image();
-            bgImg.src = 'Stars.jpg';
+            bgImg.src = 'Media/Stars.jpg';
             bgImg.onload = function() {
                 console.log('Фоновое изображение успешно загружено');
             };
@@ -1349,12 +1348,12 @@
         // Предзагрузка изображений для лучшей производительности
         function preloadImages() {
             const imageUrls = [
-                'MurkoLive.jpg',
-                'Stars.jpg',
-                'Telegram.png', 
-                'YouTube.png',
-                'Twitch.png',
-                'TikTok.png'
+                'Media/MurkoLive.jpg',
+                'Media/Stars.jpg',
+                'Media/Telegram.png', 
+                'Media/YouTube.png',
+                'Media/Twitch.png',
+                'Media/TikTok.png'
             ];
             
             imageUrls.forEach(url => {
