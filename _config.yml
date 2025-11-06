@@ -1,0 +1,6 @@
+include:
+  - _redirects
+  - sitemap.xml
+
+plugins:
+  - jekyll-sitemap
