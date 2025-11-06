@@ -1,12 +1,21 @@
 # Включаем движок перезаписи
 RewriteEngine On
 
-# РЕДИРЕКТЫ: HTTP -> HTTPS и не-www -> www
-# Если HTTPS выключен ИЛИ домен без www
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-# Перенаправляем на https://www.murkolive.info
-RewriteRule ^(.*)$ https://www.murkolive.info/$1 [L,R=301]
+# РЕДИРЕКТЫ: ВСЕ варианты на https://murkolive.info (БЕЗ www)
+# 1. HTTP без www -> HTTPS без www
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^murkolive\.info$ [NC]
+RewriteRule ^(.*)$ https://murkolive.info/$1 [L,R=301]
+
+# 2. HTTP с www -> HTTPS без www  
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.murkolive\.info$ [NC]
+RewriteRule ^(.*)$ https://murkolive.info/$1 [L,R=301]
+
+# 3. HTTPS с www -> HTTPS без www
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.murkolive\.info$ [NC]
+RewriteRule ^(.*)$ https://murkolive.info/$1 [L,R=301]
 
 # Кэширование для улучшения скорости
 <IfModule mod_expires.c>

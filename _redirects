@@ -1,3 +1,31 @@
-http://murkolive.info https://www.murkolive.info 301
-http://www.murkolive.info https://www.murkolive.info 301
-https://murkolive.info https://www.murkolive.info 301
+# РЕДИРЕКТЫ ДЛЯ MURKOLIVE.INFO
+# Все варианты на https://murkolive.info (БЕЗ www)
+
+# 1. HTTP без www -> HTTPS без www
+http://murkolive.info/* https://murkolive.info/:splat 301!
+
+# 2. HTTP с www -> HTTPS без www
+http://www.murkolive.info/* https://murkolive.info/:splat 301!
+
+# 3. HTTPS с www -> HTTPS без www  
+https://www.murkolive.info/* https://murkolive.info/:splat 301!
+
+# 4. Резервные редиректы для всех возможных комбинаций
+http://murkolive.info https://murkolive.info 301!
+http://www.murkolive.info https://murkolive.info 301!
+https://www.murkolive.info https://murkolive.info 301!
+
+# 5. Редиректы для корневой и основных страниц (дополнительная перестраховка)
+/http://murkolive.info/ https://murkolive.info/ 301!
+/http://www.murkolive.info/ https://murkolive.info/ 301!
+/https://www.murkolive.info/ https://murkolive.info/ 301!
+
+# 6. Редиректы для страницы биографии
+/http://murkolive.info/bio https://murkolive.info/bio 301!
+/http://www.murkolive.info/bio https://murkolive.info/bio 301!
+/https://www.murkolive.info/bio https://murkolive.info/bio 301!
+
+# 7. Универсальный редирект для любых других путей
+/http://murkolive.info/* https://murkolive.info/:splat 301!
+/http://www.murkolive.info/* https://murkolive.info/:splat 301!
+/https://www.murkolive.info/* https://murkolive.info/:splat 301!
