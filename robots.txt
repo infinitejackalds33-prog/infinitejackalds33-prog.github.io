@@ -1,9 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
-
 Sitemap: https://murkolive.info/sitemap.xml
-
-# Фанатский сайт MurkoLiveVT
-# Created by SallyTV
