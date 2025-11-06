@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Основные мета-теги -->
-    <title>MurkoLiveVT - Биография | Фанатский сайт</title>
-    <meta name="description" content="Биография MurkoLiveVT - VTuber и стример. Узнайте больше о Мурко и его творчестве">
-    <meta name="keywords" content="MurkoLiveVT биография, Мурко стример, VTuber биография, MurkoLiveVT информация">
+    <!-- ОПТИМИЗИРОВАННЫЕ МЕТА-ТЕГИ -->
+    <title>Биография MurkoLiveVT | Русский VTuber стример - Fan Site</title>
+    <meta name="description" content="Биография MurkoLiveVT - русского VTuber и стримера. Узнайте больше о творчестве Мурко и его комьюнити. Фанатский сайт.">
+    <meta name="keywords" content="биография MurkoLiveVT, Мурко стример информация, VTuber биография, MurkoLiveVT о стримере">
     <meta name="author" content="SallyTV">
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="MurkoLiveVT - Биография">
+    <meta property="og:title" content="Биография MurkoLiveVT - Русский VTuber">
     <meta property="og:description" content="Биография стримера MurkoLiveVT - VTuber и создатель контента">
     <meta property="og:url" content="https://murkolive.info/bio">
     <meta property="og:image" content="https://murkolive.info/Media/MurkoLive.jpg">
@@ -234,6 +234,26 @@
             transform: translateY(-3px);
         }
 
+        /* Ссылка на главную в биографии */
+        .bio-home-link {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .bio-home-link a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .bio-home-link a:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+            transform: translateX(-5px);
+        }
+
         /* Адаптивность */
         @media (max-width: 768px) {
             .container {
@@ -302,6 +322,11 @@
             <p class="bio-text">
                 Его стримы - это не просто игровые сессии, а настоящее искусство создания комьюнити, где царит взаимная поддержка, уважение и, конечно же, много веселья!
             </p>
+
+            <!-- ДОБАВЛЕНА ССЫЛКА НА ГЛАВНУЮ -->
+            <div class="bio-home-link">
+                <a href="/">← Вернуться на главную страницу MurkoLiveVT</a>
+            </div>
         </div>
         
         <!-- Кнопка назад -->
