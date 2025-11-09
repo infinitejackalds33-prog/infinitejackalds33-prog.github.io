@@ -772,6 +772,41 @@ body {
     font-size: 14px;
 }
 
+/* ===== СТИЛИ ДЛЯ КНОПКИ "О МУРКО" ===== */
+.bio-button {
+    display: inline-block;
+    padding: 14px 35px;
+    margin: 10px auto;
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    border-radius: 10px;
+    color: var(--neon-green);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 0 10px var(--neon-green);
+    box-shadow: 
+        0 0 15px var(--neon-green),
+        inset 0 0 15px rgba(0, 255, 0, 0.1);
+    transition: all 0.4s ease;
+    font-family: 'Comfortaa', cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+.bio-button:hover {
+    background: var(--neon-green);
+    color: black;
+    box-shadow: 
+        0 0 25px var(--neon-green),
+        0 0 35px var(--neon-green);
+    transform: translateY(-3px);
+}
+
+.bio-button:active {
+    transform: translateY(1px);
+}
+
 /* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 900px) {
     .content-wrapper {
