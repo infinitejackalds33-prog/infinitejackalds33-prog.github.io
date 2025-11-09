@@ -216,7 +216,7 @@ async function step1() {
     isAnimating = false;
 }
 
- async function step2() {
+async function step2() {
     if (isAnimating) return;
     isAnimating = true;
     
@@ -234,16 +234,23 @@ async function step1() {
     // Ждем завершения анимации прогресс-бара
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Переход к основному контенту
+    // ПЛАВНЫЙ ПЕРЕХОД С АНИМАЦИЕЙ ЗАТУХАНИЯ
     if (loadingScreen) {
-    loadingScreen.classList.add('fade-out');
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        if (mainContent) {
-            mainContent.style.display = 'block';
-            mainContent.classList.add('smooth-appear');
-        }
-    }, 1200); // Время должно совпадать с анимацией
+        loadingScreen.classList.add('fade-out');
+        
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            if (mainContent) {
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.classList.add('smooth-appear');
+                }, 50);
+            }
+        }, 1200);
+    }
+    
+    currentStep = 2;
+    isAnimating = false;
 }
 
 // ===== ОБРАБОТЧИКИ ВЗАИМОДЕЙСТВИЯ =====
@@ -276,13 +283,16 @@ function skipAnimation() {
     
     if (loadingScreen) {
         loadingScreen.classList.add('fade-out');
+        
         setTimeout(() => {
             loadingScreen.style.display = 'none';
             if (mainContent) {
                 mainContent.style.display = 'block';
-                mainContent.classList.add('smooth-appear');
+                setTimeout(() => {
+                    mainContent.classList.add('smooth-appear');
+                }, 50);
             }
-        }, 600); // Ускоренная версия для skip
+        }, 600);
     }
 }
 
@@ -384,5 +394,3 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
-
- }
