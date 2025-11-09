@@ -913,4 +913,40 @@ body {
         padding: 10px 25px;
         font-size: 15px;
     }
+
+    .fade-out {
+    animation: fadeOut 1.2s ease-in-out forwards !important;
+ }
+
+ @keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    70% {
+        opacity: 0.3;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+        display: none !important;
+    }
+ }
+
+ .smooth-appear {
+    animation: smoothAppear 1.5s ease-out forwards;
+ }
+
+ @keyframes smoothAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+ }
+
 }

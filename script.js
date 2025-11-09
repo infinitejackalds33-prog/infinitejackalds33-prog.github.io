@@ -216,7 +216,7 @@ async function step1() {
     isAnimating = false;
 }
 
-async function step2() {
+ async function step2() {
     if (isAnimating) return;
     isAnimating = true;
     
@@ -236,17 +236,14 @@ async function step2() {
     
     // Переход к основному контенту
     if (loadingScreen) {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            if (mainContent) {
-                mainContent.style.display = 'block';
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                }, 100);
-            }
-        }, 1000);
-    }
+    loadingScreen.classList.add('fade-out');
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        if (mainContent) {
+            mainContent.style.display = 'block';
+            mainContent.classList.add('smooth-appear');
+        }
+    }, 1200); // Время должно совпадать с анимацией
 }
 
 // ===== ОБРАБОТЧИКИ ВЗАИМОДЕЙСТВИЯ =====
@@ -278,14 +275,14 @@ function skipAnimation() {
     if (isAnimating) return;
     
     if (loadingScreen) {
-        loadingScreen.style.opacity = '0';
+        loadingScreen.classList.add('fade-out');
         setTimeout(() => {
             loadingScreen.style.display = 'none';
             if (mainContent) {
                 mainContent.style.display = 'block';
-                mainContent.style.opacity = '1';
+                mainContent.classList.add('smooth-appear');
             }
-        }, 500);
+        }, 600); // Ускоренная версия для skip
     }
 }
 
@@ -387,3 +384,5 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+ }
