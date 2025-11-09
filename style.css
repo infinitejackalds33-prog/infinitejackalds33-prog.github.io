@@ -184,10 +184,47 @@ body {
     box-shadow: 0 0 20px var(--neon-blue);
 }
 
+/* ===== АНИМАЦИИ ПЕРЕХОДА ===== */
+.loading-screen.fade-out {
+    animation: fadeOut 1.2s ease-in-out forwards !important;
+    pointer-events: none;
+}
+
+.main-content.smooth-appear {
+    animation: smoothAppear 1.5s ease-out forwards !important;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    70% {
+        opacity: 0.3;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+        visibility: hidden;
+    }
+}
+
+@keyframes smoothAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 /* ===== MAIN CONTENT ===== */
 .main-content {
-    display: block;
-    opacity: 1;
+    display: none;
+    opacity: 0;
     transition: opacity 1s ease;
     min-height: 100vh;
     position: relative;
@@ -581,41 +618,6 @@ body {
 .panel:hover .particle:nth-child(5) { opacity: 1; transform: translate(30px, -10px) scale(1.4); }
 .panel:hover .particle:nth-child(6) { opacity: 1; transform: translate(-30px, 10px) scale(1.6); }
 
-/* Кнопка "О Мурко" */
-.bio-button {
-    display: inline-block;
-    padding: 14px 35px;
-    margin: 10px auto;
-    background: transparent;
-    border: 2px solid var(--neon-green);
-    border-radius: 10px;
-    color: var(--neon-green);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 18px;
-    text-shadow: 0 0 10px var(--neon-green);
-    box-shadow: 
-        0 0 15px var(--neon-green),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
-    transition: all 0.4s ease;
-    font-family: 'Comfortaa', cursive;
-    position: relative;
-    overflow: hidden;
-}
-
-.bio-button:hover {
-    background: var(--neon-green);
-    color: black;
-    box-shadow: 
-        0 0 25px var(--neon-green),
-        0 0 35px var(--neon-green);
-    transform: translateY(-3px);
-}
-
-.bio-button:active {
-    transform: translateY(1px);
-}
-
 /* Disclaimer */
 .disclaimer {
     background: rgba(0, 240, 255, 0.1);
@@ -721,33 +723,6 @@ body {
     font-style: italic;
     color: #88ccff;
     text-shadow: 0 0 5px rgba(136, 204, 255, 0.5);
-}
-
-.back-button {
-    display: inline-block;
-    padding: 12px 30px;
-    background: transparent;
-    border: 2px solid var(--neon-green);
-    border-radius: 10px;
-    color: var(--neon-green);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    text-shadow: 0 0 8px var(--neon-green);
-    box-shadow: 
-        0 0 15px var(--neon-green),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
-    transition: all 0.4s ease;
-    margin-top: 10px;
-}
-
-.back-button:hover {
-    background: var(--neon-green);
-    color: black;
-    box-shadow: 
-        0 0 25px var(--neon-green),
-        0 0 35px var(--neon-green);
-    transform: translateY(-3px);
 }
 
 .bio-home-link {
@@ -894,12 +869,6 @@ body {
         padding: 8px 5px;
         font-size: 13px;
     }
-
-    .bio-button {
-        padding: 12px 25px;
-        font-size: 16px;
-        margin: 15px auto;
-    }
     
     .bio-content {
         padding: 15px;
@@ -908,45 +877,4 @@ body {
     .bio-text {
         font-size: 15px;
     }
-    
-    .back-button {
-        padding: 10px 25px;
-        font-size: 15px;
-    }
-
-    .fade-out {
-    animation: fadeOut 1.2s ease-in-out forwards !important;
- }
-
- @keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    70% {
-        opacity: 0.3;
-        transform: scale(1.05);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.9);
-        display: none !important;
-    }
- }
-
- .smooth-appear {
-    animation: smoothAppear 1.5s ease-out forwards;
- }
-
- @keyframes smoothAppear {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
- }
-
 }
