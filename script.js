@@ -58,7 +58,7 @@ function initMusic() {
     if (!bgMusic) return;
     
     // Устанавливаем громкость
-    bgMusic.volume = 0.5;
+    bgMusic.volume = 0.2;
     
     // Пытаемся запустить музыку после взаимодействия пользователя
     document.addEventListener('click', function initMusicOnInteraction() {
