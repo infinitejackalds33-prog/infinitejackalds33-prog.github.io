@@ -24,6 +24,7 @@ body {
     position: relative;
     line-height: 1.6;
     background: transparent;
+    font-size: 18px; /* Увеличено с ~15px */
 }
 
 /* Фоновая картинка - ТЕПЕРЬ ОСНОВНОЙ ФОН */
@@ -84,7 +85,7 @@ body {
     position: absolute;
     color: var(--neon-blue);
     text-shadow: 0 0 10px var(--neon-blue);
-    font-size: 16px;
+    font-size: 19px; /* Увеличено с 16px */
     text-align: center;
     width: 100%;
     opacity: 1;
@@ -103,7 +104,7 @@ body {
 
 .terminal-line {
     margin: 20px 0;
-    font-size: 18px;
+    font-size: 21px; /* Увеличено с 18px */
     color: var(--neon-blue);
     text-shadow: 0 0 10px var(--neon-blue);
     min-height: 25px;
@@ -175,7 +176,7 @@ body {
     font-family: 'Comfortaa', cursive;
     text-shadow: 0 0 5px var(--neon-blue);
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 17px; /* Увеличено с 14px */
 }
 
 .skip-btn:hover {
@@ -263,7 +264,7 @@ body {
     z-index: 100;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px var(--neon-blue);
-    font-size: 20px;
+    font-size: 23px; /* Увеличено с 20px */
 }
 
 .music-control:hover {
@@ -289,7 +290,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 14px;
+    font-size: 17px; /* Увеличено с 14px */
     color: var(--neon-blue);
     cursor: pointer;
     text-shadow: 0 0 5px var(--neon-blue);
@@ -314,7 +315,7 @@ body {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    font-size: 14px;
+    font-size: 17px; /* Увеличено с 14px */
     color: white;
     opacity: 0.8;
     z-index: 10;
@@ -345,7 +346,7 @@ body {
 
 /* 3D текст */
 .title {
-    font-size: clamp(20px, 6vw, 32px);
+    font-size: clamp(23px, 6vw, 35px); /* Увеличено с 20px/32px */
     font-weight: 700;
     margin-bottom: 15px;
     color: var(--neon-blue);
@@ -364,7 +365,7 @@ body {
 }
 
 .subtitle {
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: clamp(17px, 4vw, 21px); /* Увеличено с 14px/18px */
     color: #88ccff;
     margin-bottom: 25px;
     text-shadow: 0 0 10px #88ccff;
@@ -404,7 +405,7 @@ body {
     color: var(--neon-green);
     text-decoration: none;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 21px; /* Увеличено с 18px */
     text-shadow: 0 0 10px var(--neon-green);
     box-shadow: 
         0 0 15px var(--neon-green),
@@ -468,7 +469,7 @@ body {
 .schedule-title {
     color: #66aaff;
     text-shadow: 0 0 10px #66aaff;
-    font-size: 18px;
+    font-size: 21px; /* Увеличено с 18px */
     font-weight: 700;
     margin-bottom: 15px;
     text-align: center;
@@ -484,7 +485,7 @@ body {
 .schedule-table td {
     padding: 10px 8px;
     border-bottom: 1px solid rgba(0, 68, 204, 0.3);
-    font-size: 14px;
+    font-size: 17px; /* Увеличено с 14px */
 }
 
 .schedule-table tr:last-child td {
@@ -575,7 +576,7 @@ body {
 }
 
 .panel-text {
-    font-size: 20px;
+    font-size: 23px; /* Увеличено с 20px */
     font-weight: 700;
     z-index: 2;
     position: relative;
@@ -663,7 +664,7 @@ body {
     max-width: 600px;
     width: 90%;
     color: #88ccff;
-    font-size: 13px;
+    font-size: 16px; /* Увеличено с 13px */
     text-align: center;
     line-height: 1.4;
 }
@@ -675,7 +676,7 @@ body {
 /* Сообщение внизу */
 .personal-message {
     margin: 15px auto;
-    font-size: clamp(14px, 4vw, 16px);
+    font-size: clamp(17px, 4vw, 19px); /* Увеличено с 14px/16px */
     color: var(--neon-blue);
     font-weight: 700;
     padding: 12px 15px;
@@ -738,7 +739,7 @@ body {
 
 .bio-text {
     color: #aaddff;
-    font-size: 17px;
+    font-size: 20px; /* Увеличено с 17px */
     line-height: 1.7;
     margin-bottom: 20px;
     text-shadow: 0 0 5px rgba(170, 221, 255, 0.5);
@@ -758,6 +759,7 @@ body {
     font-style: italic;
     color: #88ccff;
     text-shadow: 0 0 5px rgba(136, 204, 255, 0.5);
+    font-size: 18px; /* Увеличено */
 }
 
 .bio-home-link {
@@ -770,7 +772,7 @@ body {
     color: var(--neon-blue);
     text-decoration: none;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 19px; /* Увеличено с 16px */
     transition: all 0.3s ease;
 }
 
@@ -798,13 +800,13 @@ body {
 .seo-section h2 {
     color: var(--neon-blue);
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 21px; /* Увеличено с 18px */
 }
 
 .seo-section p {
     color: #cccccc;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: 17px; /* Увеличено с 14px */
 }
 
 /* ===== АДАПТИВНОСТЬ ===== */
@@ -858,7 +860,7 @@ body {
         transition: all 0.3s ease;
         background: rgba(0, 240, 255, 0.1);
         margin: -5px auto 15px;
-        font-size: 13px;
+        font-size: 16px; /* Увеличено с 13px */
         width: 90%;
         max-width: 280px;
     }
@@ -877,11 +879,15 @@ body {
     .music-control {
         width: 40px;
         height: 40px;
-        font-size: 16px;
+        font-size: 19px; /* Увеличено с 16px */
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        font-size: 16px; /* Увеличено с 14px */
+    }
+    
     .panels-container {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -893,7 +899,7 @@ body {
     }
     
     .panel-text {
-        font-size: 18px;
+        font-size: 21px; /* Увеличено с 18px */
     }
     
     .schedule-container {
@@ -902,12 +908,12 @@ body {
     
     .schedule-table td {
         padding: 8px 5px;
-        font-size: 13px;
+        font-size: 16px; /* Увеличено с 13px */
     }
     
     .bio-button {
         padding: 12px 25px;
-        font-size: 16px;
+        font-size: 19px; /* Увеличено с 16px */
     }
     
     .bio-content {
@@ -915,6 +921,22 @@ body {
     }
     
     .bio-text {
-        font-size: 15px;
+        font-size: 18px; /* Увеличено с 15px */
+    }
+    
+    .container {
+        opacity: 0;
+        animation: smoothAppear 1s ease-out forwards;
+    }
+
+    @keyframes smoothAppear {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
