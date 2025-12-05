@@ -394,3 +394,223 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+// ===== МОДУЛЬ АРХИВА ФОТОГРАФИЙ =====
+const archive = (function() {
+    // Конфигурация
+    const TOTAL_PHOTOS = 91;
+    const PHOTOS_PATH = 'Media/MurkoArchive/';
+    
+    // Состояние
+    let currentPhotos = [];
+    let currentModalIndex = 0;
+    let loadedCount = 0;
+    
+    // DOM элементы
+    let photosGrid, photoCounter, modalOverlay, modalImage, modalCaption;
+    
+    // ===== ОСНОВНЫЕ ФУНКЦИИ =====
+    
+    // Инициализация архива
+    function init() {
+        console.log('Инициализация архива фотографий...');
+        
+        // Находим DOM элементы
+        photosGrid = document.getElementById('photosGrid');
+        photoCounter = document.getElementById('photoCounter');
+        modalOverlay = document.getElementById('modalOverlay');
+        modalImage = document.getElementById('modalImage');
+        modalCaption = document.getElementById('modalCaption');
+        
+        // Загружаем фотографии
+        loadPhotos();
+        
+        // Назначаем обработчики клавиш
+        document.addEventListener('keydown', handleKeydown);
+        
+        // Закрытие по клику на оверлей
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+        }
+        
+        console.log('Архив инициализирован');
+    }
+    
+    // Загрузка фотографий
+    function loadPhotos() {
+        if (!photosGrid) return;
+        
+        // Очищаем сетку
+        photosGrid.innerHTML = '';
+        currentPhotos = [];
+        loadedCount = 0;
+        
+        // Создаем элементы для каждой фотографии
+        for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+            createPhotoElement(i);
+        }
+    }
+    
+    // Создание элемента фотографии
+    function createPhotoElement(index) {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        photoItem.dataset.index = index - 1;
+        
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.alt = `Фотография MurkoLiveVT №${index}`;
+        
+        // Обработка загрузки
+        img.onload = function() {
+            loadedCount++;
+            updatePhotoCounter();
+            
+            // Добавляем анимацию появления
+            photoItem.style.opacity = '0';
+            photoItem.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                photoItem.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                photoItem.style.opacity = '1';
+                photoItem.style.transform = 'translateY(0)';
+            }, 50);
+        };
+        
+        // Обработка ошибок
+        img.onerror = function() {
+            // Пробуем другие расширения
+            const extensions = ['.jpg', '.jpeg', '.png', '.webp'];
+            let extIndex = 1;
+            
+            function tryNextExtension() {
+                if (extIndex < extensions.length) {
+                    img.src = `${PHOTOS_PATH}${index}${extensions[extIndex]}`;
+                    extIndex++;
+                } else {
+                    // Заглушка если фото не найдено
+                    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxMTExMTEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+0J7RiNC40LHQutCwINC60LDQttC00L7QvDwvdGV4dD48L3N2Zz4=';
+                    loadedCount++;
+                    updatePhotoCounter();
+                }
+            }
+            
+            img.onerror = tryNextExtension;
+            tryNextExtension();
+        };
+        
+        // Устанавливаем источник
+        img.src = `${PHOTOS_PATH}${index}.jpg`;
+        
+        // Номер фото
+        const number = document.createElement('div');
+        number.className = 'photo-number';
+        number.textContent = index;
+        
+        // Клик для открытия
+        photoItem.onclick = function() {
+            openModal(index - 1);
+        };
+        
+        // Собираем элемент
+        photoItem.appendChild(img);
+        photoItem.appendChild(number);
+        photosGrid.appendChild(photoItem);
+        currentPhotos.push(photoItem);
+    }
+    
+    // Обновление счетчика
+    function updatePhotoCounter() {
+        if (!photoCounter) return;
+        
+        photoCounter.textContent = `Загружено: ${loadedCount} из ${TOTAL_PHOTOS} фото`;
+        
+        if (loadedCount === TOTAL_PHOTOS) {
+            photoCounter.style.color = 'var(--neon-green)';
+            photoCounter.innerHTML = `✅ Все ${TOTAL_PHOTOS} фотографий загружены!`;
+        }
+    }
+    
+    // ===== МОДАЛЬНОЕ ОКНО =====
+    
+    function openModal(index) {
+        currentModalIndex = index;
+        
+        if (!modalOverlay || !modalImage || !modalCaption) return;
+        
+        // Показываем фото
+        modalImage.src = `${PHOTOS_PATH}${index + 1}.jpg`;
+        modalImage.alt = `Фотография MurkoLiveVT №${index + 1}`;
+        modalCaption.textContent = `Фото ${index + 1} из ${TOTAL_PHOTOS}`;
+        
+        // Показываем модальное окно
+        modalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Предзагрузка соседних фото
+        preloadAdjacentPhotos(index);
+    }
+    
+    function closeModal() {
+        if (!modalOverlay) return;
+        
+        modalOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function prevPhoto() {
+        currentModalIndex = (currentModalIndex - 1 + TOTAL_PHOTOS) % TOTAL_PHOTOS;
+        openModal(currentModalIndex);
+    }
+    
+    function nextPhoto() {
+        currentModalIndex = (currentModalIndex + 1) % TOTAL_PHOTOS;
+        openModal(currentModalIndex);
+    }
+    
+    // Предзагрузка соседних фото для плавной навигации
+    function preloadAdjacentPhotos(currentIndex) {
+        const indices = [
+            (currentIndex - 1 + TOTAL_PHOTOS) % TOTAL_PHOTOS,
+            (currentIndex + 1) % TOTAL_PHOTOS
+        ];
+        
+        indices.forEach(index => {
+            const img = new Image();
+            img.src = `${PHOTOS_PATH}${index + 1}.jpg`;
+        });
+    }
+    
+    // ===== ОБРАБОТКА КЛАВИАТУРЫ =====
+    
+    function handleKeydown(e) {
+        // Только если модальное окно открыто
+        if (modalOverlay && modalOverlay.style.display === 'flex') {
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    prevPhoto();
+                    break;
+                case 'ArrowRight':
+                    nextPhoto();
+                    break;
+            }
+        }
+    }
+    
+    // ===== ПУБЛИЧНЫЙ ИНТЕРФЕЙС =====
+    return {
+        init: init,
+        openModal: openModal,
+        closeModal: closeModal,
+        prevPhoto: prevPhoto,
+        nextPhoto: nextPhoto
+    };
+})();
+
+// ===== ГЛОБАЛЬНЫЙ ДОСТУП К ФУНКЦИЯМ АРХИВА =====
+// (для вызова из HTML onclick)
+window.archive = archive;

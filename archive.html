@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив фотографий MurkoLiveVT | Фанатский сайт</title>
+    <meta name="description" content="Архив фотографий MurkoLiveVT - 91 уникальный кадр со стримов и жизни Мурко">
+    <meta name="keywords" content="MurkoLiveVT фото, архив Мурко, фотографии стримера, Murko архив">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Архив фотографий MurkoLiveVT">
+    <meta property="og:description" content="91 уникальная фотография стримера Мурко в высоком качестве">
+    <meta property="og:image" content="https://murkolive.info/Media/MurkoLive.jpg">
+    <meta property="og:url" content="https://murkolive.info/archive">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Фоновые элементы -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+    
+    <!-- Основной контейнер -->
+    <div class="container">
+        <h1 class="archive-title">Архив фотографий MurkoLiveVT</h1>
+        <p class="archive-subtitle">91 уникальный кадр со стримов и жизни Мурко</p>
+        
+        <div class="photo-counter" id="photoCounter">Загружено: 0 из 91 фото</div>
+        
+        <!-- Сетка фотографий -->
+        <div class="photos-grid" id="photosGrid">
+            <div class="loading">
+                <div class="spinner"></div><br>
+                Загрузка архива...
+            </div>
+        </div>
+        
+        <!-- Навигация -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" class="bio-button">← Вернуться на главную</a>
+        </div>
+        
+        <div class="creator-signature">Создано с любовью от SallyTV</div>
+    </div>
+    
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modalOverlay">
+        <button class="modal-close" onclick="archive.closeModal()">×</button>
+        <button class="modal-nav modal-prev" onclick="archive.prevPhoto()">←</button>
+        
+        <div class="modal-content">
+            <img class="modal-img" id="modalImage" src="" alt="">
+            <div id="modalCaption" style="color: white; text-align: center; margin-top: 10px;"></div>
+        </div>
+        
+        <button class="modal-nav modal-next" onclick="archive.nextPhoto()">→</button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Инициализация архива после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            archive.init();
+        });
+    </script>
+</body>
+</html>
