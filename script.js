@@ -192,7 +192,7 @@ function animatePassword(element, count = 6, speed = 180) {
             return;
         }
         
-        element.innerHTML = 'Секретный код: <span class="password-stars"></span>';
+        element.innerHTML = 'Password: <span class="password-stars"></span>';
         const starsContainer = element.querySelector('.password-stars');
         if (!starsContainer) {
             resolve();
@@ -206,7 +206,7 @@ function animatePassword(element, count = 6, speed = 180) {
             if (i < count) {
                 const star = document.createElement('span');
                 star.className = 'password-star';
-                star.textContent = '✨';
+                star.textContent = '*';
                 star.style.animationDelay = `${i * 100}ms`;
                 starsContainer.appendChild(star);
                 i++;
@@ -224,7 +224,7 @@ async function step1() {
     if (isAnimating) return;
     isAnimating = true;
     
-    await typeWriter(line1, "Входим в уютный уголок Murko...", 70);
+    await typeWriter(line1, "Sudo login MurkoLiveVT", 70);
     await new Promise(resolve => setTimeout(resolve, 800));
     
     if (hint2) {
@@ -240,8 +240,6 @@ async function step2() {
     
     await animatePassword(line2, 6, 160);
     await new Promise(resolve => setTimeout(resolve, 600));
-    
-    await typeWriter(line3, "Добро пожаловать домой! 💙", 80);
     
     if (progressBar) {
         progressBar.style.opacity = '1';
