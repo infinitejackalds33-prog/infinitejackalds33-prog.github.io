@@ -224,7 +224,7 @@ async function step1() {
     if (isAnimating) return;
     isAnimating = true;
     
-    await typeWriter(line1, "Sudo login MurkoLiveVT", 70);
+    await typeWriter(line1, "Sudo Login MurkoliveVT", 70);
     await new Promise(resolve => setTimeout(resolve, 800));
     
     if (hint2) {
@@ -238,8 +238,9 @@ async function step2() {
     if (isAnimating) return;
     isAnimating = true;
     
-    await animatePassword(line2, 6, 160);
+    await animatePassword(line2, 6, 150);
     await new Promise(resolve => setTimeout(resolve, 600));
+    
     
     if (progressBar) {
         progressBar.style.opacity = '1';
@@ -260,7 +261,7 @@ async function step2() {
                 mainContent.style.display = 'block';
                 setTimeout(() => {
                     mainContent.classList.add('smooth-appear');
-                    console.log('🏡 Добро пожаловать в наш уютный уголок!');
+                    console.log('Добро пожаловть!');
                 }, 50);
             }
         }, 1200);
