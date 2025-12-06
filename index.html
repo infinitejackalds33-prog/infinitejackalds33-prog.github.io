@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ОПТИМИЗИРОВАННЫЕ МЕТА-ТЕГИ -->
-    <title>MurkoLiveVT - Официальный фанатский сайт | Стримы, Расписание, Ссылки</title>
-    <meta name="description" content="🎮 Фанатский сайт MurkoLiveVT - русского VTuber стримера. Расписание стримов на Twitch, все социальные сети: Telegram, YouTube, TikTok. Присоединяйтесь к комьюнити Мурко!">
-    <meta name="keywords" content="MurkoLiveVT, Мурко стример, русский VTuber, Twitch стримы, расписание Murko, MurkoLiveVT ссылки, Telegram Мурко, YouTube MurkoLiveVT">
-    <meta name="author" content="SallyTV">
+    <title>MurkoLiveVT - Дом для самых тёплых стримов | Фанатский сайт с любовью</title>
+    <meta name="description" content="Уютный уголок для фанатов MurkoLiveVT. Здесь живёт расписание стримов, архив самых тёплых моментов и всё, что нужно для сердца настоящего фаната Мурко.">
+    <meta name="keywords" content="MurkoLiveVT, Мурко стример, уютные стримы, русский VTuber, наш Мурко, комьюнити Murko, Murko, Мурко, Мурко Лайв, Murko Live, Мурко Стрим, Murko Stream, Мурко Втубер, Murko Vtuber, Втубер, Vtuber, ВТ, VT, Втуберы, Vtubers, Витуберы, Vituber, Стрим, Stream, Twitch, Telegram, Tiktok, SallyTV, Katalca, Giftirk, СаллиТВ, Салли, Каталка, Гифтирк.">
+    <meta name="author" content="SallyTV с любовью к Мурко">
     
     <!-- МИКРОРАЗМЕТКА SCHEMA.ORG -->
     <script type="application/ld+json">
@@ -16,7 +16,7 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "MurkoLiveVT",
-        "description": "Русскоязычный VTuber и стример на Twitch",
+        "description": "Тот самый VTuber, у которого стримы как тёплый плед в холодный вечер",
         "url": "https://murkolive.info",
         "image": "https://murkolive.info/Media/MurkoLive.jpg",
         "sameAs": [
@@ -25,7 +25,7 @@
             "https://www.youtube.com/@MurkoVideos",
             "https://www.tiktok.com/@murkovideos"
         ],
-        "knowsAbout": ["VTuber", "Стриминг", "Игры", "Twitch"],
+        "knowsAbout": ["VTuber", "Стриминг", "Уютные разговоры", "Игры с душой"],
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://murkolive.info"
@@ -34,20 +34,19 @@
     </script>
 
     <!-- OPEN GRAPH -->
-    <meta property="og:title" content="MurkoLiveVT - Все ссылки и расписание стримов">
-    <meta property="og:description" content="Присоединяйтесь к комьюнити MurkoLiveVT! Расписание стримов, все социальные сети и актуальные ссылки в одном месте.">
+    <meta property="og:title" content="MurkoLiveVT - Здесь живёт уют">
+    <meta property="og:description" content="Место, где фанаты Мурко собираются вместе. Расписание стримов, архив счастливых моментов и море тёплых воспоминаний.">
     <meta property="og:image" content="https://murkolive.info/Media/MurkoLive.jpg">
     <meta property="og:url" content="https://murkolive.info">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="MurkoLiveVT Links">
+    <meta property="og:site_name" content="Дом MurkoLiveVT">
     <meta property="og:locale" content="ru_RU">
 
     <!-- TWITTER CARD -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MurkoLiveVT - Все ссылки и расписание">
-    <meta name="twitter:description" content="Фанатский сайт стримера MurkoLiveVT - расписание, соцсети, контакты">
+    <meta name="twitter:title" content="MurkoLiveVT - Наш уютный уголок">
+    <meta name="twitter:description" content="Фанатский сайт, созданный с нежностью и заботой о самом тёплом VTuber">
     <meta name="twitter:image" content="https://murkolive.info/Media/MurkoLive.jpg">
-    <meta name="twitter:site" content="@MurkoLiveVT">
 
     <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="https://murkolive.info/favicons/favicon.ico">
@@ -70,7 +69,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="terminal">
-            <div class="hint hint-top" id="hint1">Нажмите любую кнопку чтобы войти</div>
+            <div class="hint hint-top" id="hint1">Коснись экрана, чтобы зайти в наш уютный уголок</div>
             
             <div class="terminal-line" id="line1"></div>
             <div class="terminal-line" id="line2"></div>
@@ -80,9 +79,9 @@
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             
-            <div class="hint hint-bottom" id="hint2" style="display: none;">Нажмите любую кнопку чтобы ввести пароль</div>
+            <div class="hint hint-bottom" id="hint2" style="display: none;">Пароль - твоя любовь к Мурко</div>
         </div>
-        <button class="skip-btn" id="skipBtn">Skip Animation</button>
+        <button class="skip-btn" id="skipBtn">Пропустить волшебство</button>
     </div>
 
     <!-- Main Content -->
@@ -92,62 +91,64 @@
             ♫
         </div>
         
-        <div class="easter-egg" onclick="showRickroll()">Мурко мы тебя так долго ждали!</div>
-        <div class="creator-signature">Создано с любовью от SallyTV</div>
+        <div class="easter-egg" onclick="showRickroll()">Мурко, мы скучали по твоим стримам!</div>
+        <div class="creator-signature">Собрано с теплом и заботой от SallyTV</div>
         
         <div class="container">
             <!-- Аватар -->
             <div class="avatar" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                <img src="Media/MurkoLive.jpg" alt="MurkoLiveVT - аватар стримера Мурко" itemprop="url" onerror="handleImageError(this)">
+                <img src="Media/MurkoLive.jpg" alt="Тот самый Мурко, который делает наши вечера теплее" itemprop="url" onerror="handleImageError(this)">
                 <meta itemprop="width" content="400">
                 <meta itemprop="height" content="400">
             </div>
             
             <!-- Мобильная пасхалка -->
-            <div class="mobile-easter-egg" onclick="handleMobileEasterEgg()">Мурко мы тебя так долго ждали!</div>
+            <div class="mobile-easter-egg" onclick="handleMobileEasterEgg()">Мурко, мы скучали по твоим стримам!</div>
             
-            <h1 class="title" itemprop="headline">Все ссылки MurkoLiveVT</h1>
-            <p class="subtitle" itemprop="description">Фанатский сайт стримера Мурко - расписание стримов, социальные сети и контакты</p>
+            <h1 class="title" itemprop="headline">Добро пожаловать в дом MurkoLiveVT</h1>
+            <p class="subtitle" itemprop="description">Здесь живёт наше комьюнити, тёплые воспоминания и всё самое важное о нашем любимом VTuber</p>
             
             <!-- Disclaimer -->
             <div class="disclaimer">
-                <strong>💙 Информация:</strong> Это фанатский сайт, созданный для поддержки стримера MurkoLiveVT. 
-                Не является официальным ресурсом, но создан с большой любовью и уважением к творчеству Мурко. Любим вас!
+                <strong>💖 От сердца к сердцу:</strong> Этот сайт создан фанатом для фанатов. Это не официальная страница, а тёплое место, где мы все можем собраться вместе. Каждая строчка здесь написана с любовью к Мурко и нашему уютному комьюнити!
             </div>
             
             <!-- Основной контент с расписанием и панелями -->
             <div class="content-wrapper">
                 <!-- Schedule Table -->
                 <div class="schedule-container" itemprop="description">
-                    <div class="schedule-title">Расписание стримов MurkoLiveVT</div>
+                    <div class="schedule-title">Когда Мурко будет с нами?</div>
                     <table class="schedule-table">
                         <tr>
                             <td class="day-cell">Понедельник</td>
-                            <td class="time-cell">20-21 → 1-2</td>
+                            <td class="time-cell">Вечерние посиделки</td>
                         </tr>
                         <tr>
                             <td class="day-cell">Вторник</td>
-                            <td class="time-cell">20-21 → 1-2</td>
+                            <td class="time-cell">Тёплые разговоры</td>
                         </tr>
                         <tr>
                             <td class="day-cell">Среда</td>
-                            <td class="time-cell">20-21 → 1-2</td>
+                            <td class="time-cell">Совместные игры</td>
                         </tr>
                         <tr>
                             <td class="day-cell">Четверг</td>
-                            <td class="time-cell">20-21 → 1-2</td>
+                            <td class="time-cell">Вечер у камина</td>
                         </tr>
                         <tr>
                             <td class="day-cell">Пятница</td>
-                            <td class="time-cell">20-21 → 1-2</td>
+                            <td class="time-cell">Праздничная атмосфера</td>
                         </tr>
                     </table>
+                    <div style="margin-top: 15px; color: #88ccff; font-size: 15px; text-align: center;">
+                        Обычно с 20:00 до глубокой ночи 💫
+                    </div>
                 </div>
                 
                 <!-- Панели ссылок -->
                 <div class="panels-container">
                     <a href="https://t.me/murkoLiveVT" class="panel telegram" target="_blank" rel="noopener noreferrer" itemprop="sameAs" aria-label="Telegram канал MurkoLiveVT">
-                        <span class="panel-text">ТГК</span>
+                        <span class="panel-text">Telegram</span>
                         <div class="panel-icon">
                             <img src="Media/Telegram.png" alt="Telegram иконка" onerror="handleImageError(this)">
                         </div>
@@ -162,7 +163,7 @@
                     </a>
                     
                     <a href="https://www.youtube.com/@MurkoVideos" class="panel youtube" target="_blank" rel="noopener noreferrer" itemprop="sameAs" aria-label="YouTube канал MurkoLiveVT">
-                        <span class="panel-text">Ютуб</span>
+                        <span class="panel-text">YouTube</span>
                         <div class="panel-icon">
                             <img src="Media/YouTube.png" alt="YouTube иконка" onerror="handleImageError(this)">
                         </div>
@@ -177,7 +178,7 @@
                     </a>
                     
                     <a href="https://www.twitch.tv/murkolivevt" class="panel twitch" target="_blank" rel="noopener noreferrer" itemprop="sameAs" aria-label="Twitch канал MurkoLiveVT">
-                        <span class="panel-text">Твич</span>
+                        <span class="panel-text">Twitch</span>
                         <div class="panel-icon">
                             <img src="Media/Twitch.png" alt="Twitch иконка" onerror="handleImageError(this)">
                         </div>
@@ -192,7 +193,7 @@
                     </a>
                     
                     <a href="https://www.tiktok.com/@murkovideos" class="panel tiktok" target="_blank" rel="noopener noreferrer" itemprop="sameAs" aria-label="TikTok аккаунт MurkoLiveVT">
-                        <span class="panel-text">ТТ</span>
+                        <span class="panel-text">TikTok</span>
                         <div class="panel-icon">
                             <img src="Media/TikTok.png" alt="TikTok иконка" onerror="handleImageError(this)">
                         </div>
@@ -208,45 +209,45 @@
                 </div>
             </div>
             
+            <!-- Кнопки навигации -->
+            <div style="text-align: center; margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="bio.html" class="bio-button">О Мурко...</a>
+                <a href="archive.html" class="bio-button" style="border-color: var(--neon-purple); color: var(--neon-purple);">
+                    📸 Архив
+                </a>
+            </div>
+            
+            <!-- Тёплый контент для души -->
+            <div class="seo-content">
+                <div class="seo-section">
+                    <h2>Почему мы так любим MurkoLiveVT?</h2>
+                    <p>Это не просто стримы. Это тёплые вечера, наполненные искренним смехом, душевными разговорами и той особой атмосферой, которую создаёт Мурко. Здесь каждый чувствует себя как дома, как часть большой и дружной семьи.</p>
+                    <p>MurkoLiveVT — это VTuber, который действительно заботится о своём комьюнити. Его стримы — это место, где можно отдохнуть душой, поделиться своими мыслями и просто провести время в хорошей компании.</p>
+                </div>
+                
+                <div class="seo-section">
+                    <h2>Что ждёт тебя на стримах?</h2>
+                    <p>Уютные игры, задушевные беседы, смешные моменты и море позитива. Мурко умеет создать такую атмосферу, что даже в самый хмурый день на душе становится светлее. А наше комьюнити — самое тёплое и поддерживающее сообщество, которое только можно представить.</p>
+                </div>
+                
+                <div class="seo-section">
+                    <h2>Как оставаться на связи?</h2>
+                    <p>Все самые важные ссылки собраны здесь, на этой страничке. Telegram — для ежедневного общения и анонсов, Twitch — для просто шикарных стримов, YouTube — чтобы пересмотреть самые тёплые моменты, TikTok — для смешных моментов. Выбирай, что тебе по душе!</p>
+                </div>
+            </div>
+            
+            <!-- Личное сообщение -->
+            <div class="personal-message">
+                💌 Лично Мурко можно написать в Telegram: @liveMurkoVT
+            </div>
+            
             <!-- Скрытые ссылки для поисковиков -->
             <div style="display: none;" aria-hidden="true">
                 <a href="https://t.me/murkoLiveVT" itemprop="sameAs">Telegram MurkoLiveVT</a>
                 <a href="https://www.twitch.tv/murkolivevt" itemprop="sameAs">Twitch MurkoLiveVT</a>
                 <a href="https://www.youtube.com/@MurkoVideos" itemprop="sameAs">YouTube MurkoVideos</a>
                 <a href="https://www.tiktok.com/@murkovideos" itemprop="sameAs">TikTok MurkoVideos</a>
-                <img src="Media/MurkoLive.jpg" alt="MurkoLiveVT аватар" itemprop="image">
-            </div>
-            
-            <!-- Кнопки навигации -->
- <div style="text-align: center; margin: 25px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-    <a href="bio.html" class="bio-button">О Мурко...</a>
-    <a href="archive.html" class="bio-button" style="border-color: var(--neon-purple); color: var(--neon-purple);">
-        Архив фото
-    </a>
- </div>
-            
-            <!-- SEO КОНТЕНТ -->
-            <div class="seo-content">
-                <div class="seo-section">
-                    <h2>MurkoLiveVT - Русский VTuber стример на Twitch</h2>
-                    <p><strong>MurkoLiveVT</strong> - популярный русскоязычный VTuber, известный своими регулярными (или не регулярными? Хз...) стримами Twitch. Стримы Мурко проходят с понедельника по пятницу в вечернее время и отличаются уникальной атмосферой дружелюбия и поддержки.</p>
-                    <p>На этом сайте собраны <strong>все актуальные ссылки MurkoLiveVT</strong> - Telegram канал, YouTube с записями, смешными моментами стримов, Twitch для стримов и TikTok с смешнми моментами. Присоединяйтесь к комьюнити поклонников Мурко!</p>
-                </div>
-                
-                <div class="seo-section">
-                    <h2>Расписание стримов MurkoLiveVT 2025</h2>
-                    <p>MurkoLiveVT проводит стримы <strong>ежедневно с понедельника по пятницу</strong>. Начало трансляций обычно в <strong>20:00-21 по московскому времени</strong>. Продолжительность стримов составляет 5-6 часов. Точное расписание может меняться, поэтому следите за обновлениями в Telegram канале стримера.</p>
-                </div>
-                
-                <div class="seo-section">
-                    <h2>Социальные сети MurkoLiveVT</h2>
-                    <p><strong>Telegram канал MurkoLiveVT</strong> - основная площадка для общения и анонсов. <strong>Twitch канал</strong> - для стримов. <strong>YouTube MurkoVideos</strong> - записи, смешные моментами стримов. <strong>TikTok MurkoVideos</strong> - сешные моменты за минуту!.</p>
-                </div>
-            </div>
-            
-            <!-- Личные сообщения -->
-            <div class="personal-message">
-                Личные сообщения Мурко (ТГ): @liveMurkoVT
+                <img src="Media/MurkoLive.jpg" alt="MurkoLiveVT - наш любимый VTuber" itemprop="image">
             </div>
         </div>
     </div>
@@ -254,7 +255,7 @@
     <!-- Аудио элемент -->
     <audio id="bgMusic" loop>
         <source src="Media/Music.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио элемент.
+        Ваш браузер не поддерживает музыку, но мы всё равно вас любим!
     </audio>
 
     <script src="script.js"></script>

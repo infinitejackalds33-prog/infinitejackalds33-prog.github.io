@@ -1,3 +1,6 @@
+// ===== MURKO'S WARM CORNER - ГЛАВНЫЙ СКРИПТ =====
+// Создано с заботой и теплом для самого уютного комьюнити
+
 // ===== ОСНОВНЫЕ ПЕРЕМЕННЫЕ =====
 const loadingScreen = document.getElementById('loadingScreen');
 const mainContent = document.getElementById('mainContent');
@@ -13,135 +16,151 @@ const musicControl = document.getElementById('musicControl');
 const bgMusic = document.getElementById('bgMusic');
 const backgroundImage = document.getElementById('backgroundImage');
 
-// Состояния анимации
+// Состояния нашего уютного уголка
 let currentStep = 0;
 let isAnimating = false;
 let isMusicPlaying = false;
+let isMusicInitialized = false;
 
-// ===== ФУНКЦИИ УПРАВЛЕНИЯ МУЗЫКОЙ =====
+// ===== МУЗЫКА ДЛЯ ДУШИ =====
+function initMusic() {
+    if (!bgMusic || isMusicInitialized) return;
+    
+    console.log('🎵 Настраиваем музыку для нашего уголка...');
+    bgMusic.volume = 0.18; // Негромко, чтобы не мешать
+    
+    // Ждём, когда пользователь проявит интерес
+    const initMusicOnInteraction = () => {
+        if (!isMusicPlaying) {
+            const playPromise = bgMusic.play();
+            
+            playPromise.then(() => {
+                isMusicPlaying = true;
+                if (musicControl) {
+                    musicControl.classList.remove('muted');
+                    musicControl.innerHTML = '♫';
+                    musicControl.title = 'Музыка играет - в нашем уголке уютно';
+                }
+                console.log('🎶 Музыка зазвучала, как тёплый плед');
+            }).catch(error => {
+                console.log('🎧 Ждём, когда ты разрешишь музыку...');
+                if (musicControl) {
+                    musicControl.classList.add('muted');
+                    musicControl.innerHTML = '🔇';
+                    musicControl.title = 'Нажми, чтобы включить музыку';
+                }
+                isMusicPlaying = false;
+            });
+        }
+        
+        // Больше не слушаем каждый клик
+        document.removeEventListener('click', initMusicOnInteraction);
+        document.removeEventListener('keydown', initMusicOnInteraction);
+        isMusicInitialized = true;
+    };
+    
+    // Слушаем и клики, и клавиши
+    document.addEventListener('click', initMusicOnInteraction);
+    document.addEventListener('keydown', initMusicOnInteraction);
+}
+
 function toggleMusic() {
     if (!bgMusic) return;
     
     if (isMusicPlaying) {
         bgMusic.pause();
-        if (musicControl) {
-            musicControl.classList.add('muted');
-            musicControl.innerHTML = '🔇';
-        }
+        musicControl.innerHTML = '🔇';
+        musicControl.classList.add('muted');
+        musicControl.title = 'Тихо, но всё ещё уютно';
     } else {
-        // Попытка воспроизведения музыки
-        const playPromise = bgMusic.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                // Музыка успешно запущена
-                isMusicPlaying = true;
-                if (musicControl) {
-                    musicControl.classList.remove('muted');
-                    musicControl.innerHTML = '♫';
-                }
-            }).catch(error => {
-                // Автовоспроизведение заблокировано
-                console.log('Автовоспроизведение заблокировано:', error);
-                if (musicControl) {
-                    musicControl.classList.add('muted');
-                    musicControl.innerHTML = '🔇';
-                }
-                isMusicPlaying = false;
-            });
-        }
+        bgMusic.play().then(() => {
+            musicControl.innerHTML = '♫';
+            musicControl.classList.remove('muted');
+            musicControl.title = 'Музыка согревает наш уголок';
+        }).catch(error => {
+            console.log('🎧 Что-то пошло не так с музыкой...');
+            musicControl.innerHTML = '❌';
+            musicControl.title = 'Музыка не может играть...';
+        });
     }
+    
     isMusicPlaying = !isMusicPlaying;
 }
 
-// Инициализация музыки после загрузки страницы
-function initMusic() {
-    if (!bgMusic) return;
-    
-    // Устанавливаем громкость
-    bgMusic.volume = 0.2;
-    
-    // Пытаемся запустить музыку после взаимодействия пользователя
-    document.addEventListener('click', function initMusicOnInteraction() {
-        if (!isMusicPlaying && bgMusic) {
-            const playPromise = bgMusic.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    isMusicPlaying = true;
-                    if (musicControl) {
-                        musicControl.classList.remove('muted');
-                        musicControl.innerHTML = '♫';
-                    }
-                }).catch(error => {
-                    console.log('Автовоспроизведение заблокировано:', error);
-                    if (musicControl) {
-                        musicControl.classList.add('muted');
-                        musicControl.innerHTML = '🔇';
-                    }
-                    isMusicPlaying = false;
-                });
-            }
-        }
-        // Удаляем обработчик после первого клика
-        document.removeEventListener('click', initMusicOnInteraction);
-    });
-}
-
-// ===== ФУНКЦИИ ОБРАБОТКИ ОШИБОК =====
+// ===== ЗАБОТА О КАРТИНКАХ =====
 function handleImageError(img) {
-    console.error('Ошибка загрузки изображения:', img.src);
+    console.warn('🖼️ Картинка потерялась по дороге:', img.src);
+    
+    // Создаём уютную заглушку
+    const parent = img.parentNode;
+    if (!parent) return;
+    
     img.style.display = 'none';
     
     const fallback = document.createElement('div');
     fallback.style.width = '100%';
     fallback.style.height = '100%';
-    fallback.style.background = 'rgba(255,255,255,0.1)';
-    fallback.style.borderRadius = img.classList.contains('avatar') ? '50%' : '0';
+    fallback.style.background = 'linear-gradient(135deg, #001122, #003344)';
+    fallback.style.borderRadius = img.classList.contains('avatar') ? '50%' : '12px';
     fallback.style.display = 'flex';
     fallback.style.alignItems = 'center';
     fallback.style.justifyContent = 'center';
-    fallback.style.color = 'white';
-    fallback.style.fontSize = '12px';
-    fallback.textContent = 'IMG';
+    fallback.style.color = '#88ccff';
+    fallback.style.fontSize = img.classList.contains('avatar') ? '16px' : '12px';
+    fallback.style.textAlign = 'center';
+    fallback.style.padding = '10px';
+    fallback.style.fontFamily = "'Comfortaa', cursive";
+    fallback.textContent = img.classList.contains('avatar') 
+        ? 'Здесь должен быть Мурко 💙' 
+        : 'Картинка спряталась...';
     
-    img.parentNode.appendChild(fallback);
+    parent.appendChild(fallback);
 }
 
 function handleBackgroundError() {
-    console.error('Ошибка загрузки фонового изображения Media/Stars.jpg');
+    console.warn('🌌 Фоновые звёзды решили спрятаться...');
+    
     if (!backgroundImage) return;
     
-    // Создаем звездный фон через CSS как запасной вариант
-    backgroundImage.style.background = 'radial-gradient(circle at center, #001122 0%, #000011 50%, #000000 100%)';
+    // Создаём звёзды вручную - ещё уютнее!
+    backgroundImage.style.background = 'radial-gradient(ellipse at center, #001122 0%, #000811 70%, #000000 100%)';
+    
+    // Очищаем и создаём новые звёзды
     backgroundImage.innerHTML = '';
     
-    // Создаем звезды через JavaScript
-    for (let i = 0; i < 100; i++) {
+    // Больше звёзд - уютнее!
+    for (let i = 0; i < 150; i++) {
         const star = document.createElement('div');
         star.style.position = 'absolute';
-        star.style.width = Math.random() * 2 + 'px';
+        star.style.width = Math.random() * 3 + 'px';
         star.style.height = star.style.width;
-        star.style.background = 'white';
+        star.style.background = Math.random() > 0.7 ? '#aaddff' : '#ffffff';
         star.style.borderRadius = '50%';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
-        star.style.opacity = Math.random() * 0.8 + 0.2;
-        star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite alternate`;
+        star.style.opacity = Math.random() * 0.9 + 0.1;
+        star.style.animation = `twinkle ${Math.random() * 4 + 2}s infinite alternate ${Math.random() * 2}s`;
+        
         backgroundImage.appendChild(star);
     }
     
     // Добавляем анимацию мерцания
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
+    if (!document.querySelector('#twinkle-animation')) {
+        const style = document.createElement('style');
+        style.id = 'twinkle-animation';
+        style.textContent = `
+            @keyframes twinkle {
+                0% { opacity: 0.3; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.1); }
+                100% { opacity: 0.5; transform: scale(0.95); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
 }
 
-// ===== ФУНКЦИИ АНИМАЦИИ =====
-function typeWriter(element, text, speed = 50) {
+// ===== ВОЛШЕБНЫЕ АНИМАЦИИ =====
+function typeWriter(element, text, speed = 60) {
     return new Promise((resolve) => {
         if (!element) {
             resolve();
@@ -166,14 +185,14 @@ function typeWriter(element, text, speed = 50) {
     });
 }
 
-function animatePassword(element, count = 6, speed = 200) {
+function animatePassword(element, count = 6, speed = 180) {
     return new Promise((resolve) => {
         if (!element) {
             resolve();
             return;
         }
         
-        element.innerHTML = 'Password: <span class="password-stars"></span>';
+        element.innerHTML = 'Секретный код: <span class="password-stars"></span>';
         const starsContainer = element.querySelector('.password-stars');
         if (!starsContainer) {
             resolve();
@@ -187,28 +206,27 @@ function animatePassword(element, count = 6, speed = 200) {
             if (i < count) {
                 const star = document.createElement('span');
                 star.className = 'password-star';
-                star.textContent = '*';
+                star.textContent = '✨';
                 star.style.animationDelay = `${i * 100}ms`;
                 starsContainer.appendChild(star);
                 i++;
                 setTimeout(addStar, speed);
             } else {
-                resolve();
+                setTimeout(resolve, 500);
             }
         }
         addStar();
     });
 }
 
-// ===== СТЕПЕНИ АНИМАЦИИ ЗАГРУЗКИ =====
+// ===== ШАГИ ВХОДА В НАШ УГОЛОК =====
 async function step1() {
     if (isAnimating) return;
     isAnimating = true;
     
-    await typeWriter(line1, "Sudo Login MurkoLiveVT", 70);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await typeWriter(line1, "Входим в уютный уголок Murko...", 70);
+    await new Promise(resolve => setTimeout(resolve, 800));
     
-    // Показываем вторую подсказку
     if (hint2) {
         hint2.style.display = 'block';
     }
@@ -220,10 +238,11 @@ async function step2() {
     if (isAnimating) return;
     isAnimating = true;
     
-    await animatePassword(line2, 6, 150);
-    await new Promise(resolve => setTimeout(resolve, 800));
+    await animatePassword(line2, 6, 160);
+    await new Promise(resolve => setTimeout(resolve, 600));
     
-    // Показываем прогресс-бар
+    await typeWriter(line3, "Добро пожаловать домой! 💙", 80);
+    
     if (progressBar) {
         progressBar.style.opacity = '1';
     }
@@ -231,10 +250,9 @@ async function step2() {
         progressFill.style.width = '100%';
     }
     
-    // Ждем завершения анимации прогресс-бара
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 1600));
     
-    // ПЛАВНЫЙ ПЕРЕХОД С АНИМАЦИЕЙ ЗАТУХАНИЯ
+    // Плавный переход в наш уголок
     if (loadingScreen) {
         loadingScreen.classList.add('fade-out');
         
@@ -244,6 +262,7 @@ async function step2() {
                 mainContent.style.display = 'block';
                 setTimeout(() => {
                     mainContent.classList.add('smooth-appear');
+                    console.log('🏡 Добро пожаловать в наш уютный уголок!');
                 }, 50);
             }
         }, 1200);
@@ -253,33 +272,33 @@ async function step2() {
     isAnimating = false;
 }
 
-// ===== ОБРАБОТЧИКИ ВЗАИМОДЕЙСТВИЯ =====
+// ===== ВЗАИМОДЕЙСТВИЕ С ЗАБОТОЙ =====
 function handleInteraction() {
     if (isAnimating) return;
     
     if (currentStep === 0) {
-        // Первый клик - убираем первую подсказку и начинаем первую анимации
         if (hint1) {
             hint1.style.opacity = '0';
             setTimeout(() => {
                 hint1.style.display = 'none';
                 step1();
-            }, 500);
+            }, 400);
         }
     } else if (currentStep === 1) {
-        // Второй клик - убираем вторую подсказку и начинаем вторую анимацию
         if (hint2) {
             hint2.style.opacity = '0';
             setTimeout(() => {
                 hint2.style.display = 'none';
                 step2();
-            }, 500);
+            }, 400);
         }
     }
 }
 
 function skipAnimation() {
     if (isAnimating) return;
+    
+    console.log('⏭️ Ты всегда можешь вернуться и посмотреть волшебство позже');
     
     if (loadingScreen) {
         loadingScreen.classList.add('fade-out');
@@ -296,19 +315,31 @@ function skipAnimation() {
     }
 }
 
-// ===== ПАСХАЛКИ =====
+// ===== ТЁПЛЫЕ ПАСХАЛКИ =====
 function showRickroll() {
+    console.log('🎭 Кто-то нашёл нашу маленькую шутку...');
+    
+    // Мобильные устройства просто покажут сообщение
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        alert('Мурко гордился бы твоей наблюдательностью! 💙');
         return;
     }
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+    
+    // На десктопе - классика
+    const newWindow = window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+    if (newWindow) {
+        setTimeout(() => {
+            newWindow.close();
+            alert('Просто хотел подарить тебе улыбку! Мурко одобрил бы эту шутку 😊');
+        }, 3000);
+    }
 }
 
 function handleMobileEasterEgg() {
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+    alert('Нашёл спрятанное послание! Мурко бы улыбнулся твоей внимательности ✨');
 }
 
-// ===== ПРЕДЗАГРУЗКА ИЗОБРАЖЕНИЙ =====
+// ===== ЗАБОТЛИВАЯ ПРЕДЗАГРУЗКА =====
 function preloadImages() {
     const imageUrls = [
         'Media/MurkoLive.jpg',
@@ -319,141 +350,85 @@ function preloadImages() {
         'Media/TikTok.png'
     ];
     
+    let loaded = 0;
+    const total = imageUrls.length;
+    
     imageUrls.forEach(url => {
         const img = new Image();
         img.src = url;
-        img.onerror = () => console.error(`Ошибка загрузки изображения: ${url}`);
+        img.onload = () => {
+            loaded++;
+            console.log(`🖼️ Загружено ${loaded}/${total}: ${url.split('/').pop()}`);
+        };
+        img.onerror = () => console.warn(`🖼️ Не удалось загрузить: ${url}`);
     });
 }
 
-// ===== ИНИЦИАЛИЗАЦИЯ СЛУЧАЙНЫХ ЧАСТИЦ =====
+// ===== ЧАСТИЦЫ ТЕПЛА =====
 function initParticles() {
-    document.querySelectorAll('.particle').forEach(particle => {
-        const randomX = (Math.random() - 0.5) * 60;
-        const randomY = (Math.random() - 0.5) * 60;
-        const randomScale = 0.8 + Math.random() * 1.2;
-        const randomDelay = Math.random() * 0.3;
+    const particles = document.querySelectorAll('.particle');
+    if (!particles.length) return;
+    
+    particles.forEach(particle => {
+        const randomX = (Math.random() - 0.5) * 80;
+        const randomY = (Math.random() - 0.5) * 80;
+        const randomScale = 0.7 + Math.random() * 1.5;
+        const randomDelay = Math.random() * 0.5;
         
         particle.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale})`;
         particle.style.transitionDelay = `${randomDelay}s`;
+        particle.style.opacity = '0.3';
     });
 }
 
-// ===== ОБРАБОТЧИКИ ОШИБОК ИЗОБРАЖЕНИЙ =====
-function initImageErrorHandling() {
-    document.querySelectorAll('img').forEach(img => {
-        if (!img.complete || img.naturalHeight === 0) {
-            img.onerror = function() {
-                handleImageError(this);
-            };
-        }
-    });
-}
-
-// ===== ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ =====
-function init() {
-    // Обработчики событий
-    document.addEventListener('keydown', handleInteraction);
-    
-    if (loadingScreen) {
-        loadingScreen.addEventListener('click', handleInteraction);
-    }
-    
-    if (skipBtn) {
-        skipBtn.addEventListener('click', skipAnimation);
-    }
-    
-    if (musicControl) {
-        musicControl.addEventListener('click', toggleMusic);
-    }
-
-    // Инициализация после загрузки страницы
-    window.addEventListener('load', function() {
-        if (bgMusic) {
-            initMusic();
-        }
-        preloadImages();
-        initParticles();
-        initImageErrorHandling();
-        
-        // Проверяем загрузку фонового изображения
-        if (backgroundImage) {
-            const bgImg = new Image();
-            bgImg.src = 'Media/Stars.jpg';
-            bgImg.onload = function() {
-                console.log('Фоновое изображение успешно загружено');
-            };
-            bgImg.onerror = handleBackgroundError;
-        }
-    });
-}
-
-// Запускаем инициализацию
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-// ===== МОДУЛЬ АРХИВА ФОТОГРАФИЙ =====
+// ===== АРХИВ С ТЕПЛОМ И ЗАБОТОЙ =====
 const archive = (function() {
-    // Конфигурация
     const TOTAL_PHOTOS = 91;
     const PHOTOS_PATH = 'Media/MurkoArchive/';
     
-    // Состояние
     let currentPhotos = [];
     let currentModalIndex = 0;
     let loadedCount = 0;
     
-    // DOM элементы
     let photosGrid, photoCounter, modalOverlay, modalImage, modalCaption;
     
-    // ===== ОСНОВНЫЕ ФУНКЦИИ =====
-    
-    // Инициализация архива
     function init() {
-        console.log('Инициализация архива фотографий...');
+        console.log('📸 Открываем альбом с тёплыми воспоминаниями...');
         
-        // Находим DOM элементы
         photosGrid = document.getElementById('photosGrid');
         photoCounter = document.getElementById('photoCounter');
         modalOverlay = document.getElementById('modalOverlay');
         modalImage = document.getElementById('modalImage');
         modalCaption = document.getElementById('modalCaption');
         
-        // Загружаем фотографии
+        if (!photosGrid) {
+            console.error('📸 Не нашёл сетку для фото...');
+            return;
+        }
+        
         loadPhotos();
         
-        // Назначаем обработчики клавиш
         document.addEventListener('keydown', handleKeydown);
         
-        // Закрытие по клику на оверлей
         if (modalOverlay) {
             modalOverlay.addEventListener('click', function(e) {
                 if (e.target === this) closeModal();
             });
         }
         
-        console.log('Архив инициализирован');
+        console.log(`📸 Альбом готов принять ${TOTAL_PHOTOS} тёплых моментов`);
     }
     
-    // Загрузка фотографий
     function loadPhotos() {
-        if (!photosGrid) return;
-        
-        // Очищаем сетку
         photosGrid.innerHTML = '';
         currentPhotos = [];
         loadedCount = 0;
         
-        // Создаем элементы для каждой фотографии
         for (let i = 1; i <= TOTAL_PHOTOS; i++) {
             createPhotoElement(i);
         }
     }
     
-    // Создание элемента фотографии
     function createPhotoElement(index) {
         const photoItem = document.createElement('div');
         photoItem.className = 'photo-item';
@@ -461,94 +436,92 @@ const archive = (function() {
         
         const img = document.createElement('img');
         img.loading = 'lazy';
-        img.alt = `Фотография MurkoLiveVT №${index}`;
+        img.alt = `Тёплый момент с Мурко №${index}`;
         
-        // Обработка загрузки
         img.onload = function() {
             loadedCount++;
             updatePhotoCounter();
             
-            // Добавляем анимацию появления
             photoItem.style.opacity = '0';
-            photoItem.style.transform = 'translateY(20px)';
+            photoItem.style.transform = 'translateY(15px)';
             setTimeout(() => {
-                photoItem.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                photoItem.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 photoItem.style.opacity = '1';
                 photoItem.style.transform = 'translateY(0)';
             }, 50);
         };
         
-        // Обработка ошибок
         img.onerror = function() {
-            // Пробуем другие расширения
-            const extensions = ['.jpg', '.jpeg', '.png', '.webp'];
+            const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
             let extIndex = 1;
             
-            function tryNextExtension() {
+            function tryNext() {
                 if (extIndex < extensions.length) {
                     img.src = `${PHOTOS_PATH}${index}${extensions[extIndex]}`;
                     extIndex++;
                 } else {
-                    // Заглушка если фото не найдено
-                    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxMTExMTEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+0J7RiNC40LHQutCwINC60LDQttC00L7QvDwvdGV4dD48L3N2Zz4=';
+                    img.src = getFallbackImage(index);
+                    img.style.opacity = '0.6';
                     loadedCount++;
                     updatePhotoCounter();
                 }
             }
             
-            img.onerror = tryNextExtension;
-            tryNextExtension();
+            img.onerror = tryNext;
+            tryNext();
         };
         
-        // Устанавливаем источник
-        img.src = `${PHOTOS_PATH}${index}.jpg`;
+        img.src = `${PHOTOS_PATH}${index}.png`;
         
-        // Номер фото
         const number = document.createElement('div');
         number.className = 'photo-number';
         number.textContent = index;
         
-        // Клик для открытия
-        photoItem.onclick = function() {
-            openModal(index - 1);
-        };
-        
-        // Собираем элемент
+        photoItem.onclick = () => openModal(index - 1);
         photoItem.appendChild(img);
         photoItem.appendChild(number);
         photosGrid.appendChild(photoItem);
         currentPhotos.push(photoItem);
     }
     
-    // Обновление счетчика
+    function getFallbackImage(number) {
+        const svg = `<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="400" fill="#112233"/>
+            <circle cx="200" cy="150" r="60" fill="#334455"/>
+            <path d="M120 280 Q200 340 280 280" stroke="#556677" stroke-width="4" fill="none"/>
+            <text x="200" y="370" text-anchor="middle" fill="#88ccff" font-family="Comfortaa" font-size="22">
+                Момент №${number}
+            </text>
+            <text x="200" y="320" text-anchor="middle" fill="#6699cc" font-family="Comfortaa" font-size="16">
+                ждёт своего часа
+            </text>
+        </svg>`;
+        return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
+    }
+    
     function updatePhotoCounter() {
         if (!photoCounter) return;
         
-        photoCounter.textContent = `Загружено: ${loadedCount} из ${TOTAL_PHOTOS} фото`;
+        photoCounter.textContent = `Собрано воспоминаний: ${loadedCount} из ${TOTAL_PHOTOS}`;
         
         if (loadedCount === TOTAL_PHOTOS) {
             photoCounter.style.color = 'var(--neon-green)';
-            photoCounter.innerHTML = `✅ Все ${TOTAL_PHOTOS} фотографий загружены!`;
+            photoCounter.innerHTML = `🎉 Все ${TOTAL_PHOTOS} тёплых моментов с нами!`;
         }
     }
-    
-    // ===== МОДАЛЬНОЕ ОКНО =====
     
     function openModal(index) {
         currentModalIndex = index;
         
         if (!modalOverlay || !modalImage || !modalCaption) return;
         
-        // Показываем фото
-        modalImage.src = `${PHOTOS_PATH}${index + 1}.jpg`;
-        modalImage.alt = `Фотография MurkoLiveVT №${index + 1}`;
-        modalCaption.textContent = `Фото ${index + 1} из ${TOTAL_PHOTOS}`;
+        modalImage.src = `${PHOTOS_PATH}${index + 1}.png`;
+        modalImage.alt = `Тёплый момент с Мурко №${index + 1}`;
+        modalCaption.textContent = `Тёплый момент ${index + 1} из ${TOTAL_PHOTOS}`;
         
-        // Показываем модальное окно
         modalOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
-        // Предзагрузка соседних фото
         preloadAdjacentPhotos(index);
     }
     
@@ -569,7 +542,6 @@ const archive = (function() {
         openModal(currentModalIndex);
     }
     
-    // Предзагрузка соседних фото для плавной навигации
     function preloadAdjacentPhotos(currentIndex) {
         const indices = [
             (currentIndex - 1 + TOTAL_PHOTOS) % TOTAL_PHOTOS,
@@ -578,14 +550,11 @@ const archive = (function() {
         
         indices.forEach(index => {
             const img = new Image();
-            img.src = `${PHOTOS_PATH}${index + 1}.jpg`;
+            img.src = `${PHOTOS_PATH}${index + 1}.png`;
         });
     }
     
-    // ===== ОБРАБОТКА КЛАВИАТУРЫ =====
-    
     function handleKeydown(e) {
-        // Только если модальное окно открыто
         if (modalOverlay && modalOverlay.style.display === 'flex') {
             switch(e.key) {
                 case 'Escape':
@@ -601,7 +570,6 @@ const archive = (function() {
         }
     }
     
-    // ===== ПУБЛИЧНЫЙ ИНТЕРФЕЙС =====
     return {
         init: init,
         openModal: openModal,
@@ -611,6 +579,67 @@ const archive = (function() {
     };
 })();
 
-// ===== ГЛОБАЛЬНЫЙ ДОСТУП К ФУНКЦИЯМ АРХИВА =====
-// (для вызова из HTML onclick)
+// ===== НАЧАЛО НАШЕГО УЮТНОГО ПУТИ =====
+function init() {
+    console.log('💙 Начинаем наше тёплое путешествие...');
+    
+    // Заботливые обработчики
+    document.addEventListener('keydown', handleInteraction);
+    
+    if (loadingScreen) {
+        loadingScreen.addEventListener('click', handleInteraction);
+    }
+    
+    if (skipBtn) {
+        skipBtn.addEventListener('click', skipAnimation);
+    }
+    
+    if (musicControl) {
+        musicControl.addEventListener('click', toggleMusic);
+    }
+    
+    // Когда всё загрузится
+    window.addEventListener('load', function() {
+        console.log('🌟 Всё готово для уютного вечера');
+        
+        initMusic();
+        preloadImages();
+        initParticles();
+        
+        // Проверяем фон
+        if (backgroundImage) {
+            const bgImg = new Image();
+            bgImg.src = 'Media/Stars.jpg';
+            bgImg.onload = () => console.log('🌌 Фоновые звёзды зажглись');
+            bgImg.onerror = handleBackgroundError;
+        }
+        
+        // Плавное появление
+        setTimeout(() => {
+            document.body.style.opacity = 1;
+        }, 100);
+    });
+    
+    // Обработка ошибок картинок
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.complete || img.naturalHeight === 0) {
+            img.onerror = function() {
+                handleImageError(this);
+            };
+        }
+    });
+}
+
+// ===== ЗАПУСК С ЗАБОТОЙ =====
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+// ===== ДЕЛИМСЯ ТЕПЛОМ =====
 window.archive = archive;
+window.showRickroll = showRickroll;
+window.handleMobileEasterEgg = handleMobileEasterEgg;
+window.handleImageError = handleImageError;
+console.log('💖 Весь код написан с теплом и заботой о нашем комьюнити');
