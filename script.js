@@ -429,60 +429,89 @@ const archive = (function() {
         }
     }
     
-    function createPhotoElement(index) {
-        const photoItem = document.createElement('div');
-        photoItem.className = 'photo-item';
-        photoItem.dataset.index = index - 1;
+ function createPhotoElement(index) {
+    const photoItem = document.createElement('div');
+    photoItem.className = 'photo-item';
+    photoItem.dataset.index = index - 1;
+    
+    // Создаём placeholder сначала (серый квадрат)
+    const placeholder = document.createElement('div');
+    placeholder.style.width = '100%';
+    placeholder.style.height = '100%';
+    placeholder.style.background = 'linear-gradient(45deg, #1a2b3c, #2a3b4c)';
+    placeholder.style.display = 'flex';
+    placeholder.style.alignItems = 'center';
+    placeholder.style.justifyContent = 'center';
+    placeholder.style.color = '#6699cc';
+    placeholder.style.fontSize = '14px';
+    placeholder.textContent = 'Загружаю...';
+    
+    photoItem.appendChild(placeholder);
+    
+    // Создаём реальное изображение, но не загружаем сразу
+    const img = new Image();
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.alt = `Тёплый момент с Мурко №${index}`;
+    
+    // Когда изображение загрузится, заменяем placeholder
+    img.onload = function() {
+        loadedCount++;
+        updatePhotoCounter();
         
-        const img = document.createElement('img');
-        img.loading = 'lazy';
-        img.alt = `Тёплый момент с Мурко №${index}`;
+        // Плавная замена placeholder на изображение
+        placeholder.style.transition = 'opacity 0.5s ease';
+        placeholder.style.opacity = '0';
         
-        img.onload = function() {
-            loadedCount++;
-            updatePhotoCounter();
+        setTimeout(() => {
+            placeholder.remove();
             
-            photoItem.style.opacity = '0';
-            photoItem.style.transform = 'translateY(15px)';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.objectPosition = 'center';
+            img.style.transition = 'opacity 0.5s ease';
+            img.style.opacity = '0';
+            
+            photoItem.appendChild(img);
+            
+            // Плавное появление изображения
             setTimeout(() => {
-                photoItem.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                photoItem.style.opacity = '1';
-                photoItem.style.transform = 'translateY(0)';
+                img.style.opacity = '1';
             }, 50);
-        };
-        
-        img.onerror = function() {
-            const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
-            let extIndex = 1;
             
-            function tryNext() {
-                if (extIndex < extensions.length) {
-                    img.src = `${PHOTOS_PATH}${index}${extensions[extIndex]}`;
-                    extIndex++;
-                } else {
-                    img.src = getFallbackImage(index);
-                    img.style.opacity = '0.6';
-                    loadedCount++;
-                    updatePhotoCounter();
-                }
-            }
-            
-            img.onerror = tryNext;
-            tryNext();
-        };
-        
-        img.src = `${PHOTOS_PATH}${index}.png`;
-        
-        const number = document.createElement('div');
-        number.className = 'photo-number';
-        number.textContent = index;
-        
-        photoItem.onclick = () => openModal(index - 1);
-        photoItem.appendChild(img);
-        photoItem.appendChild(number);
-        photosGrid.appendChild(photoItem);
-        currentPhotos.push(photoItem);
-    }
+            // Анимация появления блока
+            photoItem.style.opacity = '0';
+            photoItem.style.transform = 'translateY(15px) scale(0.95)';
+            setTimeout(() => {
+                photoItem.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                photoItem.style.opacity = '1';
+                photoItem.style.transform = 'translateY(0) scale(1)';
+            }, 100);
+        }, 300);
+    };
+    
+    img.onerror = function() {
+        // Если изображение не загрузилось, оставляем красивый placeholder
+        placeholder.innerHTML = '❤️<br><small>Момент спрятался</small>';
+        placeholder.style.color = '#ff6b9d';
+        loadedCount++;
+        updatePhotoCounter();
+    };
+    
+    // Начинаем загрузку (ленивую)
+    img.src = `${PHOTOS_PATH}${index}.png`;
+    
+    // Номер фото
+    const number = document.createElement('div');
+    number.className = 'photo-number';
+    number.textContent = index;
+    
+    photoItem.appendChild(number);
+    photoItem.onclick = () => openModal(index - 1);
+    photosGrid.appendChild(photoItem);
+    currentPhotos.push(photoItem);
+}
     
     function getFallbackImage(number) {
         const svg = `<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">

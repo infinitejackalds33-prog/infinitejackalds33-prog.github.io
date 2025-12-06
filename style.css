@@ -1144,3 +1144,37 @@ body {
         font-size: 16px;
     }
 }
+
+/* Оптимизация огромных изображений в архиве */
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Браузер сам оптимизирует рендеринг */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* Особо большие изображения в модальном окне */
+.modal-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    /* Плавное масштабирование */
+    image-rendering: auto;
+}
+
+/* Для мобилок - ещё сильнее сжимаем */
+@media (max-width: 768px) {
+    .photos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    
+    .modal-img {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+}
