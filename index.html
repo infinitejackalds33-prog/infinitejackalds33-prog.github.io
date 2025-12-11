@@ -88,6 +88,30 @@
         <button class="skip-btn" id="skipBtn">Skip Animation</button>
     </div>
 
+    <!-- ===== ПРЕДЗАГРУЗКА ВСЕГО САЙТА ===== -->
+ <!-- Предзагрузка шрифтов и подключений -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preconnect" href="." crossorigin>
+
+ <!-- Предзагрузка CSS и JS -->
+ <link rel="preload" href="style.css" as="style">
+ <link rel="preload" href="script.js" as="script">
+
+ <!-- Предзагрузка страниц (скрытая, для мгновенной навигации) -->
+ <link rel="prefetch" href="bio.html" as="document" crossorigin="anonymous">
+ <link rel="prefetch" href="archive.html" as="document" crossorigin="anonymous">
+
+ <!-- Предзагрузка первых 8 фото архива (для быстрого показа) -->
+ <link rel="prefetch" href="Media/MurkoArchive/1.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/2.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/3.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/4.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/5.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/6.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/7.png" as="image" type="image/png">
+ <link rel="prefetch" href="Media/MurkoArchive/8.png" as="image" type="image/png">
+
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <!-- Кнопка управления музыкой -->

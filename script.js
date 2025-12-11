@@ -665,6 +665,117 @@ if (document.readyState === 'loading') {
     init();
 }
 
+// ===== УМНАЯ ПРЕДЗАГРУЗКА ВСЕГО САЙТА =====
+// Активируется при первом клике на загрузочном экране
+
+let preloadStarted = false;
+
+function startSmartPreload() {
+    if (preloadStarted) return;
+    preloadStarted = true;
+    
+    console.log('🚀 Запускаем предзагрузку всего сайта MurkoLiveVT...');
+    
+    // 1. Предзагрузка оставшихся страниц (на всякий случай дублируем)
+    const preloadPage = (url) => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+    };
+    
+    // Предзагружаем страницы с низким приоритетом
+    setTimeout(() => {
+        preloadPage('bio.html');
+        preloadPage('archive.html');
+    }, 300);
+    
+    // 2. Предзагрузка фото архива пачками
+    const preloadPhotoBatch = (start, end) => {
+        for (let i = start; i <= end && i <= 91; i++) {
+            // Создаём изображение, но не добавляем в DOM
+            const img = new Image();
+            img.src = `Media/MurkoArchive/${i}.png`;
+            img.onload = () => {
+                // Тихо загрузилось в кеш
+            };
+            img.onerror = () => {
+                // Игнорируем ошибки при предзагрузке
+            };
+        }
+    };
+    
+    // Умное расписание предзагрузки:
+    // - Пачка 1: сразу (первые 8 уже в HTML)
+    // - Пачка 2: через 0.5с
+    // - Пачка 3: через 1.5с
+    // - И так далее...
+    
+    const batches = [
+        {start: 9, end: 16, delay: 500},
+        {start: 17, end: 24, delay: 1500},
+        {start: 25, end: 32, delay: 2500},
+        {start: 33, end: 40, delay: 3500},
+        {start: 41, end: 48, delay: 4500},
+        {start: 49, end: 56, delay: 5500},
+        {start: 57, end: 64, delay: 6500},
+        {start: 65, end: 72, delay: 7500},
+        {start: 73, end: 80, delay: 8500},
+        {start: 81, end: 88, delay: 9500},
+        {start: 89, end: 91, delay: 10500}
+    ];
+    
+    batches.forEach(batch => {
+        setTimeout(() => {
+            preloadPhotoBatch(batch.start, batch.end);
+            console.log(`📦 Предзагружена пачка фото ${batch.start}-${batch.end}`);
+        }, batch.delay);
+    });
+    
+    // 3. Предподключение к внешним ресурсам
+    const preconnectLinks = [
+        'https://fonts.gstatic.com',
+        'https://www.youtube.com',
+        'https://www.twitch.tv',
+        'https://t.me'
+    ];
+    
+    preconnectLinks.forEach(origin => {
+        const link = document.createElement('link');
+        link.rel = 'preconnect';
+        link.href = origin;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+    });
+    
+    console.log('✅ Предзагрузка активирована. Все страницы загрузятся мгновенно!');
+}
+
+// ===== ИНТЕГРАЦИЯ С СУЩЕСТВУЮЩИМ КОДОМ =====
+
+// Сохраняем оригинальные функции
+const originalStep1 = step1;
+const originalSkipAnimation = skipAnimation;
+
+// Переопределяем step1 для запуска предзагрузки
+step1 = async function() {
+    startSmartPreload(); // Запускаем предзагрузку при первом клике
+    return originalStep1.apply(this, arguments);
+};
+
+// Переопределяем skipAnimation для запуска предзагрузки
+skipAnimation = function() {
+    startSmartPreload(); // Запускаем предзагрузку при пропуске
+    return originalSkipAnimation.apply(this, arguments);
+};
+
+// Также запускаем предзагрузку при любом взаимодействии с загрузочным экраном
+if (loadingScreen) {
+    loadingScreen.addEventListener('click', startSmartPreload);
+}
+
 // ===== ДЕЛИМСЯ ТЕПЛОМ =====
 window.archive = archive;
 window.showRickroll = showRickroll;
