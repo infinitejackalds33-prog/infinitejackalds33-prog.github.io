@@ -430,42 +430,34 @@ body {
     transform: translateY(1px);
 }
 
-/* Кнопка "Архив Мурко" (ФИОЛЕТОВАЯ) */
-.archive-button {
-    display: inline-block;
-    padding: 14px 35px;
-    margin: 10px auto;
-    background: transparent;
-    border: 2px solid var(--neon-purple);
-    border-radius: 10px;
-    color: var(--neon-purple);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 21px;
-    text-shadow: 0 0 10px var(--neon-purple);
+/* ===== ФИКС КНОПКИ АРХИВА ===== */
+/* Кнопка "Архив Мурко" должна светиться фиолетовым, а не зелёным */
+
+/* Стили для кнопки архива */
+.bio-button[href*="archive"] {
+    border-color: var(--neon-purple) !important;
+    color: var(--neon-purple) !important;
     box-shadow: 
         0 0 15px var(--neon-purple),
         inset 0 0 15px rgba(145, 70, 255, 0.1);
-    transition: all 0.4s ease;
-    font-family: 'Comfortaa', cursive;
-    position: relative;
-    overflow: hidden;
 }
 
-.archive-button:hover {
-    background: var(--neon-purple);
-    color: black;
+/* При наведении - фиолетовый, а не зелёный! */
+.bio-button[href*="archive"]:hover {
+    background: var(--neon-purple) !important;
+    color: black !important;
     box-shadow: 
         0 0 25px var(--neon-purple),
-        0 0 35px var(--neon-purple);
+        0 0 35px var(--neon-purple) !important;
     transform: translateY(-3px);
 }
 
-.archive-button:active {
+/* Активное состояние */
+.bio-button[href*="archive"]:active {
     transform: translateY(1px);
     box-shadow: 
         0 0 15px var(--neon-purple),
-        inset 0 0 20px rgba(145, 70, 255, 0.3);
+        inset 0 0 20px rgba(145, 70, 255, 0.3) !important;
 }
 
 /* ===== MAIN CONTENT LAYOUT ===== */
