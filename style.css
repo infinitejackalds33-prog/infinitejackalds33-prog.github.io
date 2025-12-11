@@ -24,7 +24,7 @@ body {
     position: relative;
     line-height: 1.6;
     background: transparent;
-    font-size: 18px; /* Увеличено с ~15px */
+    font-size: 18px;
 }
 
 /* Фоновая картинка - ТЕПЕРЬ ОСНОВНОЙ ФОН */
@@ -85,7 +85,7 @@ body {
     position: absolute;
     color: var(--neon-blue);
     text-shadow: 0 0 10px var(--neon-blue);
-    font-size: 19px; /* Увеличено с 16px */
+    font-size: 19px;
     text-align: center;
     width: 100%;
     opacity: 1;
@@ -104,7 +104,7 @@ body {
 
 .terminal-line {
     margin: 20px 0;
-    font-size: 21px; /* Увеличено с 18px */
+    font-size: 21px;
     color: var(--neon-blue);
     text-shadow: 0 0 10px var(--neon-blue);
     min-height: 25px;
@@ -176,7 +176,7 @@ body {
     font-family: 'Comfortaa', cursive;
     text-shadow: 0 0 5px var(--neon-blue);
     transition: all 0.3s ease;
-    font-size: 17px; /* Увеличено с 14px */
+    font-size: 17px;
 }
 
 .skip-btn:hover {
@@ -264,7 +264,7 @@ body {
     z-index: 100;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px var(--neon-blue);
-    font-size: 23px; /* Увеличено с 20px */
+    font-size: 23px;
 }
 
 .music-control:hover {
@@ -290,7 +290,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 17px; /* Увеличено с 14px */
+    font-size: 17px;
     color: var(--neon-blue);
     cursor: pointer;
     text-shadow: 0 0 5px var(--neon-blue);
@@ -315,7 +315,7 @@ body {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    font-size: 17px; /* Увеличено с 14px */
+    font-size: 17px;
     color: white;
     opacity: 0.8;
     z-index: 10;
@@ -346,7 +346,7 @@ body {
 
 /* 3D текст */
 .title {
-    font-size: clamp(23px, 6vw, 35px); /* Увеличено с 20px/32px */
+    font-size: clamp(23px, 6vw, 35px);
     font-weight: 700;
     margin-bottom: 15px;
     color: var(--neon-blue);
@@ -365,7 +365,7 @@ body {
 }
 
 .subtitle {
-    font-size: clamp(17px, 4vw, 21px); /* Увеличено с 14px/18px */
+    font-size: clamp(17px, 4vw, 21px);
     color: #88ccff;
     margin-bottom: 25px;
     text-shadow: 0 0 10px #88ccff;
@@ -394,7 +394,8 @@ body {
     }
 }
 
-/* ===== КНОПКА "О МУРКО" ===== */
+/* ===== КНОПКИ НАВИГАЦИИ ===== */
+/* Кнопка "О Мурко..." (ЗЕЛЁНАЯ) */
 .bio-button {
     display: inline-block;
     padding: 14px 35px;
@@ -405,7 +406,7 @@ body {
     color: var(--neon-green);
     text-decoration: none;
     font-weight: 700;
-    font-size: 21px; /* Увеличено с 18px */
+    font-size: 21px;
     text-shadow: 0 0 10px var(--neon-green);
     box-shadow: 
         0 0 15px var(--neon-green),
@@ -427,6 +428,44 @@ body {
 
 .bio-button:active {
     transform: translateY(1px);
+}
+
+/* Кнопка "Архив Мурко" (ФИОЛЕТОВАЯ) */
+.archive-button {
+    display: inline-block;
+    padding: 14px 35px;
+    margin: 10px auto;
+    background: transparent;
+    border: 2px solid var(--neon-purple);
+    border-radius: 10px;
+    color: var(--neon-purple);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 21px;
+    text-shadow: 0 0 10px var(--neon-purple);
+    box-shadow: 
+        0 0 15px var(--neon-purple),
+        inset 0 0 15px rgba(145, 70, 255, 0.1);
+    transition: all 0.4s ease;
+    font-family: 'Comfortaa', cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+.archive-button:hover {
+    background: var(--neon-purple);
+    color: black;
+    box-shadow: 
+        0 0 25px var(--neon-purple),
+        0 0 35px var(--neon-purple);
+    transform: translateY(-3px);
+}
+
+.archive-button:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 0 15px var(--neon-purple),
+        inset 0 0 20px rgba(145, 70, 255, 0.3);
 }
 
 /* ===== MAIN CONTENT LAYOUT ===== */
@@ -469,7 +508,7 @@ body {
 .schedule-title {
     color: #66aaff;
     text-shadow: 0 0 10px #66aaff;
-    font-size: 21px; /* Увеличено с 18px */
+    font-size: 21px;
     font-weight: 700;
     margin-bottom: 15px;
     text-align: center;
@@ -485,7 +524,7 @@ body {
 .schedule-table td {
     padding: 10px 8px;
     border-bottom: 1px solid rgba(0, 68, 204, 0.3);
-    font-size: 17px; /* Увеличено с 14px */
+    font-size: 17px;
 }
 
 .schedule-table tr:last-child td {
@@ -576,7 +615,7 @@ body {
 }
 
 .panel-text {
-    font-size: 23px; /* Увеличено с 20px */
+    font-size: 23px;
     font-weight: 700;
     z-index: 2;
     position: relative;
@@ -657,7 +696,7 @@ body {
 /* Сообщение внизу */
 .personal-message {
     margin: 15px auto;
-    font-size: clamp(17px, 4vw, 19px); /* Увеличено с 14px/16px */
+    font-size: clamp(17px, 4vw, 19px);
     color: var(--neon-blue);
     font-weight: 700;
     padding: 12px 15px;
@@ -720,7 +759,7 @@ body {
 
 .bio-text {
     color: #aaddff;
-    font-size: 20px; /* Увеличено с 17px */
+    font-size: 20px;
     line-height: 1.7;
     margin-bottom: 20px;
     text-shadow: 0 0 5px rgba(170, 221, 255, 0.5);
@@ -740,7 +779,7 @@ body {
     font-style: italic;
     color: #88ccff;
     text-shadow: 0 0 5px rgba(136, 204, 255, 0.5);
-    font-size: 18px; /* Увеличено */
+    font-size: 18px;
 }
 
 .bio-home-link {
@@ -753,7 +792,7 @@ body {
     color: var(--neon-blue);
     text-decoration: none;
     font-weight: 600;
-    font-size: 19px; /* Увеличено с 16px */
+    font-size: 19px;
     transition: all 0.3s ease;
 }
 
@@ -781,145 +820,13 @@ body {
 .seo-section h2 {
     color: var(--neon-blue);
     margin-bottom: 10px;
-    font-size: 21px; /* Увеличено с 18px */
+    font-size: 21px;
 }
 
 .seo-section p {
     color: #cccccc;
     line-height: 1.6;
-    font-size: 17px; /* Увеличено с 14px */
-}
-
-/* ===== АДАПТИВНОСТЬ ===== */
-@media (max-width: 900px) {
-    .content-wrapper {
-        flex-direction: column;
-        gap: 25px;
-        align-items: center;
-    }
-    
-    .schedule-container {
-        transform: none;
-        max-width: 450px;
-        width: 100%;
-        order: 2;
-    }
-    
-    .schedule-container:hover {
-        transform: translateY(-5px);
-    }
-    
-    .panels-container {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 450px;
-        width: 100%;
-        order: 1;
-        gap: 12px;
-    }
-    
-    .panel {
-        max-width: 100%;
-        height: 75px;
-    }
-
-    .music-control {
-        top: 10px;
-        left: 10px;
-        width: 45px;
-        height: 45px;
-    }
-}
-
-@media (max-width: 768px) {
-    .mobile-easter-egg {
-        display: inline-block;
-        color: var(--neon-blue);
-        cursor: pointer;
-        text-shadow: 0 0 5px var(--neon-blue);
-        padding: 8px 12px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        background: rgba(0, 240, 255, 0.1);
-        margin: -5px auto 15px;
-        font-size: 16px; /* Увеличено с 13px */
-        width: 90%;
-        max-width: 280px;
-    }
-    
-    .easter-egg {
-        display: none;
-    }
-
-    .creator-signature {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        margin-top: 20px;
-    }
-
-    .music-control {
-        width: 40px;
-        height: 40px;
-        font-size: 19px; /* Увеличено с 16px */
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        font-size: 16px; /* Увеличено с 14px */
-    }
-    
-    .panels-container {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .panel {
-        height: 70px;
-        max-width: 100%;
-    }
-    
-    .panel-text {
-        font-size: 21px; /* Увеличено с 18px */
-    }
-    
-    .schedule-container {
-        padding: 15px 10px;
-    }
-    
-    .schedule-table td {
-        padding: 8px 5px;
-        font-size: 16px; /* Увеличено с 13px */
-    }
-    
-    .bio-button {
-        padding: 12px 25px;
-        font-size: 19px; /* Увеличено с 16px */
-    }
-    
-    .bio-content {
-        padding: 15px;
-    }
-    
-    .bio-text {
-        font-size: 18px; /* Увеличено с 15px */
-    }
-    
-    .container {
-        opacity: 0;
-        animation: smoothAppear 1s ease-out forwards;
-    }
-
-    @keyframes smoothAppear {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+    font-size: 17px;
 }
 
 /* ===== СТИЛИ ДЛЯ ARCHIVE.HTML ===== */
@@ -1098,8 +1005,80 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* Адаптивность архива */
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 900px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+    
+    .schedule-container {
+        transform: none;
+        max-width: 450px;
+        width: 100%;
+        order: 2;
+    }
+    
+    .schedule-container:hover {
+        transform: translateY(-5px);
+    }
+    
+    .panels-container {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 450px;
+        width: 100%;
+        order: 1;
+        gap: 12px;
+    }
+    
+    .panel {
+        max-width: 100%;
+        height: 75px;
+    }
+
+    .music-control {
+        top: 10px;
+        left: 10px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
 @media (max-width: 768px) {
+    .mobile-easter-egg {
+        display: inline-block;
+        color: var(--neon-blue);
+        cursor: pointer;
+        text-shadow: 0 0 5px var(--neon-blue);
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        background: rgba(0, 240, 255, 0.1);
+        margin: -5px auto 15px;
+        font-size: 16px;
+        width: 90%;
+        max-width: 280px;
+    }
+    
+    .easter-egg {
+        display: none;
+    }
+
+    .creator-signature {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-top: 20px;
+    }
+
+    .music-control {
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+    }
+    
+    /* Адаптивность архива */
     .photos-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 15px;
@@ -1112,6 +1091,64 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .panels-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .panel {
+        height: 70px;
+        max-width: 100%;
+    }
+    
+    .panel-text {
+        font-size: 21px;
+    }
+    
+    .schedule-container {
+        padding: 15px 10px;
+    }
+    
+    .schedule-table td {
+        padding: 8px 5px;
+        font-size: 16px;
+    }
+    
+    .bio-button,
+    .archive-button {
+        padding: 12px 25px;
+        font-size: 19px;
+    }
+    
+    .bio-content {
+        padding: 15px;
+    }
+    
+    .bio-text {
+        font-size: 18px;
+    }
+    
+    .container {
+        opacity: 0;
+        animation: smoothAppear 1s ease-out forwards;
+    }
+
+    @keyframes smoothAppear {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Адаптивность архива для мобилок */
     .photos-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 10px;
@@ -1123,69 +1160,5 @@ body {
     
     .archive-subtitle {
         font-size: 16px;
-    }
-}
-
-/* ===== ФИКС КНОПКИ АРХИВА ===== */
-/* Кнопка "Архив Мурко" должна светиться фиолетовым, а не зелёным */
-
-/* Стили для кнопки архива */
-.bio-button[href*="archive"] {
-    border-color: var(--neon-purple) !important;
-    color: var(--neon-purple) !important;
-    box-shadow: 
-        0 0 15px var(--neon-purple),
-        inset 0 0 15px rgba(145, 70, 255, 0.1);
-}
-
-/* При наведении - фиолетовый, а не зелёный! */
-.bio-button[href*="archive"]:hover {
-    background: var(--neon-purple) !important;
-    color: black !important;
-    box-shadow: 
-        0 0 25px var(--neon-purple),
-        0 0 35px var(--neon-purple) !important;
-    transform: translateY(-3px);
-}
-
-/* Активное состояние */
-.bio-button[href*="archive"]:active {
-    transform: translateY(1px);
-    box-shadow: 
-        0 0 15px var(--neon-purple),
-        inset 0 0 20px rgba(145, 70, 255, 0.3) !important;
-}
-
-/* Оптимизация огромных изображений в архиве */
-.photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    /* Браузер сам оптимизирует рендеринг */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: nearest-neighbor;
-}
-
-/* Особо большие изображения в модальном окне */
-.modal-img {
-    max-width: 90vw;
-    max-height: 90vh;
-    width: auto;
-    height: auto;
-    /* Плавное масштабирование */
-    image-rendering: auto;
-}
-
-/* Для мобилок - ещё сильнее сжимаем */
-@media (max-width: 768px) {
-    .photos-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    }
-    
-    .modal-img {
-        max-width: 95vw;
-        max-height: 80vh;
     }
 }
